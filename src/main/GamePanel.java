@@ -40,28 +40,22 @@ public class GamePanel extends JPanel implements Runnable {
     public void run() {
 
         double drawInterval = 1000000000 / FPS; // Calculate the draw interval in nanoseconds
-        double nextDrawTime = System.nanoTime() + drawInterval; // Calculate the next draw time
+        double delta = 0; // Delta time for frame rate control
+        long lastTime = System.nanoTime(); // Get the current time in nanoseconds
+        long currentTime; // Variable to store the current time
 
         while(gameThread != null) { // Main game loop
             
-            long currentTime = System.currentTimeMillis(); // Get the current time
-            System.out.println("Current time: " + currentTime); // Print the current time for debugging
+            currentTime = System.nanoTime(); // Get the current time in nanoseconds
             System.out.println("Game is running..."); // Placeholder for game logic
-
-            update(); // Update game state
-            repaint(); // Repaint the screen
-
-            try {
-                double remainingTime = nextDrawTime - System.nanoTime(); // Calculate the remaining time until the next draw
-                remainingTime /= 1000000; // Convert to milliseconds
-                if (remainingTime < 0) { // If the remaining time is negative, skip to the next draw
-                    remainingTime = 0; // Set remaining time to 0
-                }
-                Thread.sleep((long) remainingTime); // Sleep for the remaining time
-                nextDrawTime += drawInterval; // Update the next draw time
-            } catch (InterruptedException e) {
-                e.printStackTrace(); // Print the stack trace for debugging
+            delta += (currentTime - lastTime) / drawInterval; // Calculate the delta time
+            lastTime = currentTime; // Update the last time
+            if (delta >= 1) { // If enough time has passed
+                update(); // Update game state
+                repaint(); // Repaint the screen
+                delta--; // Decrease delta by 1
             }
+            
         }
 
     }
