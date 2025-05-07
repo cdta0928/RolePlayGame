@@ -10,6 +10,11 @@ public class Main {
         window.setResizable(false);
         window.setTitle("2D Game");
         
+        GamePanel gamePanel = new GamePanel(); // Create an instance of GamePanel
+        window.add(gamePanel); // Add the GamePanel to the JFrame
+
+        window.pack(); // Pack the window to fit the preferred size of the GamePanel
+
         window.setLocationRelativeTo(null); // Center the window on the screen
         window.setVisible(true);
         
