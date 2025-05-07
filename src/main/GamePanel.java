@@ -43,19 +43,28 @@ public class GamePanel extends JPanel implements Runnable {
         double delta = 0; // Delta time for frame rate control
         long lastTime = System.nanoTime(); // Get the current time in nanoseconds
         long currentTime; // Variable to store the current time
+        long timer = 0; // Timer for FPS calculation
+        int drawCount = 0; // Count of frames drawn
 
         while(gameThread != null) { // Main game loop
             
             currentTime = System.nanoTime(); // Get the current time in nanoseconds
-            System.out.println("Game is running..."); // Placeholder for game logic
+            // System.out.println("Game is running..."); // Placeholder for game logic
             delta += (currentTime - lastTime) / drawInterval; // Calculate the delta time
+            timer += (currentTime - lastTime); // Update the timer
             lastTime = currentTime; // Update the last time
             if (delta >= 1) { // If enough time has passed
                 update(); // Update game state
                 repaint(); // Repaint the screen
                 delta--; // Decrease delta by 1
+                drawCount++; // Increment the draw count
             }
-            
+            if (timer >= 1000000000) { // If 1 second has passed
+                System.out.println("FPS: " + drawCount); // Print the FPS
+                drawCount = 0; // Reset the draw count
+                timer = 0; // Reset the timer
+            }
+
         }
 
     }
