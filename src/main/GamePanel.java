@@ -41,7 +41,7 @@ public class GamePanel extends JPanel implements Runnable {
 
     public void update() {
         // Update game logic here (e.g., player movement, enemy AI, etc.)
-        
+
 
     }
 
@@ -49,6 +49,12 @@ public class GamePanel extends JPanel implements Runnable {
     public void paintComponent(java.awt.Graphics g) {
 
         super.paintComponent(g); // Call the superclass method to clear the screen
+        // Draw game elements here (e.g., tiles, characters, etc.)
+        // Example: g.drawImage(image, x, y, tileSize, tileSize, null);
+        java.awt.Graphics2D g2 = (java.awt.Graphics2D) g; // Cast to Graphics2D for advanced drawing 
+        g2.setColor(java.awt.Color.WHITE); // Set the color to white
+        g2.fillRect(100, 100, tileSize, tileSize); // Fill the screen with white for testing
+        g2.dispose(); // Dispose of the Graphics2D object to free resources
 
     }
 
