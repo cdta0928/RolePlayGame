@@ -2,7 +2,7 @@ package main;
 
 public class KeyHandler implements java.awt.event.KeyListener {
 
-    boolean upPressed, downPressed, leftPressed, rightPressed; // Movement flags
+    public boolean upPressed, downPressed, leftPressed, rightPressed; // Movement flags
 
     @Override  
     public void keyTyped(java.awt.event.KeyEvent e) {

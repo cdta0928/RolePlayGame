@@ -1,6 +1,6 @@
 package main;
-import javax.swing.JPanel;
-public class GamePanel extends JPanel implements Runnable {
+
+public class GamePanel extends javax.swing.JPanel implements Runnable {
 
     // SCRREEN SETTINGS
     final int originalTileSize = 16; // 16x16 tile
@@ -17,6 +17,7 @@ public class GamePanel extends JPanel implements Runnable {
 
     KeyHandler keyHandler = new KeyHandler(); // Key handler for keyboard input
     Thread gameThread; // Thread for the game loop
+    entity.Player player = new entity.Player(this, keyHandler); // Player object
 
     // Set player's position
     int playerX = 100; // Player's X position
@@ -72,18 +73,7 @@ public class GamePanel extends JPanel implements Runnable {
     public void update() {
         // Update game logic here (e.g., player movement, enemy AI, etc.)
 
-        if (keyHandler.upPressed) { // If the up key is pressed
-            playerY -= playerSpeed; // Move the player up
-        }
-        if (keyHandler.downPressed) { // If the down key is pressed
-            playerY += playerSpeed; // Move the player down
-        }
-        if (keyHandler.leftPressed) { // If the left key is pressed
-            playerX -= playerSpeed; // Move the player left
-        }
-        if (keyHandler.rightPressed) { // If the right key is pressed
-            playerX += playerSpeed; // Move the player right
-        }
+        player.update(); // Update the player state
 
     }
 
@@ -94,8 +84,7 @@ public class GamePanel extends JPanel implements Runnable {
         // Draw game elements here (e.g., tiles, characters, etc.)
         // Example: g.drawImage(image, x, y, tileSize, tileSize, null);
         java.awt.Graphics2D g2 = (java.awt.Graphics2D) g; // Cast to Graphics2D for advanced drawing 
-        g2.setColor(java.awt.Color.WHITE); // Set the color to white
-        g2.fillRect(playerX, playerY, tileSize, tileSize); // Fill the screen with white for testing
+        player.draw(g2); // Draw the player using the draw method from the Player class
         g2.dispose(); // Dispose of the Graphics2D object to free resources
 
     }
