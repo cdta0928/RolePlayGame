@@ -12,12 +12,20 @@ public class GamePanel extends JPanel implements Runnable {
     public final int screenWidth = tileSize * maxScreenCol; // 768 pixels wide
     public final int screenHeight = tileSize * maxScreenRow; // 576 pixels tall
 
+    KeyHandler keyHandler = new KeyHandler(); // Key handler for keyboard input
     Thread gameThread; // Thread for the game loop
+
+    // Set player's position
+    int playerX = 100; // Player's X position
+    int playerY = 100; // Player's Y position
+    int playerSpeed = 4; // Player's speed
 
     public GamePanel() {
         this.setPreferredSize(new java.awt.Dimension(screenWidth, screenHeight));
         this.setBackground(java.awt.Color.BLACK);
         this.setDoubleBuffered(true); // Enable double buffering for smoother graphics
+        this.addKeyListener(keyHandler); // Add the key listener to the panel
+        this.setFocusable(true); // Make the panel focusable to receive key events
     }
 
     public void startGameThread() {
@@ -42,6 +50,18 @@ public class GamePanel extends JPanel implements Runnable {
     public void update() {
         // Update game logic here (e.g., player movement, enemy AI, etc.)
 
+        if (keyHandler.upPressed) { // If the up key is pressed
+            playerY -= playerSpeed; // Move the player up
+        }
+        if (keyHandler.downPressed) { // If the down key is pressed
+            playerY += playerSpeed; // Move the player down
+        }
+        if (keyHandler.leftPressed) { // If the left key is pressed
+            playerX -= playerSpeed; // Move the player left
+        }
+        if (keyHandler.rightPressed) { // If the right key is pressed
+            playerX += playerSpeed; // Move the player right
+        }
 
     }
 
@@ -53,7 +73,7 @@ public class GamePanel extends JPanel implements Runnable {
         // Example: g.drawImage(image, x, y, tileSize, tileSize, null);
         java.awt.Graphics2D g2 = (java.awt.Graphics2D) g; // Cast to Graphics2D for advanced drawing 
         g2.setColor(java.awt.Color.WHITE); // Set the color to white
-        g2.fillRect(100, 100, tileSize, tileSize); // Fill the screen with white for testing
+        g2.fillRect(playerX, playerY, tileSize, tileSize); // Fill the screen with white for testing
         g2.dispose(); // Dispose of the Graphics2D object to free resources
 
     }
