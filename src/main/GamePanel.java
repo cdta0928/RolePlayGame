@@ -12,6 +12,9 @@ public class GamePanel extends JPanel implements Runnable {
     public final int screenWidth = tileSize * maxScreenCol; // 768 pixels wide
     public final int screenHeight = tileSize * maxScreenRow; // 576 pixels tall
 
+    // FPS (Frames Per Second) settings
+    int FPS = 60; // Target frames per second
+
     KeyHandler keyHandler = new KeyHandler(); // Key handler for keyboard input
     Thread gameThread; // Thread for the game loop
 
@@ -38,6 +41,8 @@ public class GamePanel extends JPanel implements Runnable {
 
         while(gameThread != null) { // Main game loop
             
+            long currentTime = System.currentTimeMillis(); // Get the current time
+            System.out.println("Current time: " + currentTime); // Print the current time for debugging
             System.out.println("Game is running..."); // Placeholder for game logic
 
             update(); // Update game state
