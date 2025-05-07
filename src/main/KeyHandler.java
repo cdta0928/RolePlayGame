@@ -23,11 +23,11 @@ public class KeyHandler implements java.awt.event.KeyListener {
         }
         if (code == java.awt.event.KeyEvent.VK_S) { // If the 'S' key is pressed
             System.out.println("S key pressed"); // Placeholder for action
-            rightPressed = true; // Set the rightPressed flag to true
+            downPressed = true; // Set the rightPressed flag to true
         }
         if (code == java.awt.event.KeyEvent.VK_D) { // If the 'D' key is pressed
             System.out.println("D key pressed"); // Placeholder for action
-            downPressed = true; // Set the downPressed flag to true
+            rightPressed = true; // Set the downPressed flag to true
         }
 
     }
@@ -43,10 +43,10 @@ public class KeyHandler implements java.awt.event.KeyListener {
             leftPressed = false; // Set the leftPressed flag to false
         }
         if (code == java.awt.event.KeyEvent.VK_S) { // If the 'S' key is released
-            rightPressed = false; // Set the rightPressed flag to false
+            downPressed = false; // Set the rightPressed flag to false
         }
         if (code == java.awt.event.KeyEvent.VK_D) { // If the 'D' key is released
-            downPressed = false; // Set the downPressed flag to false
+            rightPressed = false; // Set the downPressed flag to false
         }
 
     }

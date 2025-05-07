@@ -39,6 +39,9 @@ public class GamePanel extends JPanel implements Runnable {
     @Override
     public void run() {
 
+        double drawInterval = 1000000000 / FPS; // Calculate the draw interval in nanoseconds
+        double nextDrawTime = System.nanoTime() + drawInterval; // Calculate the next draw time
+
         while(gameThread != null) { // Main game loop
             
             long currentTime = System.currentTimeMillis(); // Get the current time
@@ -48,6 +51,17 @@ public class GamePanel extends JPanel implements Runnable {
             update(); // Update game state
             repaint(); // Repaint the screen
 
+            try {
+                double remainingTime = nextDrawTime - System.nanoTime(); // Calculate the remaining time until the next draw
+                remainingTime /= 1000000; // Convert to milliseconds
+                if (remainingTime < 0) { // If the remaining time is negative, skip to the next draw
+                    remainingTime = 0; // Set remaining time to 0
+                }
+                Thread.sleep((long) remainingTime); // Sleep for the remaining time
+                nextDrawTime += drawInterval; // Update the next draw time
+            } catch (InterruptedException e) {
+                e.printStackTrace(); // Print the stack trace for debugging
+            }
         }
 
     }
