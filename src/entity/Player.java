@@ -5,16 +5,21 @@ public class Player extends Entity {
     main.GamePanel gp; // Reference to the GamePanel for game logic
     main.KeyHandler keyHandler; // Reference to the KeyHandler for input handling
 
+    public final int screenX; // X position on the screen
+    public final int screenY; // Y position on the screen
+
     public Player(main.GamePanel gp, main.KeyHandler keyHandler) {
         this.gp = gp; // Initialize the GamePanel reference
         this.keyHandler = keyHandler; // Initialize the KeyHandler
+        screenX = gp.screenWidth / 2 - (gp.tileSize / 2); // Center the player on the screen
+        screenY = gp.screenHeight / 2 - (gp.tileSize / 2); // Center the player on the screen
         setDefaultValues(); // Set default values for the player
         getPlayerImage(); // Load player images
     }
 
     public void setDefaultValues() {
-        x = 100; // Set default X position
-        y = 100; // Set default Y position
+        worldX = gp.tileSize * 23; // Set default X position
+        worldY = gp.tileSize * 21; // Set default Y position
         speed = 4; // Set default speed
         direction = "down"; // Set default direction
     }
@@ -40,19 +45,19 @@ public class Player extends Entity {
 
         if (keyHandler.upPressed || keyHandler.downPressed || keyHandler.leftPressed || keyHandler.rightPressed) { // If any movement key is pressed
             if (keyHandler.upPressed) { // If the up key is pressed
-                y -= speed; // Move up
+                worldY -= speed; // Move up
                 direction = "up"; // Set direction to up
             }
             if (keyHandler.downPressed) { // If the down key is pressed
-                y += speed; // Move down
+                worldY += speed; // Move down
                 direction = "down"; // Set direction to down
             }
             if (keyHandler.leftPressed) { // If the left key is pressed
-                x -= speed; // Move left
+                worldY -= speed; // Move left
                 direction = "left"; // Set direction to left
             }
             if (keyHandler.rightPressed) { // If the right key is pressed
-                x += speed; // Move right
+                worldY += speed; // Move right
                 direction = "right"; // Set direction to right
             }
             spriteCounter++; // Increment sprite counter for animation
@@ -103,7 +108,7 @@ public class Player extends Entity {
                 }
                 break;
         }
-        g2.drawImage(image, x, y, gp.tileSize, gp.tileSize, null); // Draw the player image
+        g2.drawImage(image, screenX, screenY, gp.tileSize, gp.tileSize, null); // Draw the player image
 
     }
     
