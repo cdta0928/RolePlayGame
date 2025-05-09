@@ -19,7 +19,10 @@ public class TileManager {
         setTileImage(0, "/res/tiles/grass.png");
         setTileImage(1, "/res/tiles/wall.png");
         setTileImage(2, "/res/tiles/water.png");
-
+        setTileImage(3, "/res/tiles/earth.png");
+        setTileImage(4, "/res/tiles/tree.png");
+        setTileImage(5, "/res/tiles/sand.png");
+        
     }
 
     public void loadMap(String filePath) {
