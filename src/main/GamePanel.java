@@ -15,6 +15,7 @@ public class GamePanel extends javax.swing.JPanel implements Runnable {
     // FPS (Frames Per Second) settings
     int FPS = 60; // Target frames per second
 
+    tile.TileManager tileManager = new tile.TileManager(this); // Tile manager for handling tiles
     KeyHandler keyHandler = new KeyHandler(); // Key handler for keyboard input
     Thread gameThread; // Thread for the game loop
     entity.Player player = new entity.Player(this, keyHandler); // Player object
