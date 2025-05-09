@@ -53,11 +53,11 @@ public class Player extends Entity {
                 direction = "down"; // Set direction to down
             }
             if (keyHandler.leftPressed) { // If the left key is pressed
-                worldY -= speed; // Move left
+                worldX -= speed; // Move left
                 direction = "left"; // Set direction to left
             }
             if (keyHandler.rightPressed) { // If the right key is pressed
-                worldY += speed; // Move right
+                worldX += speed; // Move right
                 direction = "right"; // Set direction to right
             }
             spriteCounter++; // Increment sprite counter for animation

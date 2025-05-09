@@ -12,13 +12,19 @@ public class GamePanel extends javax.swing.JPanel implements Runnable {
     public final int screenWidth = tileSize * maxScreenCol; // 768 pixels wide
     public final int screenHeight = tileSize * maxScreenRow; // 576 pixels tall
 
+    // WORLD SETTINGS
+    public final int maxWorldCol = 50; // 50 tiles across the world
+    public final int maxWorldRow = 50; // 50 tiles down the world
+    public final int worldWith = tileSize * maxWorldCol;
+    public final int worldHeight = tileSize * maxWorldRow; 
+
     // FPS (Frames Per Second) settings
     int FPS = 60; // Target frames per second
 
     tile.TileManager tileManager = new tile.TileManager(this); // Tile manager for handling tiles
     KeyHandler keyHandler = new KeyHandler(); // Key handler for keyboard input
     Thread gameThread; // Thread for the game loop
-    entity.Player player = new entity.Player(this, keyHandler); // Player object
+    public entity.Player player = new entity.Player(this, keyHandler); // Player object
 
     // Set player's position
     int playerX = 100; // Player's X position
@@ -39,7 +45,7 @@ public class GamePanel extends javax.swing.JPanel implements Runnable {
     }
 
     @Override
-    public void run() {
+    public void run() { 
 
         double drawInterval = 1000000000 / FPS; // Calculate the draw interval in nanoseconds
         double delta = 0; // Delta time for frame rate control
