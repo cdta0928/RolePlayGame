@@ -40,11 +40,18 @@ public class GamePanel extends javax.swing.JPanel implements Runnable {
         this.setDoubleBuffered(true); // Enable double buffering for smoother graphics
         this.addKeyListener(keyHandler); // Add the key listener to the panel
         this.setFocusable(true); // Make the panel focusable to receive key events
+        setUpGame();
     }
 
     public void startGameThread() {
         gameThread = new Thread(this); // Create a new thread for the game loop
         gameThread.start(); // Start the thread
+    }
+
+    public void setUpGame() {
+
+        aSetter.setObject();
+
     }
 
     @Override
@@ -95,6 +102,11 @@ public class GamePanel extends javax.swing.JPanel implements Runnable {
         // Example: g.drawImage(image, x, y, tileSize, tileSize, null);
         java.awt.Graphics2D g2 = (java.awt.Graphics2D) g; // Cast to Graphics2D for advanced drawing 
         tileManager.draw(g2); // Draw the tiles using the draw method from TileManager
+        for (int i = 0; i < obj.length; i++) {
+            if (obj[i] != null) {
+                obj[i].draw(g2, this);
+            }
+        }
         player.draw(g2); // Draw the player using the draw method from the Player class
         g2.dispose(); // Dispose of the Graphics2D object to free resources
 
