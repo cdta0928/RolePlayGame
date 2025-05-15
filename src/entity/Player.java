@@ -52,24 +52,39 @@ public class Player extends Entity {
 
         if (keyHandler.upPressed || keyHandler.downPressed || keyHandler.leftPressed || keyHandler.rightPressed) { // If any movement key is pressed
             if (keyHandler.upPressed) { // If the up key is pressed
-                worldY -= speed; // Move up
                 direction = "up"; // Set direction to up
             }
             if (keyHandler.downPressed) { // If the down key is pressed
-                worldY += speed; // Move down
                 direction = "down"; // Set direction to down
             }
             if (keyHandler.leftPressed) { // If the left key is pressed
-                worldX -= speed; // Move left
                 direction = "left"; // Set direction to left
             }
             if (keyHandler.rightPressed) { // If the right key is pressed
-                worldX += speed; // Move right
                 direction = "right"; // Set direction to right
             }
 
             collisionOn = false;
             gp.cChecker.checkTile(this);
+
+            if (collisionOn == false) {
+
+                switch (direction) {
+                    case "up":
+                        worldY -= speed;
+                        break;
+                    case "down":
+                        worldY += speed;
+                        break;
+                    case "left":
+                        worldX -= speed;
+                        break;
+                    case "right":
+                        worldX += speed;
+                        break;
+                }
+
+            }
 
             spriteCounter++; // Increment sprite counter for animation
             if (spriteCounter > 10) { // If sprite counter exceeds threshold

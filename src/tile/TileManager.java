@@ -3,8 +3,8 @@ package tile;
 public class TileManager {
 
     main.GamePanel gp;
-    Tile[] tile;
-    int mapTileNum[][];
+    public Tile[] tile;
+    public int mapTileNum[][];
 
     public TileManager(main.GamePanel gp) {
         this.gp = gp;
