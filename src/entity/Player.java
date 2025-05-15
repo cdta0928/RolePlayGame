@@ -8,6 +8,8 @@ public class Player extends Entity {
     public final int screenX; // X position on the screen
     public final int screenY; // Y position on the screen
 
+    int hasKey = 0;
+
     public Player(main.GamePanel gp, main.KeyHandler keyHandler) {
         this.gp = gp; // Initialize the GamePanel reference
         this.keyHandler = keyHandler; // Initialize the KeyHandler
@@ -70,6 +72,7 @@ public class Player extends Entity {
             gp.cChecker.checkTile(this);
 
             int objIndex = gp.cChecker.checkObject(this, true);
+            pickupObject(objIndex);
 
             if (collisionOn == false) {
 
@@ -102,6 +105,25 @@ public class Player extends Entity {
 
         } 
 
+    }
+
+    public void pickupObject(int i) {
+        if (i != 999) {
+            String objectName = gp.obj[i].name;
+            switch (objectName) {
+                case "Key":
+                    hasKey++;
+                    gp.obj[i] = null;
+                    break;
+                case "Door":
+                    if (hasKey > 0) {
+                        hasKey--;
+                        gp.obj[i] = null;
+                    }
+                    else System.out.println("U need Key");
+                    break;
+            }
+        }
     }
 
     public void draw(java.awt.Graphics2D g2) {
