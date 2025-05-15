@@ -13,6 +13,13 @@ public class Player extends Entity {
         this.keyHandler = keyHandler; // Initialize the KeyHandler
         screenX = gp.screenWidth / 2 - (gp.tileSize / 2); // Center the player on the screen
         screenY = gp.screenHeight / 2 - (gp.tileSize / 2); // Center the player on the screen
+        
+        solidArea = new java.awt.Rectangle(); // Set the solid area for collision detection
+        solidArea.x = 8; // Set the X position of the solid area
+        solidArea.y = 16; // Set the Y position of the solid area
+        solidArea.width = 32; // Set the width of the solid area
+        solidArea.height = 32; // Set the height of the solid area
+        
         setDefaultValues(); // Set default values for the player
         getPlayerImage(); // Load player images
     }
