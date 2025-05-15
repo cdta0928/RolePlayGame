@@ -114,6 +114,7 @@ public class Player extends Entity {
                 case "Key":
                     hasKey++;
                     gp.obj[i] = null;
+                    gp.ui.showMessage("You got a key !");
                     break;
                 case "Door":
                     if (hasKey > 0) {
