@@ -69,6 +69,8 @@ public class Player extends Entity {
             collisionOn = false;
             gp.cChecker.checkTile(this);
 
+            int objIndex = gp.cChecker.checkObject(this, true);
+
             if (collisionOn == false) {
 
                 switch (direction) {
@@ -97,7 +99,7 @@ public class Player extends Entity {
                 }
                 spriteCounter = 0; // Reset sprite counter
             }
-            
+
         } 
 
     }
