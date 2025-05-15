@@ -25,7 +25,9 @@ public class GamePanel extends javax.swing.JPanel implements Runnable {
     KeyHandler keyHandler = new KeyHandler(); // Key handler for keyboard input
     Thread gameThread; // Thread for the game loop
     public CollisionChecker cChecker = new CollisionChecker(this);
+    public AssetSetter aSetter = new AssetSetter(this);
     public entity.Player player = new entity.Player(this, keyHandler); // Player object
+    public object.SuperObject obj[] = new object.SuperObject[10];
 
     // Set player's position
     int playerX = 100; // Player's X position
