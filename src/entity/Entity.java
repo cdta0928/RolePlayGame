@@ -12,6 +12,8 @@ public class Entity {
     public int spriteNum = 1; // Current sprite number (1 or 2)
 
     public java.awt.Rectangle solidArea; // Rectangle for collision detection
+    public int solidAreaDefaultX;
+    public int solidAreaDefaultY;
     public boolean collisionOn = false; // Flag for collision detection
 
 }

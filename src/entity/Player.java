@@ -17,6 +17,8 @@ public class Player extends Entity {
         solidArea = new java.awt.Rectangle(); // Set the solid area for collision detection
         solidArea.x = 8; // Set the X position of the solid area
         solidArea.y = 16; // Set the Y position of the solid area
+        solidAreaDefaultX = solidArea.x;
+        solidAreaDefaultY = solidArea.y;
         solidArea.width = 32; // Set the width of the solid area
         solidArea.height = 32; // Set the height of the solid area
 
@@ -95,6 +97,7 @@ public class Player extends Entity {
                 }
                 spriteCounter = 0; // Reset sprite counter
             }
+            
         } 
 
     }

@@ -6,6 +6,9 @@ public class SuperObject {
     public String name;
     public boolean collision = false; // Flag for collision detection
     public int worldX, worldY;
+    public java.awt.Rectangle solidArea = new java.awt.Rectangle(0, 0, 48, 48);
+    public int solidAreaDefaultX = 0;
+    public int solidAreaDefaultY = 0;
 
     public void draw(java.awt.Graphics2D g2, main.GamePanel gp) {
 
