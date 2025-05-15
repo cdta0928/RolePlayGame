@@ -120,12 +120,17 @@ public class Player extends Entity {
                     if (hasKey > 0) {
                         hasKey--;
                         gp.obj[i] = null;
+                        gp.ui.showMessage("You opened the door !");
                     }
-                    else System.out.println("U need Key");
+                    else gp.ui.showMessage("You need the key !");
                     break;
                 case "Boots":
                     speed += 2;
                     gp.obj[i] = null;
+                    gp.ui.showMessage("Speed up !");
+                    break;
+                case "Chest":
+                    gp.ui.gameFinished = true;
                     break;
             }
         }
