@@ -8,7 +8,7 @@ public class Player extends Entity {
     public final int screenX; // X position on the screen
     public final int screenY; // Y position on the screen
 
-    int hasKey = 0;
+    public int hasKey = 0;
 
     public Player(main.GamePanel gp, main.KeyHandler keyHandler) {
         this.gp = gp; // Initialize the GamePanel reference

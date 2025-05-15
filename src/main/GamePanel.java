@@ -23,6 +23,7 @@ public class GamePanel extends javax.swing.JPanel implements Runnable {
 
     tile.TileManager tileManager = new tile.TileManager(this); // Tile manager for handling tiles
     KeyHandler keyHandler = new KeyHandler(); // Key handler for keyboard input
+    public UI ui = new UI(this);
     Thread gameThread; // Thread for the game loop
     public CollisionChecker cChecker = new CollisionChecker(this);
     public AssetSetter aSetter = new AssetSetter(this);
@@ -108,6 +109,7 @@ public class GamePanel extends javax.swing.JPanel implements Runnable {
             }
         }
         player.draw(g2); // Draw the player using the draw method from the Player class
+        ui.draw(g2);
         g2.dispose(); // Dispose of the Graphics2D object to free resources
 
     }
