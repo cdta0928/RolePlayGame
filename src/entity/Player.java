@@ -19,7 +19,7 @@ public class Player extends Entity {
         solidArea.y = 16; // Set the Y position of the solid area
         solidArea.width = 32; // Set the width of the solid area
         solidArea.height = 32; // Set the height of the solid area
-        
+
         setDefaultValues(); // Set default values for the player
         getPlayerImage(); // Load player images
     }
@@ -67,6 +67,10 @@ public class Player extends Entity {
                 worldX += speed; // Move right
                 direction = "right"; // Set direction to right
             }
+
+            collisionOn = false;
+            gp.cChecker.checkTile(this);
+
             spriteCounter++; // Increment sprite counter for animation
             if (spriteCounter > 10) { // If sprite counter exceeds threshold
                 if (spriteNum == 1) { // If current sprite is 1

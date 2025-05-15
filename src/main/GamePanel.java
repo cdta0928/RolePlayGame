@@ -24,6 +24,7 @@ public class GamePanel extends javax.swing.JPanel implements Runnable {
     tile.TileManager tileManager = new tile.TileManager(this); // Tile manager for handling tiles
     KeyHandler keyHandler = new KeyHandler(); // Key handler for keyboard input
     Thread gameThread; // Thread for the game loop
+    public CollisionChecker cChecker = new CollisionChecker(this);
     public entity.Player player = new entity.Player(this, keyHandler); // Player object
 
     // Set player's position
