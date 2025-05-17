@@ -21,6 +21,7 @@ public class GamePanel extends javax.swing.JPanel implements Runnable {
     // FPS (Frames Per Second) settings
     int FPS = 60; // Target frames per second
 
+    // SYSTEM
     tile.TileManager tileManager = new tile.TileManager(this); // Tile manager for handling tiles
     KeyHandler keyHandler = new KeyHandler(this); // Key handler for keyboard input
     public UI ui = new UI(this);
@@ -28,19 +29,16 @@ public class GamePanel extends javax.swing.JPanel implements Runnable {
     public CollisionChecker cChecker = new CollisionChecker(this);
     public AssetSetter aSetter = new AssetSetter(this);
 
+    // PLAYER, ENTITY, OBJECT
     public entity.Player player = new entity.Player(this, keyHandler); // Player object
     public object.SuperObject obj[] = new object.SuperObject[10];
     public entity.Entity npc[] = new entity.Entity[10];
-
-    // Set player's position
-    int playerX = 100; // Player's X position
-    int playerY = 100; // Player's Y position
-    int playerSpeed = 4; // Player's speed
 
     // GAME STATE
     public int gameState;
     public final int playState = 1;
     public final int pauseState = 2;
+    public final int dialogueState = 3;
 
     public GamePanel() {
         this.setPreferredSize(new java.awt.Dimension(screenWidth, screenHeight));
