@@ -69,11 +69,17 @@ public class Player extends Entity {
                 direction = "right"; // Set direction to right
             }
 
+            // CHECK TILE COLLISION
             collisionOn = false;
             gp.cChecker.checkTile(this);
 
+            // CHECK OBJECT COLLISION
             int objIndex = gp.cChecker.checkObject(this, true);
             pickupObject(objIndex);
+
+            // CHECK NPC COLLISION
+            int npcIndex = gp.cChecker.checkEntity(this, gp.npc);
+            interactNPC(npcIndex);
 
             if (collisionOn == false) {
 
@@ -135,6 +141,16 @@ public class Player extends Entity {
                     break;
             }
         }
+    }
+
+    public void interactNPC(int i) {
+
+        if (i != 999) {
+
+            System.out.println("You are hitting an NPC !");
+
+        }
+
     }
 
     public void draw(java.awt.Graphics2D g2) {
