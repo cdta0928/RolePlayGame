@@ -1,10 +1,9 @@
 package main;
 
-import java.text.DecimalFormat;
-
 public class UI {
     
     GamePanel gp;
+    java.awt.Graphics2D g2;
     java.awt.Font arial_40, arial_80B;
     java.awt.image.BufferedImage keyImage;
     public boolean messageOn = false;
@@ -12,7 +11,8 @@ public class UI {
     int messageCounter = 0;
     public boolean gameFinished = false;
     double playTime;
-    java.text.DecimalFormat dFormat = new DecimalFormat("#0.00");
+    java.text.DecimalFormat dFormat = new java.text.DecimalFormat("#0.00");
+
 
     public UI(GamePanel gp) {
         this.gp = gp;   
@@ -31,6 +31,7 @@ public class UI {
 
     public void draw(java.awt.Graphics2D g2) {
 
+        /* 
         if (gameFinished == true) {
 
             g2.setFont(arial_40);
@@ -75,8 +76,8 @@ public class UI {
 
             g2.setFont(arial_40);
             g2.setColor(java.awt.Color.WHITE);
-            g2.drawImage(keyImage, gp.tileSize/2, gp.tileSize/2, gp.tileSize, gp.tileSize, null);
-            g2.drawString("x " + gp.player.hasKey, 74, 65);
+            // g2.drawImage(keyImage, gp.tileSize/2, gp.tileSize/2, gp.tileSize, gp.tileSize, null);
+            // g2.drawString("x " + gp.player.hasKey, 74, 65);
 
             playTime += (double)1/60;
             g2.drawString("Time: " + dFormat.format(playTime), gp.tileSize * 11, 65);
@@ -92,7 +93,37 @@ public class UI {
             }
             
         }
+        */
 
+        this.g2 = g2;
+
+        g2.setFont(arial_40);
+        g2.setColor(java.awt.Color.white);
+
+        if (gp.gameState == gp.playState) {
+            //...
+        }
+        if (gp.gameState == gp.pauseState) {
+
+        }
+
+    }
+
+    public void drawPauseScreen() {
+
+        String text = "PAUSE";
+        int x = getXForCenteredText(text);
+        int y = gp.screenHeight/2;
+
+        g2.drawString(text, x, y);
+
+    }
+
+    public int getXForCenteredText(String text) {
+        int x;
+        int length = (int)g2.getFontMetrics().getStringBounds(text, g2).getWidth();
+        x = gp.screenWidth/2 - length/2;
+        return x;
     }
 
 }
