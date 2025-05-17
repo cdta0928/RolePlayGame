@@ -1,5 +1,7 @@
 package entity;
 
+import java.util.Random;
+
 public class NPC_OldMan extends Entity {
     
     public NPC_OldMan(main.GamePanel gp) {
@@ -25,6 +27,29 @@ public class NPC_OldMan extends Entity {
             right2 = javax.imageio.ImageIO.read(getClass().getResourceAsStream("/res/npc/oldman_right_2.png"));
         } catch (java.io.IOException e) {
             e.printStackTrace(); // Print stack trace if image loading fails
+        }
+
+    }
+
+    public void setAction() {
+
+        Random random = new Random();
+        int i = random.nextInt(100) + 1;
+
+        if (i <= 25) {
+            direction = "up";
+        }
+
+        if (i > 25 && i <= 50) {
+            direction = "down";
+        }
+
+        if (i > 50 && i <= 75) {
+            direction = "left";
+        }
+
+        if (i > 75 && i <= 100) {
+            direction = "right";
         }
 
     }

@@ -26,6 +26,13 @@ public class Entity {
 
     }
 
+    public void setAction() {
+
+    }
+    public void update() {
+        
+    }
+
     public void draw(java.awt.Graphics2D g2) {
         java.awt.image.BufferedImage image = null;
         int screenX = worldX - gp.player.worldX + gp.player.screenX;
