@@ -15,10 +15,12 @@ public class Entity {
     public int spriteCounter = 0; // Counter for sprite animation
     public int spriteNum = 1; // Current sprite number (1 or 2)
 
-    public java.awt.Rectangle solidArea; // Rectangle for collision detection
+    public java.awt.Rectangle solidArea = new java.awt.Rectangle(0, 0, 48, 48); // Rectangle for collision detection
     public int solidAreaDefaultX;
     public int solidAreaDefaultY;
     public boolean collisionOn = false; // Flag for collision detection
+
+    public int actionLockCounter = 0;
 
     public Entity(GamePanel gp) {
 
@@ -30,7 +32,43 @@ public class Entity {
 
     }
     public void update() {
+
+        setAction();
+
+        collisionOn = false;
+        gp.cChecker.checkTile(this);
+
+            if (collisionOn == false) {
+
+                switch (direction) {
+                    case "up":
+                        worldY -= speed;
+                        break;
+                    case "down":
+                        worldY += speed;
+                        break;
+                    case "left":
+                        worldX -= speed;
+                        break;
+                    case "right":
+                        worldX += speed;
+                        break;
+                }
+
+            }
+
+            spriteCounter++; // Increment sprite counter for animation
+            if (spriteCounter > 10) { // If sprite counter exceeds threshold
+                if (spriteNum == 1) { // If current sprite is 1
+                    spriteNum = 2; // Switch to sprite 2
+                } else if (spriteNum == 2) { // If current sprite is 2
+                    spriteNum = 1; // Switch to sprite 1
+                }
+                spriteCounter = 0; // Reset sprite counter
+            }
+
         
+
     }
 
     public void draw(java.awt.Graphics2D g2) {
