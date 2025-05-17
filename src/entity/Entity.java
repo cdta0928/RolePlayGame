@@ -1,6 +1,10 @@
 package entity;
 
+import main.GamePanel;
+
 public class Entity {
+
+    GamePanel gp;
     
     public int worldX, worldY;
     public int speed; // Speed of the entity
@@ -15,5 +19,11 @@ public class Entity {
     public int solidAreaDefaultX;
     public int solidAreaDefaultY;
     public boolean collisionOn = false; // Flag for collision detection
+
+    public Entity(GamePanel gp) {
+
+        this.gp = gp;
+        
+    }
 
 }

@@ -11,6 +11,8 @@ public class Player extends Entity {
     public int hasKey = 0;
 
     public Player(main.GamePanel gp, main.KeyHandler keyHandler) {
+
+        super(gp);
         this.gp = gp; // Initialize the GamePanel reference
         this.keyHandler = keyHandler; // Initialize the KeyHandler
         screenX = gp.screenWidth / 2 - (gp.tileSize / 2); // Center the player on the screen
@@ -26,6 +28,7 @@ public class Player extends Entity {
 
         setDefaultValues(); // Set default values for the player
         getPlayerImage(); // Load player images
+
     }
 
     public void setDefaultValues() {
