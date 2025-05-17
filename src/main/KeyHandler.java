@@ -2,7 +2,7 @@ package main;
 
 public class KeyHandler implements java.awt.event.KeyListener {
 
-    public boolean upPressed, downPressed, leftPressed, rightPressed; // Movement flags
+    public boolean upPressed, downPressed, leftPressed, rightPressed, enterPressed; // Movement flags
 
     GamePanel gp;
 
@@ -36,6 +36,9 @@ public class KeyHandler implements java.awt.event.KeyListener {
             }
             if (code == java.awt.event.KeyEvent.VK_P) {
                 gp.gameState = gp.pauseState;
+            }
+            if (code == java.awt.event.KeyEvent.VK_ENTER) {
+                enterPressed = true;
             }
         }
         // PAUSE STATE

@@ -147,10 +147,13 @@ public class Player extends Entity {
 
         if (i != 999) {
 
-            gp.gameState = gp.dialogueState;
-            gp.npc[i].speak();
-
+            if (gp.keyHandler.enterPressed == true) {
+                gp.gameState = gp.dialogueState;
+                gp.npc[i].speak();
+            }
+            
         }
+        gp.keyHandler.enterPressed = false;
 
     }
 
