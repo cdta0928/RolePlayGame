@@ -58,6 +58,8 @@ public class GamePanel extends javax.swing.JPanel implements Runnable {
 
         aSetter.setObject();
 
+        gameState = playState;
+
     }
 
     @Override
