@@ -35,6 +35,11 @@ public class GamePanel extends javax.swing.JPanel implements Runnable {
     int playerY = 100; // Player's Y position
     int playerSpeed = 4; // Player's speed
 
+    // GAME STATE
+    public int gameState;
+    public final int playState = 1;
+    public final int pauseState = 2;
+
     public GamePanel() {
         this.setPreferredSize(new java.awt.Dimension(screenWidth, screenHeight));
         this.setBackground(java.awt.Color.BLACK);
