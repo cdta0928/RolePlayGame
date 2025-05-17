@@ -75,7 +75,7 @@ public class UI {
 
     public void drawSubWindow(int x, int y, int width, int height) {
 
-        java.awt.Color c = new java.awt.Color(0, 0, 0);
+        java.awt.Color c = new java.awt.Color(0, 0, 0, 210);
         g2.setColor(c);
         g2.fillRoundRect(x, y, width, height, 35, 35);
         
