@@ -2,7 +2,6 @@ package entity;
 
 public class Player extends Entity {
 
-    main.GamePanel gp; // Reference to the GamePanel for game logic
     main.KeyHandler keyHandler; // Reference to the KeyHandler for input handling
 
     public final int screenX; // X position on the screen
@@ -13,7 +12,6 @@ public class Player extends Entity {
     public Player(main.GamePanel gp, main.KeyHandler keyHandler) {
 
         super(gp);
-        this.gp = gp; // Initialize the GamePanel reference
         this.keyHandler = keyHandler; // Initialize the KeyHandler
         screenX = gp.screenWidth / 2 - (gp.tileSize / 2); // Center the player on the screen
         screenY = gp.screenHeight / 2 - (gp.tileSize / 2); // Center the player on the screen

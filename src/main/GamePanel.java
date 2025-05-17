@@ -27,8 +27,10 @@ public class GamePanel extends javax.swing.JPanel implements Runnable {
     Thread gameThread; // Thread for the game loop
     public CollisionChecker cChecker = new CollisionChecker(this);
     public AssetSetter aSetter = new AssetSetter(this);
+
     public entity.Player player = new entity.Player(this, keyHandler); // Player object
     public object.SuperObject obj[] = new object.SuperObject[10];
+    public entity.Entity npc[] = new entity.Entity[10];
 
     // Set player's position
     int playerX = 100; // Player's X position
@@ -57,6 +59,7 @@ public class GamePanel extends javax.swing.JPanel implements Runnable {
     public void setUpGame() {
 
         aSetter.setObject();
+        aSetter.setNPC();
 
         gameState = playState;
 
@@ -118,6 +121,11 @@ public class GamePanel extends javax.swing.JPanel implements Runnable {
         for (int i = 0; i < obj.length; i++) {
             if (obj[i] != null) {
                 obj[i].draw(g2, this);
+            }
+        }
+        for (int i = 0; i < npc.length; i++) {
+            if (npc[i] != null) {
+                npc[i].draw(g2);
             }
         }
         player.draw(g2); // Draw the player using the draw method from the Player class
