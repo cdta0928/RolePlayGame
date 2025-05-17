@@ -98,7 +98,12 @@ public class GamePanel extends javax.swing.JPanel implements Runnable {
     public void update() {
         // Update game logic here (e.g., player movement, enemy AI, etc.)
 
-        player.update(); // Update the player state
+        if (gameState == playState) {
+            player.update(); // Update the player state
+        }
+        if (gameState == pauseState) {
+            // ...
+        }
 
     }
 
