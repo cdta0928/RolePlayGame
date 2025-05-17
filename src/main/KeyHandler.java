@@ -19,33 +19,37 @@ public class KeyHandler implements java.awt.event.KeyListener {
     
     @Override
     public void keyPressed(java.awt.event.KeyEvent e) {
-        
+        // PLAY STATE
         int code = e.getKeyCode(); // Get the key code of the pressed key
-        if (code == java.awt.event.KeyEvent.VK_W) { // If the 'W' key is pressed
-            System.out.println("W key pressed"); // Placeholder for action
-            upPressed = true; // Set the upPressed flag to true
-        }
-        if (code == java.awt.event.KeyEvent.VK_A) { // If the 'A' key is pressed
-            System.out.println("A key pressed"); // Placeholder for action
-            leftPressed = true; // Set the leftPressed flag to true
-        }
-        if (code == java.awt.event.KeyEvent.VK_S) { // If the 'S' key is pressed
-            System.out.println("S key pressed"); // Placeholder for action
-            downPressed = true; // Set the rightPressed flag to true
-        }
-        if (code == java.awt.event.KeyEvent.VK_D) { // If the 'D' key is pressed
-            System.out.println("D key pressed"); // Placeholder for action
-            rightPressed = true; // Set the downPressed flag to true
-        }
-        if (code == java.awt.event.KeyEvent.VK_P) {
-            if (gp.gameState == gp.playState) {
+        if (gp.gameState == gp.playState) {
+            if (code == java.awt.event.KeyEvent.VK_W) { 
+                upPressed = true; // Set the upPressed flag to true
+            }
+            if (code == java.awt.event.KeyEvent.VK_A) { 
+                leftPressed = true; // Set the leftPressed flag to true
+            }
+            if (code == java.awt.event.KeyEvent.VK_S) { 
+                downPressed = true; // Set the rightPressed flag to true
+            }
+            if (code == java.awt.event.KeyEvent.VK_D) { 
+                rightPressed = true; // Set the downPressed flag to true
+            }
+            if (code == java.awt.event.KeyEvent.VK_P) {
                 gp.gameState = gp.pauseState;
             }
-            else if (gp.gameState == gp.pauseState) {
+        }
+        // PAUSE STATE
+        else if (gp.gameState == gp.pauseState) {
+            if (code == java.awt.event.KeyEvent.VK_P) {
                 gp.gameState = gp.playState;
             }
         }
-
+        // DIALOGUE STATE
+        else if (gp.gameState == gp.dialogueState) {
+            if (code == java.awt.event.KeyEvent.VK_ENTER) {
+                gp.gameState = gp.playState;
+            }
+        }
     }
 
     @Override
