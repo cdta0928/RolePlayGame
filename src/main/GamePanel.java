@@ -22,7 +22,7 @@ public class GamePanel extends javax.swing.JPanel implements Runnable {
     int FPS = 60; // Target frames per second
 
     tile.TileManager tileManager = new tile.TileManager(this); // Tile manager for handling tiles
-    KeyHandler keyHandler = new KeyHandler(); // Key handler for keyboard input
+    KeyHandler keyHandler = new KeyHandler(this); // Key handler for keyboard input
     public UI ui = new UI(this);
     Thread gameThread; // Thread for the game loop
     public CollisionChecker cChecker = new CollisionChecker(this);

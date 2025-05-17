@@ -4,6 +4,14 @@ public class KeyHandler implements java.awt.event.KeyListener {
 
     public boolean upPressed, downPressed, leftPressed, rightPressed; // Movement flags
 
+    GamePanel gp;
+
+    public KeyHandler(GamePanel gp) {
+
+        this.gp = gp;
+
+    }
+
     @Override  
     public void keyTyped(java.awt.event.KeyEvent e) {
         // Not used
@@ -28,6 +36,14 @@ public class KeyHandler implements java.awt.event.KeyListener {
         if (code == java.awt.event.KeyEvent.VK_D) { // If the 'D' key is pressed
             System.out.println("D key pressed"); // Placeholder for action
             rightPressed = true; // Set the downPressed flag to true
+        }
+        if (code == java.awt.event.KeyEvent.VK_P) {
+            if (gp.gameState == gp.playState) {
+                gp.gameState = gp.pauseState;
+            }
+            else if (gp.gameState == gp.pauseState) {
+                gp.gameState = gp.playState;
+            }
         }
 
     }
