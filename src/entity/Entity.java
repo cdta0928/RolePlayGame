@@ -21,6 +21,7 @@ public class Entity {
     public boolean collisionOn = false; // Flag for collision detection
 
     public int actionLockCounter = 0;
+    String dialogues[] = new String[20];
 
     public Entity(GamePanel gp) {
 
@@ -30,6 +31,9 @@ public class Entity {
 
     public void setAction() {
 
+    }
+    public void speak() {
+        
     }
     public void update() {
 

@@ -11,6 +11,7 @@ public class NPC_OldMan extends Entity {
         speed = 1;
 
         getOldManImage();
+        setDialogue();
 
     }
 
@@ -55,6 +56,18 @@ public class NPC_OldMan extends Entity {
             }
             actionLockCounter = 0;
         }
+
+    }
+
+    public void setDialogue() {
+
+        dialogues[0] = "Hello, lad.";
+
+    }
+
+    public void speak() {
+
+        gp.ui.currentDialogue = dialogues[0];
 
     }
 
