@@ -34,6 +34,7 @@ public class GamePanel extends javax.swing.JPanel implements Runnable {
     public entity.Player player = new entity.Player(this, keyHandler); // Player object
     public entity.Entity obj[] = new entity.Entity[10];
     public entity.Entity npc[] = new entity.Entity[10];
+    public entity.Entity monster[] = new entity.Entity[20];
     java.util.ArrayList<entity.Entity> entityList = new java.util.ArrayList<>(); 
 
     // GAME STATE
@@ -61,6 +62,7 @@ public class GamePanel extends javax.swing.JPanel implements Runnable {
 
         aSetter.setObject();
         aSetter.setNPC();
+        aSetter.setMonster();
 
         gameState = titleState;
 
