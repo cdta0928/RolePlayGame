@@ -32,8 +32,9 @@ public class GamePanel extends javax.swing.JPanel implements Runnable {
 
     // PLAYER, ENTITY, OBJECT
     public entity.Player player = new entity.Player(this, keyHandler); // Player object
-    public object.SuperObject obj[] = new object.SuperObject[10];
+    public entity.Entity obj[] = new entity.Entity[10];
     public entity.Entity npc[] = new entity.Entity[10];
+    java.util.ArrayList<entity.Entity> entityList = new java.util.ArrayList<>(); 
 
     // GAME STATE
     public int gameState;
@@ -133,21 +134,44 @@ public class GamePanel extends javax.swing.JPanel implements Runnable {
         }
         // OTHER
         else {
+            // TILE 
             tileManager.draw(g2); // Draw the tiles using the draw method from TileManager
-            for (int i = 0; i < obj.length; i++) {
-                if (obj[i] != null) {
-                    obj[i].draw(g2, this);
-                }
-            }
+            
+            entityList.add(player);
             for (int i = 0; i < npc.length; i++) {
                 if (npc[i] != null) {
-                    npc[i].draw(g2);
+                    entityList.add(npc[i]);
                 }
             }
-            player.draw(g2); // Draw the player using the draw method from the Player class
+            for (int i = 0; i < obj.length; i++) {
+                if (obj[i] != null) {
+                    entityList.add(obj[i]);
+                }
+            }
+
+            // SORT
+            java.util.Collections.sort(entityList, new java.util.Comparator<entity.Entity>() {
+                @Override
+                public int compare(entity.Entity o1, entity.Entity o2) {
+                    int result = Integer.compare(o1.worldY, o2.worldY);
+                    return result;
+                }
+            });
+
+            // DRAW SETTING
+            for (int i = 0; i < entityList.size(); i++) {
+                entityList.get(i).draw(g2);
+            }
+
+            // EMPTY ENTITY LIST
+            for (int i = 0; i < entityList.size(); i++) {
+                entityList.remove(i);
+            }
+
+            // UI
             ui.draw(g2);
             g2.dispose(); // Dispose of the Graphics2D object to free resources
-        }
+        } 
 
     }
 

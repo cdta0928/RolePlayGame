@@ -1,11 +1,11 @@
 package object;
 
-public class OBJ_Heart extends SuperObject {
+public class OBJ_Heart extends entity.Entity {
     
     main.GamePanel gp;
 
     public OBJ_Heart(main.GamePanel gp) {
-        this.gp = gp;
+        super(gp);
         
         name = "Heart";
         try {
