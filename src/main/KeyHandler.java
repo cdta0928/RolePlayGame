@@ -7,9 +7,7 @@ public class KeyHandler implements java.awt.event.KeyListener {
     GamePanel gp;
 
     public KeyHandler(GamePanel gp) {
-
         this.gp = gp;
-
     }
 
     @Override  
@@ -19,8 +17,23 @@ public class KeyHandler implements java.awt.event.KeyListener {
     
     @Override
     public void keyPressed(java.awt.event.KeyEvent e) {
-        // PLAY STATE
         int code = e.getKeyCode(); // Get the key code of the pressed key
+        // TITLE STATE
+        if (gp.gameState == gp.titleState) {
+            if (code == java.awt.event.KeyEvent.VK_W || code == java.awt.event.KeyEvent.VK_UP) { 
+                gp.ui.commandNum--;
+                if (gp.ui.commandNum < 0) {
+                    gp.ui.commandNum = 2;
+                }
+            }
+            if (code == java.awt.event.KeyEvent.VK_S || code == java.awt.event.KeyEvent.VK_DOWN) { 
+                gp.ui.commandNum++;
+                if (gp.ui.commandNum > 2) {
+                    gp.ui.commandNum = 0;
+                }
+            }
+        }
+        // PLAY STATE
         if (gp.gameState == gp.playState) {
             if (code == java.awt.event.KeyEvent.VK_W) { 
                 upPressed = true; // Set the upPressed flag to true
@@ -57,7 +70,6 @@ public class KeyHandler implements java.awt.event.KeyListener {
 
     @Override
     public void keyReleased(java.awt.event.KeyEvent e) {
-
         int code = e.getKeyCode(); // Get the key code of the released key
         if (code == java.awt.event.KeyEvent.VK_W) { // If the 'W' key is released
             upPressed = false; // Set the upPressed flag to false
@@ -71,7 +83,6 @@ public class KeyHandler implements java.awt.event.KeyListener {
         if (code == java.awt.event.KeyEvent.VK_D) { // If the 'D' key is released
             rightPressed = false; // Set the downPressed flag to false
         }
-
     }
     
 }
