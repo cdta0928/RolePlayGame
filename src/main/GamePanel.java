@@ -39,6 +39,7 @@ public class GamePanel extends javax.swing.JPanel implements Runnable {
     public final int playState = 1;
     public final int pauseState = 2;
     public final int dialogueState = 3;
+    public final int titleState = 0;
 
     public GamePanel() {
         this.setPreferredSize(new java.awt.Dimension(screenWidth, screenHeight));
@@ -59,7 +60,7 @@ public class GamePanel extends javax.swing.JPanel implements Runnable {
         aSetter.setObject();
         aSetter.setNPC();
 
-        gameState = playState;
+        gameState = titleState;
 
     }
 
@@ -124,20 +125,28 @@ public class GamePanel extends javax.swing.JPanel implements Runnable {
         // Draw game elements here (e.g., tiles, characters, etc.)
         // Example: g.drawImage(image, x, y, tileSize, tileSize, null);
         java.awt.Graphics2D g2 = (java.awt.Graphics2D) g; // Cast to Graphics2D for advanced drawing 
-        tileManager.draw(g2); // Draw the tiles using the draw method from TileManager
-        for (int i = 0; i < obj.length; i++) {
-            if (obj[i] != null) {
-                obj[i].draw(g2, this);
-            }
+        
+        // TITLE SCREEN
+        if (gameState == titleState) {
+            ui.draw(g2);
         }
-        for (int i = 0; i < npc.length; i++) {
-            if (npc[i] != null) {
-                npc[i].draw(g2);
+        // OTHER
+        else {
+            tileManager.draw(g2); // Draw the tiles using the draw method from TileManager
+            for (int i = 0; i < obj.length; i++) {
+                if (obj[i] != null) {
+                    obj[i].draw(g2, this);
+                }
             }
+            for (int i = 0; i < npc.length; i++) {
+                if (npc[i] != null) {
+                    npc[i].draw(g2);
+                }
+            }
+            player.draw(g2); // Draw the player using the draw method from the Player class
+            ui.draw(g2);
+            g2.dispose(); // Dispose of the Graphics2D object to free resources
         }
-        player.draw(g2); // Draw the player using the draw method from the Player class
-        ui.draw(g2);
-        g2.dispose(); // Dispose of the Graphics2D object to free resources
 
     }
 

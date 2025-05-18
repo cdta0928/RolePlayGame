@@ -30,6 +30,10 @@ public class UI {
 
         g2.setFont(arial_40);
         g2.setColor(java.awt.Color.white);
+        // TITLE SCREEN
+        if (gp.gameState == gp.titleState) {
+            drawTitleScreen();
+        }
         // PLAY STATE
         if (gp.gameState == gp.playState) {
             //...
@@ -92,6 +96,24 @@ public class UI {
         g2.setColor(c);
         g2.setStroke(new java.awt.BasicStroke(5));
         g2.drawRoundRect(x + 5, y + 5, width - 10, height - 10, 25, 25);
+
+    }
+
+    public void drawTitleScreen() {
+
+        g2.setColor(new java.awt.Color(70, 120, 80));
+        g2.fillRect(0, 0, gp.screenWidth, gp.screenHeight);
+        // TITLE NAME
+        g2.setFont(g2.getFont().deriveFont(java.awt.Font.BOLD, 76F));
+        String text = "Blue Boy Adventure";
+        int x = getXForCenteredText(text);
+        int y = gp.tileSize*3;
+        // SHADOW
+        g2.setColor(java.awt.Color.black);
+        g2.drawString(text, x + 5, y + 5);
+        // MAIN COLOR
+        g2.setColor(java.awt.Color.white);
+        g2.drawString(text, x, y); 
 
     }
 
