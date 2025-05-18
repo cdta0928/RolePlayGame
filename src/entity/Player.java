@@ -1,5 +1,7 @@
 package entity;
 
+import java.awt.AlphaComposite;
+
 public class Player extends Entity {
 
     main.KeyHandler keyHandler; // Reference to the KeyHandler for input handling
@@ -213,7 +215,11 @@ public class Player extends Entity {
                 }
                 break;
         }
+        if (invincible == true) {
+            g2.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, 0.3f));
+        }
         g2.drawImage(image, screenX, screenY, gp.tileSize, gp.tileSize, null); // Draw the player image
+        g2.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, 1f));
         g2.setColor(java.awt.Color.RED);
         g2.drawRect(screenX + solidArea.x, screenY + solidArea.y, solidArea.width, solidArea.height);
 
