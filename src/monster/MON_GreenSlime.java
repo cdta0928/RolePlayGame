@@ -13,6 +13,7 @@ public class MON_GreenSlime extends entity.Entity {
         solidArea = new java.awt.Rectangle(3, 18, 42, 30);
         solidAreaDefaultX = 3;
         solidAreaDefaultY = 18;
+        getSlimeImage();
     }
 
     public void getSlimeImage() {
