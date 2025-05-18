@@ -87,6 +87,7 @@ public class Player extends Entity {
 
             // CHECK MONSTER COLLISION
             int monsterIndex = gp.cChecker.checkEntity(this, gp.monster);
+            contactMonster(monsterIndex);
 
             // CHECK EVENT
             gp.eHandler.checkEvent();
@@ -207,6 +208,12 @@ public class Player extends Entity {
         g2.setColor(java.awt.Color.RED);
         g2.drawRect(screenX + solidArea.x, screenY + solidArea.y, solidArea.width, solidArea.height);
 
+    }
+
+    public void contactMonster(int i) {
+        if (i != 999) {
+            life -= 1;
+        }
     }
     
 }
