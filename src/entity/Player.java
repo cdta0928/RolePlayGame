@@ -123,6 +123,14 @@ public class Player extends Entity {
                 spriteCounter = 0; // Reset sprite counter
             }
 
+            if (invincible == true) {
+                invincibleCounter++;
+                if (invincibleCounter > 60) {
+                    invincible = false;
+                    invincibleCounter = 0;
+                }
+            }
+
         } 
 
     }
@@ -212,7 +220,10 @@ public class Player extends Entity {
 
     public void contactMonster(int i) {
         if (i != 999) {
-            life -= 1;
+            if (invincible == false) {
+                life--;
+                invincible = true;
+            }
         }
     }
     

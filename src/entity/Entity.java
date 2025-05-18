@@ -24,6 +24,9 @@ public class Entity {
     public int solidAreaDefaultY;
     public boolean collisionOn = false; // Flag for collision detection
 
+    public int invincibleCounter = 0;
+    public boolean invincible = false;
+
     public int actionLockCounter = 0;
     String dialogues[] = new String[20];
     int dialogueIndex = 0;
