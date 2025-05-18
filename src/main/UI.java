@@ -109,11 +109,33 @@ public class UI {
         int x = getXForCenteredText(text);
         int y = gp.tileSize*3;
         // SHADOW
-        g2.setColor(java.awt.Color.black);
+        g2.setColor(java.awt.Color.gray);
         g2.drawString(text, x + 5, y + 5);
         // MAIN COLOR
         g2.setColor(java.awt.Color.white);
         g2.drawString(text, x, y); 
+
+        // BLUE BOY IMAGE
+        x = gp.screenWidth/2 - gp.tileSize;
+        y += gp.tileSize*2;
+        g2.drawImage(gp.player.down1, x, y, gp.tileSize*2, gp.tileSize*2, null);
+        
+        // MENU
+        g2.setFont(g2.getFont().deriveFont(java.awt.Font.BOLD, 48F));
+        text = "NEW  GAME";
+        x = getXForCenteredText(text);
+        y += gp.tileSize*3.5;
+        g2.drawString(text, x, y);
+
+        text = "LOAD GAME";
+        x = getXForCenteredText(text);
+        y += gp.tileSize;
+        g2.drawString(text, x, y);
+
+        text = "QUIT";
+        x = getXForCenteredText(text);
+        y += gp.tileSize;
+        g2.drawString(text, x, y);
 
     }
 
