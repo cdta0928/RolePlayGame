@@ -8,6 +8,9 @@ public class MON_GreenSlime extends entity.Entity {
         speed = 1;
         maxLife = 4;
         life = maxLife;
+        solidArea = new java.awt.Rectangle(3, 18, 42, 30);
+        solidAreaDefaultX = 3;
+        solidAreaDefaultY = 18;
     }
 
 }
