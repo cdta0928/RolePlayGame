@@ -34,6 +34,10 @@ public class Player extends Entity {
         worldY = gp.tileSize * 21; // Set default Y position
         speed = 4; // Set default speed
         direction = "down"; // Set default direction
+
+        // PLAYER STATUS
+        maxLife = 6;
+        life = maxLife;
     }
 
     public void getPlayerImage() {

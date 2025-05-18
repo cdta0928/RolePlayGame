@@ -2,7 +2,7 @@ package object;
 
 public class SuperObject {
     
-    public java.awt.image.BufferedImage image;
+    public java.awt.image.BufferedImage image, image2, image3;
     public String name;
     public boolean collision = false; // Flag for collision detection
     public int worldX, worldY;

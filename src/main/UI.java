@@ -1,5 +1,8 @@
 package main;
 
+import object.OBJ_Heart;
+import object.SuperObject;
+
 public class UI {
     
     GamePanel gp;
@@ -12,10 +15,17 @@ public class UI {
     public String currentDialogue = "";
     public int commandNum = 0;
 
+    java.awt.image.BufferedImage heart_full, heart_half, heart_blank;
+
     public UI(GamePanel gp) {
         this.gp = gp;   
         arial_40 = new java.awt.Font("Arial", java.awt.Font.PLAIN, 40);
         arial_80B = new java.awt.Font("Arial", java.awt.Font.BOLD, 80);
+        // CREATE HUD OBJECT
+        SuperObject heart = new OBJ_Heart(gp);
+        heart_full = heart.image;
+        heart_half = heart.image2;
+        heart_blank = heart.image3;
     }
 
     public void showMessage(String text) {
@@ -38,13 +48,16 @@ public class UI {
         // PLAY STATE
         if (gp.gameState == gp.playState) {
             //...
+            drawPlayerLife();
         }
         // PAUSE STATE
         if (gp.gameState == gp.pauseState) {
+            drawPlayerLife();
             drawPauseScreen();
         }
         // DIALOGUE STATE
         if (gp.gameState == gp.dialogueState) {
+            drawPlayerLife();
             drawDialogueScreen();
         }
 
@@ -145,6 +158,34 @@ public class UI {
         g2.drawString(text, x, y);
         if (commandNum == 2) {
             g2.drawString(">", x - gp.tileSize, y);
+        }
+
+    }
+
+    public void drawPlayerLife() {
+        gp.player.life = 5;
+        int x = gp.tileSize/2;
+        int y = gp.tileSize/2;
+        int i = 0;
+        // DRAW BLANK HEART
+        while (i < gp.player.maxLife/2) {
+            g2.drawImage(heart_blank, x, y, null);
+            i++;
+            x += gp.tileSize;
+        }
+        // RESET
+        x = gp.tileSize/2;
+        y = gp.tileSize/2;
+        i = 0;
+        // DRAW CURR LIFE
+        while (i < gp.player.life) {
+            g2.drawImage(heart_half, x, y, null);
+            i++;
+            if (i < gp.player.life) {
+                g2.drawImage(heart_full, x, y, null);
+            }
+            i++;
+            x += gp.tileSize;
         }
 
     }
