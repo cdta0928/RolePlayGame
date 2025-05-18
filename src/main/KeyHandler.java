@@ -32,6 +32,17 @@ public class KeyHandler implements java.awt.event.KeyListener {
                     gp.ui.commandNum = 0;
                 }
             }
+            if (code == java.awt.event.KeyEvent.VK_ENTER) {
+                if (gp.ui.commandNum == 0) {
+                    gp.gameState = gp.playState;
+                }
+                if (gp.ui.commandNum == 1) {
+                    // Later
+                }
+                if (gp.ui.commandNum == 2) {
+                    System.exit(0);
+                }
+            }
         }
         // PLAY STATE
         if (gp.gameState == gp.playState) {
