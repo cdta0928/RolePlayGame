@@ -28,6 +28,7 @@ public class GamePanel extends javax.swing.JPanel implements Runnable {
     Thread gameThread; // Thread for the game loop
     public CollisionChecker cChecker = new CollisionChecker(this);
     public AssetSetter aSetter = new AssetSetter(this);
+    public EventHandler eHandler = new EventHandler(this);
 
     // PLAYER, ENTITY, OBJECT
     public entity.Player player = new entity.Player(this, keyHandler); // Player object
