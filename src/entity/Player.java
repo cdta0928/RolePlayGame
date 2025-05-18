@@ -12,6 +12,7 @@ public class Player extends Entity {
     public Player(main.GamePanel gp, main.KeyHandler keyHandler) {
 
         super(gp);
+        type = 0;
         this.keyHandler = keyHandler; // Initialize the KeyHandler
         screenX = gp.screenWidth / 2 - (gp.tileSize / 2); // Center the player on the screen
         screenY = gp.screenHeight / 2 - (gp.tileSize / 2); // Center the player on the screen
