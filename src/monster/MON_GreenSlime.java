@@ -1,5 +1,7 @@
 package monster;
 
+import java.util.Random;
+
 public class MON_GreenSlime extends entity.Entity {
 
     public MON_GreenSlime(main.GamePanel gp) {
@@ -26,6 +28,33 @@ public class MON_GreenSlime extends entity.Entity {
             right2 = javax.imageio.ImageIO.read(getClass().getResourceAsStream("/res/monster/greenslime_down_2.png"));
         } catch (java.io.IOException e) {
             e.printStackTrace(); // Print stack trace if image loading fails
+        }
+
+    }
+
+    public void setAction() {
+
+        actionLockCounter++;
+        if (actionLockCounter == 120) {
+            Random random = new Random();
+            int i = random.nextInt(100) + 1;
+
+            if (i <= 25) {
+                direction = "up";
+            }
+
+            if (i > 25 && i <= 50) {
+                direction = "down";
+            }
+
+            if (i > 50 && i <= 75) {
+                direction = "left";
+            }
+
+            if (i > 75 && i <= 100) {
+                direction = "right";
+            }
+            actionLockCounter = 0;
         }
 
     }
