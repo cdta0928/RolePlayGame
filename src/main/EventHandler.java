@@ -34,11 +34,11 @@ public class EventHandler {
         // }
         for (int i = 21; i <= 25; i++) {
             if (hit(i, 7, "up") == true) {
-                healingPool(gp.dialogueState);
+                healingPool(i, 7, gp.dialogueState);
             }
         }
         if (hit (26, 15, "any")) {
-            teleport(gp.dialogueState);
+            teleport(26, 15, gp.dialogueState);
         }
 
     }
@@ -52,7 +52,7 @@ public class EventHandler {
         eventRect[col][row].x = col*gp.tileSize + eventRect[col][row].x;
         eventRect[col][row].y = row*gp.tileSize + eventRect[col][row].y;
 
-        if (gp.player.solidArea.intersects(eventRect[col][row])) {
+        if (gp.player.solidArea.intersects(eventRect[col][row]) && eventRect[col][row].eventDone == false) {
             if (gp.player.direction.contentEquals(reqDirection) || reqDirection.contentEquals("any")) {
                 hit = true;
             }
@@ -66,13 +66,14 @@ public class EventHandler {
         return hit;
     }
 
-    public void damagePit(int gameState) {
+    public void damagePit(int col, int row, int gameState) {
         gp.gameState = gameState;
         gp.ui.currentDialogue = "You fall into a pit!";
         gp.player.life -= 1;
+        eventRect[col][row].eventDone = true;
     }
 
-    public void healingPool(int gameState) {
+    public void healingPool(int col, int row, int gameState) {
         if (gp.keyHandler.enterPressed == true) {
             gp.gameState = gameState;
             gp.ui.currentDialogue = "You drink the water.\nYour life has been recovered.";
@@ -81,11 +82,12 @@ public class EventHandler {
         gp.keyHandler.enterPressed = false;
     }
 
-    public void teleport(int gameState) {
+    public void teleport(int col, int row, int gameState) {
         gp.gameState = gameState;
         gp.ui.currentDialogue = "Teleport!";
         gp.player.worldX = gp.tileSize*38;
         gp.player.worldY = gp.tileSize*12;
+        eventRect[col][row].eventDone = true;
     }
 
 }
