@@ -181,6 +181,9 @@ public class Player extends Entity {
         // g2.setColor(java.awt.Color.white); // Set color for the player
         // g2.fillRect(x, y, gp.tileSize, gp.tileSize); // Draw the player as a rectangle
         java.awt.image.BufferedImage image = null; // Placeholder for the player image
+        int tempScreenX = screenX;
+        int tempScreenY = screenY;
+
         switch (direction) { // Determine which image to use based on direction
             case "up":
                 if (attacking == false) {
@@ -188,6 +191,7 @@ public class Player extends Entity {
                     else if (spriteNum == 2) { image = up2; }
                 }
                 if (attacking == true) {
+                    tempScreenY = screenY - gp.tileSize;
                     if (spriteNum == 1) { image = attackUp1; } 
                     else if (spriteNum == 2) { image = attackUp2; }
                 }
@@ -208,6 +212,7 @@ public class Player extends Entity {
                     else if (spriteNum == 2) { image = left2; }
                 }
                 if (attacking == true) {
+                    tempScreenX = screenX - gp.tileSize; 
                     if (spriteNum == 1) { image = attackLeft1; } 
                     else if (spriteNum == 2) { image = attackLeft2; }
                 }
@@ -226,7 +231,7 @@ public class Player extends Entity {
         if (invincible == true) {
             g2.setComposite(java.awt.AlphaComposite.getInstance(java.awt.AlphaComposite.SRC_OVER, 0.3f));
         }
-        g2.drawImage(image, screenX, screenY, null); // Draw the player image
+        g2.drawImage(image, tempScreenX, tempScreenY, null); // Draw the player image
         g2.setComposite(java.awt.AlphaComposite.getInstance(java.awt.AlphaComposite.SRC_OVER, 1f));
         g2.setColor(java.awt.Color.RED);
         g2.drawRect(screenX + solidArea.x, screenY + solidArea.y, solidArea.width, solidArea.height);
