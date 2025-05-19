@@ -1,58 +1,58 @@
 package entity;
 
-import main.GamePanel;
-
 public class Entity {
 
-    GamePanel gp;
+    main.GamePanel gp;
     
+    // IMAGE
     public java.awt.image.BufferedImage image, image2, image3;
-    public String name;
+    public java.awt.image.BufferedImage up1, up2, down1, down2, left1, left2, right1, right2; // Images for different directions
+    public java.awt.image.BufferedImage attackUp1, attackUp2, attackDown1, attackDown2, attackLeft1, attackLeft2, attackRight1, attackRight2;
+    
     public boolean collision = false; // Flag for collision detection
 
+    // STATE
     public int worldX, worldY;
-    public int speed; // Speed of the entity
-
-    public java.awt.image.BufferedImage up1, up2, down1, down2, left1, left2, right1, right2; // Images for different directions
     public String direction = "down"; // Direction of the entity (up, down, left, right)
-
-    public int spriteCounter = 0; // Counter for sprite animation
     public int spriteNum = 1; // Current sprite number (1 or 2)
+    int dialogueIndex = 0;
+    public boolean collisionOn = false; // Flag for collision detection
+    public boolean invincible = false;
+    String dialogues[] = new String[20];
 
+
+    // SOLID AREA
     public java.awt.Rectangle solidArea = new java.awt.Rectangle(0, 0, 48, 48); // Rectangle for collision detection
     public int solidAreaDefaultX;
     public int solidAreaDefaultY;
-    public boolean collisionOn = false; // Flag for collision detection
 
+    // COUNTER
+    public int spriteCounter = 0; // Counter for sprite animation
     public int invincibleCounter = 0;
-    public boolean invincible = false;
+    public int actionLockCounter = 0;
+
+    // CHAR ATTIBUTES
+    public String name;
     public int type; 
     // player   =   0
     // npc      =   1
     // monster  =   2
-
-    public int actionLockCounter = 0;
-    String dialogues[] = new String[20];
-    int dialogueIndex = 0;
-
-    // CHAR STATUS
+    public int speed; // Speed of the entity
     public int maxLife;
     public int life;
 
-    public Entity(GamePanel gp) {
-
+    public Entity(main.GamePanel gp) {
         this.gp = gp;
-
     }
 
     public void setAction() {
 
     }
     public void speak() {
-
         if (dialogues[dialogueIndex] == null) {
             dialogueIndex = 0;
         }
+
         gp.ui.currentDialogue = dialogues[dialogueIndex];
         dialogueIndex++;
         
@@ -70,10 +70,8 @@ public class Entity {
                 direction = "left";
                 break;
         }
-
     }
     public void update() {
-
         setAction();
 
         collisionOn = false;
@@ -91,7 +89,6 @@ public class Entity {
         }
 
             if (collisionOn == false) {
-
                 switch (direction) {
                     case "up":
                         worldY -= speed;
@@ -106,7 +103,6 @@ public class Entity {
                         worldX += speed;
                         break;
                 }
-
             }
 
             spriteCounter++; // Increment sprite counter for animation
@@ -118,15 +114,14 @@ public class Entity {
                 }
                 spriteCounter = 0; // Reset sprite counter
             }
-
-        
-
     }
 
     public void draw(java.awt.Graphics2D g2) {
         java.awt.image.BufferedImage image = null;
+
         int screenX = worldX - gp.player.worldX + gp.player.screenX;
         int screenY = worldY - gp.player.worldY + gp.player.screenY;
+
         if (worldX + gp.tileSize > gp.player.worldX - gp.player.screenX &&
         worldX - gp.tileSize < gp.player.worldX + gp.player.screenX &&
         worldY + gp.tileSize > gp.player.worldY - gp.player.screenY &&
@@ -163,7 +158,5 @@ public class Entity {
             }
             g2.drawImage(image, screenX, screenY, gp.tileSize, gp.tileSize, null);
         }
-    
     }
-
 }
