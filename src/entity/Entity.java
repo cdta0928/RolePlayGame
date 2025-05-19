@@ -129,6 +129,13 @@ public class Entity {
                 }
                 spriteCounter = 0; // Reset sprite counter
             }
+            if (invincible == true) {
+                invincibleCounter++;
+                if (invincibleCounter > 40) {
+                    invincible = false;
+                    invincibleCounter = 0;
+                }
+            }
     }
 
     public void draw(java.awt.Graphics2D g2) {
@@ -143,35 +150,27 @@ public class Entity {
         worldY - gp.tileSize < gp.player.worldY + gp.player.screenY) {
             switch (direction) { // Determine which image to use based on direction
                 case "up":
-                    if (spriteNum == 1) {
-                        image = up1; // Use the first up image
-                    } else if (spriteNum == 2) {
-                        image = up2; // Use the second up image
-                    }
+                    if (spriteNum == 1) { image = up1; } 
+                    else if (spriteNum == 2) { image = up2; }
                     break;
                 case "down":
-                    if (spriteNum == 1) {
-                        image = down1; // Use the first down image
-                    } else if (spriteNum == 2) {
-                        image = down2; // Use the second down image
-                    }
+                    if (spriteNum == 1) { image = down1; } 
+                    else if (spriteNum == 2) { image = down2; }
                     break;
                 case "left":
-                    if (spriteNum == 1) {
-                        image = left1; // Use the first left image
-                    } else if (spriteNum == 2) {
-                        image = left2; // Use the second left image
-                    }
+                    if (spriteNum == 1) { image = left1; } 
+                    else if (spriteNum == 2) { image = left2; }
                     break;
                 case "right":
-                    if (spriteNum == 1) {
-                        image = right1; // Use the first right image
-                    } else if (spriteNum == 2) {
-                        image = right2; // Use the second right image
-                    }
+                    if (spriteNum == 1) { image = right1; } 
+                    else if (spriteNum == 2) { image = right2; }
                     break;
             }
+            if (invincible == true) {
+                g2.setComposite(java.awt.AlphaComposite.getInstance(java.awt.AlphaComposite.SRC_OVER, 0.4f));
+            }
             g2.drawImage(image, screenX, screenY, gp.tileSize, gp.tileSize, null);
+            g2.setComposite(java.awt.AlphaComposite.getInstance(java.awt.AlphaComposite.SRC_OVER, 1f));
         }
     }
 }

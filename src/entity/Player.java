@@ -232,7 +232,7 @@ public class Player extends Entity {
                 break;
         }
         if (invincible == true) {
-            g2.setComposite(java.awt.AlphaComposite.getInstance(java.awt.AlphaComposite.SRC_OVER, 0.3f));
+            g2.setComposite(java.awt.AlphaComposite.getInstance(java.awt.AlphaComposite.SRC_OVER, 0.4f));
         }
         g2.drawImage(image, tempScreenX, tempScreenY, null); // Draw the player image
         g2.setComposite(java.awt.AlphaComposite.getInstance(java.awt.AlphaComposite.SRC_OVER, 1f));
@@ -299,7 +299,13 @@ public class Player extends Entity {
     
     public void damageMonster(int i) {
         if (i != 999) {
-            System.out.println("Hit!");
+            if (gp.monster[i].invincible == false) {
+                gp.monster[i].life -= 1;
+                gp.monster[i].invincible = true;
+                if (gp.monster[i].life <= 0) {
+                    gp.monster[i] = null;
+                }
+            }
         }
         else System.out.println("Miss!");
     }
