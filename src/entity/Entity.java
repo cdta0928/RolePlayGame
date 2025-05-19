@@ -26,6 +26,8 @@ public class Entity {
     public int solidAreaDefaultX;
     public int solidAreaDefaultY;
 
+    public java.awt.Rectangle attackArea = new java.awt.Rectangle(0, 0, 0, 0);
+
     // COUNTER
     public int spriteCounter = 0; // Counter for sprite animation
     public int invincibleCounter = 0;

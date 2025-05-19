@@ -24,6 +24,9 @@ public class Player extends Entity {
         solidAreaDefaultX = solidArea.x;
         solidAreaDefaultY = solidArea.y;
 
+        // ATTACK
+        attackArea = new java.awt.Rectangle(0, 0, 36, 36);
+
         setDefaultValues(); // Set default values for the player
         getPlayerImage(); // Load player images
     }
@@ -253,6 +256,39 @@ public class Player extends Entity {
         }
         if (spriteCounter > 5 && spriteCounter <= 25) {
             spriteNum = 2;
+            
+            // SAVE CURRENT STATUS
+            int currentWorldX = worldX;
+            int currentWorldY = worldY;
+            int solidAreaWidth = solidArea.width;
+            int solidAreaHeight = solidArea.height;
+
+            // ATTACK AREA
+            switch (direction) {
+                case "up":
+                    worldY -= attackArea.height;
+                    break;
+                case "down":
+                    worldY += attackArea.height;
+                    break;
+                case "left":
+                    worldX -= attackArea.width;
+                    break;
+                case "right":
+                    worldX += attackArea.width;
+                    break;
+            }
+            // ATTACK AREA -> SOLID AREA
+            solidArea.width = attackArea.width;
+            solidArea.height = attackArea.height;
+            // CHECK MONSTER AFTER UPDATE SOLID AREA
+            int monsterIndex = gp.cChecker.checkEntity(this, gp.monster);
+            damageMonster(monsterIndex);
+            
+            worldX = currentWorldX;
+            worldY = currentWorldY;
+            solidArea.width = solidAreaWidth;
+            solidArea.height  = solidAreaHeight;
         }
         if (spriteCounter > 25) {
             spriteNum = 1;
@@ -261,4 +297,11 @@ public class Player extends Entity {
         }
     }
     
+    public void damageMonster(int i) {
+        if (i != 999) {
+            System.out.println("Hit!");
+        }
+        else System.out.println("Miss!");
+    }
+
 }
