@@ -1,35 +1,31 @@
 package entity;
 
-import java.awt.AlphaComposite;
-
 public class Player extends Entity {
 
     main.KeyHandler keyHandler; // Reference to the KeyHandler for input handling
 
+    // POSITION IN SCREEN
     public final int screenX; // X position on the screen
     public final int screenY; // Y position on the screen
 
+    // INVENTORY
     public int hasKey = 0;
 
     public Player(main.GamePanel gp, main.KeyHandler keyHandler) {
-
         super(gp);
-        type = 0;
+
+        type = 0; // Player
         this.keyHandler = keyHandler; // Initialize the KeyHandler
         screenX = gp.screenWidth / 2 - (gp.tileSize / 2); // Center the player on the screen
         screenY = gp.screenHeight / 2 - (gp.tileSize / 2); // Center the player on the screen
         
-        solidArea = new java.awt.Rectangle(); // Set the solid area for collision detection
-        solidArea.x = 8; // Set the X position of the solid area
-        solidArea.y = 16; // Set the Y position of the solid area
+        // SOLID AREA
+        solidArea = new java.awt.Rectangle(8,16, 32, 32); 
         solidAreaDefaultX = solidArea.x;
         solidAreaDefaultY = solidArea.y;
-        solidArea.width = 32; // Set the width of the solid area
-        solidArea.height = 32; // Set the height of the solid area
 
         setDefaultValues(); // Set default values for the player
         getPlayerImage(); // Load player images
-
     }
 
     public void setDefaultValues() {
@@ -55,13 +51,20 @@ public class Player extends Entity {
             left2 = javax.imageio.ImageIO.read(getClass().getResourceAsStream("/res/player/boy_left_2.png"));
             right1 = javax.imageio.ImageIO.read(getClass().getResourceAsStream("/res/player/boy_right_1.png"));
             right2 = javax.imageio.ImageIO.read(getClass().getResourceAsStream("/res/player/boy_right_2.png"));
+            attackUp1 = javax.imageio.ImageIO.read(getClass().getResourceAsStream("/res/player/attack/boy_attack_up_1.png"));
+            attackUp2 = javax.imageio.ImageIO.read(getClass().getResourceAsStream("/res/player/attack/boy_attack_up_2.png"));
+            attackDown1 = javax.imageio.ImageIO.read(getClass().getResourceAsStream("/res/player/attack/boy_attack_down_1.png"));
+            attackDown2 = javax.imageio.ImageIO.read(getClass().getResourceAsStream("/res/player/attack/boy_attack_down_2.png"));
+            attackLeft1 = javax.imageio.ImageIO.read(getClass().getResourceAsStream("/res/player/attack/boy_attack_left_1.png"));
+            attackLeft2 = javax.imageio.ImageIO.read(getClass().getResourceAsStream("/res/player/attack/boy_attack_left_2.png"));
+            attackRight1 = javax.imageio.ImageIO.read(getClass().getResourceAsStream("/res/player/attack/boy_attack_right_1.png"));
+            attackRight2 = javax.imageio.ImageIO.read(getClass().getResourceAsStream("/res/player/attack/boy_attack_right_2.png"));
         } catch (java.io.IOException e) {
             e.printStackTrace(); // Print stack trace if image loading fails
         }
     }
 
     public void update() {
-
         if (keyHandler.upPressed || keyHandler.downPressed || keyHandler.leftPressed || keyHandler.rightPressed
             || keyHandler.enterPressed) { // If any movement key is pressed
             if (keyHandler.upPressed) { // If the up key is pressed
@@ -96,10 +99,9 @@ public class Player extends Entity {
             // CHECK EVENT
             gp.eHandler.checkEvent();
 
-            gp.keyHandler.enterPressed = false;
+            keyHandler.enterPressed = false;
 
             if (collisionOn == false && keyHandler.enterPressed == false) {
-
                 switch (direction) {
                     case "up":
                         worldY -= speed;
@@ -114,7 +116,6 @@ public class Player extends Entity {
                         worldX += speed;
                         break;
                 }
-
             }
 
             keyHandler.enterPressed = false;
@@ -136,9 +137,7 @@ public class Player extends Entity {
                     invincibleCounter = 0;
                 }
             }
-
         } 
-
     }
 
     public void pickupObject(int i) {
@@ -171,22 +170,17 @@ public class Player extends Entity {
     }
 
     public void interactNPC(int i) {
-
         if (i != 999) {
-
             if (gp.keyHandler.enterPressed == true) {
                 gp.gameState = gp.dialogueState;
                 gp.npc[i].speak();
             }
-            
         }
-
     }
 
     public void draw(java.awt.Graphics2D g2) {
         // g2.setColor(java.awt.Color.white); // Set color for the player
         // g2.fillRect(x, y, gp.tileSize, gp.tileSize); // Draw the player as a rectangle
-        
         java.awt.image.BufferedImage image = null; // Placeholder for the player image
         switch (direction) { // Determine which image to use based on direction
             case "up":
@@ -219,13 +213,12 @@ public class Player extends Entity {
                 break;
         }
         if (invincible == true) {
-            g2.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, 0.3f));
+            g2.setComposite(java.awt.AlphaComposite.getInstance(java.awt.AlphaComposite.SRC_OVER, 0.3f));
         }
         g2.drawImage(image, screenX, screenY, gp.tileSize, gp.tileSize, null); // Draw the player image
-        g2.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, 1f));
+        g2.setComposite(java.awt.AlphaComposite.getInstance(java.awt.AlphaComposite.SRC_OVER, 1f));
         g2.setColor(java.awt.Color.RED);
         g2.drawRect(screenX + solidArea.x, screenY + solidArea.y, solidArea.width, solidArea.height);
-
     }
 
     public void contactMonster(int i) {
