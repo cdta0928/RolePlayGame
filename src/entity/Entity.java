@@ -19,7 +19,7 @@ public class Entity {
     public boolean collisionOn = false; // Flag for collision detection
     public boolean invincible = false;
     String dialogues[] = new String[20];
-
+    boolean attacking = false;
 
     // SOLID AREA
     public java.awt.Rectangle solidArea = new java.awt.Rectangle(0, 0, 48, 48); // Rectangle for collision detection
@@ -43,6 +43,19 @@ public class Entity {
 
     public Entity(main.GamePanel gp) {
         this.gp = gp;
+    }
+
+    public java.awt.image.BufferedImage setup(String imagePath, int width, int height) {
+        main.UtilityTool uTool = new main.UtilityTool();
+        java.awt.image.BufferedImage image = null;
+        try {
+            image = javax.imageio.ImageIO.read(getClass().getResourceAsStream(imagePath + ".png"));
+            image = uTool.scaleImage(image, width, height);
+        }
+        catch (java.io.IOException e) {
+            e.printStackTrace();
+        }
+        return image;
     }
 
     public void setAction() {

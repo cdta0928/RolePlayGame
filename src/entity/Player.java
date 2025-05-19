@@ -40,32 +40,30 @@ public class Player extends Entity {
     }
 
     public void getPlayerImage() {
-        // Load player images here (up1, up2, down1, down2, left1, left2, right1, right2)
-        // This method is not implemented in this snippet
-        try {
-            up1 = javax.imageio.ImageIO.read(getClass().getResourceAsStream("/res/player/boy_up_1.png"));
-            up2 = javax.imageio.ImageIO.read(getClass().getResourceAsStream("/res/player/boy_up_2.png"));
-            down1 = javax.imageio.ImageIO.read(getClass().getResourceAsStream("/res/player/boy_down_1.png"));
-            down2 = javax.imageio.ImageIO.read(getClass().getResourceAsStream("/res/player/boy_down_2.png"));
-            left1 = javax.imageio.ImageIO.read(getClass().getResourceAsStream("/res/player/boy_left_1.png"));
-            left2 = javax.imageio.ImageIO.read(getClass().getResourceAsStream("/res/player/boy_left_2.png"));
-            right1 = javax.imageio.ImageIO.read(getClass().getResourceAsStream("/res/player/boy_right_1.png"));
-            right2 = javax.imageio.ImageIO.read(getClass().getResourceAsStream("/res/player/boy_right_2.png"));
-            attackUp1 = javax.imageio.ImageIO.read(getClass().getResourceAsStream("/res/player/attack/boy_attack_up_1.png"));
-            attackUp2 = javax.imageio.ImageIO.read(getClass().getResourceAsStream("/res/player/attack/boy_attack_up_2.png"));
-            attackDown1 = javax.imageio.ImageIO.read(getClass().getResourceAsStream("/res/player/attack/boy_attack_down_1.png"));
-            attackDown2 = javax.imageio.ImageIO.read(getClass().getResourceAsStream("/res/player/attack/boy_attack_down_2.png"));
-            attackLeft1 = javax.imageio.ImageIO.read(getClass().getResourceAsStream("/res/player/attack/boy_attack_left_1.png"));
-            attackLeft2 = javax.imageio.ImageIO.read(getClass().getResourceAsStream("/res/player/attack/boy_attack_left_2.png"));
-            attackRight1 = javax.imageio.ImageIO.read(getClass().getResourceAsStream("/res/player/attack/boy_attack_right_1.png"));
-            attackRight2 = javax.imageio.ImageIO.read(getClass().getResourceAsStream("/res/player/attack/boy_attack_right_2.png"));
-        } catch (java.io.IOException e) {
-            e.printStackTrace(); // Print stack trace if image loading fails
-        }
+            up1 = setup("/res/player/boy_up_1", gp.tileSize, gp.tileSize);
+            up2 = setup("/res/player/boy_up_2", gp.tileSize, gp.tileSize);
+            down1 = setup("/res/player/boy_down_1", gp.tileSize, gp.tileSize);
+            down2 = setup("/res/player/boy_down_2", gp.tileSize, gp.tileSize);
+            left1 = setup("/res/player/boy_left_1", gp.tileSize, gp.tileSize);
+            left2 = setup("/res/player/boy_left_2", gp.tileSize, gp.tileSize);
+            right1 = setup("/res/player/boy_right_1", gp.tileSize, gp.tileSize);
+            right2 = setup("/res/player/boy_right_2", gp.tileSize, gp.tileSize);
+
+            attackUp1 = setup("/res/player/attack/boy_attack_up_1", gp.tileSize, gp.tileSize*2);
+            attackUp2 = setup("/res/player/attack/boy_attack_up_2", gp.tileSize, gp.tileSize*2);
+            attackDown1 = setup("/res/player/attack/boy_attack_down_1", gp.tileSize, gp.tileSize*2);
+            attackDown2 = setup("/res/player/attack/boy_attack_down_2", gp.tileSize, gp.tileSize*2);
+            attackLeft1 = setup("/res/player/attack/boy_attack_left_1", gp.tileSize*2, gp.tileSize);
+            attackLeft2 = setup("/res/player/attack/boy_attack_left_2", gp.tileSize*2, gp.tileSize);
+            attackRight1 = setup("/res/player/attack/boy_attack_right_1", gp.tileSize*2, gp.tileSize);
+            attackRight2 = setup("/res/player/attack/boy_attack_right_2", gp.tileSize*2, gp.tileSize);
     }
 
     public void update() {
-        if (keyHandler.upPressed || keyHandler.downPressed || keyHandler.leftPressed || keyHandler.rightPressed
+        if (attacking == true) {
+            attacking();
+        }
+        else if (keyHandler.upPressed || keyHandler.downPressed || keyHandler.leftPressed || keyHandler.rightPressed
             || keyHandler.enterPressed) { // If any movement key is pressed
             if (keyHandler.upPressed) { // If the up key is pressed
                 direction = "up"; // Set direction to up
@@ -170,11 +168,12 @@ public class Player extends Entity {
     }
 
     public void interactNPC(int i) {
-        if (i != 999) {
-            if (gp.keyHandler.enterPressed == true) {
+        if (gp.keyHandler.enterPressed == true) {
+            if (i != 999) {
                 gp.gameState = gp.dialogueState;
                 gp.npc[i].speak();
             }
+            else attacking = true;
         }
     }
 
@@ -184,38 +183,50 @@ public class Player extends Entity {
         java.awt.image.BufferedImage image = null; // Placeholder for the player image
         switch (direction) { // Determine which image to use based on direction
             case "up":
-                if (spriteNum == 1) {
-                    image = up1; // Use the first up image
-                } else if (spriteNum == 2) {
-                    image = up2; // Use the second up image
+                if (attacking == false) {
+                    if (spriteNum == 1) { image = up1; } 
+                    else if (spriteNum == 2) { image = up2; }
+                }
+                if (attacking == true) {
+                    if (spriteNum == 1) { image = attackUp1; } 
+                    else if (spriteNum == 2) { image = attackUp2; }
                 }
                 break;
             case "down":
-                if (spriteNum == 1) {
-                    image = down1; // Use the first down image
-                } else if (spriteNum == 2) {
-                    image = down2; // Use the second down image
+                if (attacking == false) {
+                    if (spriteNum == 1) { image = down1; } 
+                    else if (spriteNum == 2) { image = down2; }    
+                }
+                if (attacking == true) {
+                    if (spriteNum == 1) { image = attackDown1; } 
+                    else if (spriteNum == 2) { image = attackDown2; }
                 }
                 break;
             case "left":
-                if (spriteNum == 1) {
-                    image = left1; // Use the first left image
-                } else if (spriteNum == 2) {
-                    image = left2; // Use the second left image
+                if (attacking == false) {
+                    if (spriteNum == 1) { image = left1; } 
+                    else if (spriteNum == 2) { image = left2; }
+                }
+                if (attacking == true) {
+                    if (spriteNum == 1) { image = attackLeft1; } 
+                    else if (spriteNum == 2) { image = attackLeft2; }
                 }
                 break;
             case "right":
-                if (spriteNum == 1) {
-                    image = right1; // Use the first right image
-                } else if (spriteNum == 2) {
-                    image = right2; // Use the second right image
+                if (attacking == false) {
+                    if (spriteNum == 1) { image = right1; } 
+                    else if (spriteNum == 2) { image = right2; }
+                }
+                if (attacking == true) {
+                    if (spriteNum == 1) { image = attackRight1; } 
+                    else if (spriteNum == 2) { image = attackRight2; }
                 }
                 break;
         }
         if (invincible == true) {
             g2.setComposite(java.awt.AlphaComposite.getInstance(java.awt.AlphaComposite.SRC_OVER, 0.3f));
         }
-        g2.drawImage(image, screenX, screenY, gp.tileSize, gp.tileSize, null); // Draw the player image
+        g2.drawImage(image, screenX, screenY, null); // Draw the player image
         g2.setComposite(java.awt.AlphaComposite.getInstance(java.awt.AlphaComposite.SRC_OVER, 1f));
         g2.setColor(java.awt.Color.RED);
         g2.drawRect(screenX + solidArea.x, screenY + solidArea.y, solidArea.width, solidArea.height);
@@ -227,6 +238,21 @@ public class Player extends Entity {
                 life--;
                 invincible = true;
             }
+        }
+    }
+
+    public void attacking() {
+        spriteCounter++;
+        if (spriteCounter <= 5) {
+            spriteNum = 1;
+        }
+        if (spriteCounter > 5 && spriteCounter <= 25) {
+            spriteNum = 2;
+        }
+        if (spriteCounter > 25) {
+            spriteNum = 1;
+            spriteCounter = 0;
+            attacking = false;
         }
     }
     
