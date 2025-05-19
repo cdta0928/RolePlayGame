@@ -45,7 +45,7 @@ public class KeyHandler implements java.awt.event.KeyListener {
             }
         }
         // PLAY STATE
-        if (gp.gameState == gp.playState) {
+        else if (gp.gameState == gp.playState) {
             if (code == java.awt.event.KeyEvent.VK_W) { 
                 upPressed = true; // Set the upPressed flag to true
             }
