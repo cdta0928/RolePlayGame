@@ -62,7 +62,8 @@ public class Player extends Entity {
 
     public void update() {
 
-        if (keyHandler.upPressed || keyHandler.downPressed || keyHandler.leftPressed || keyHandler.rightPressed) { // If any movement key is pressed
+        if (keyHandler.upPressed || keyHandler.downPressed || keyHandler.leftPressed || keyHandler.rightPressed
+            || keyHandler.enterPressed) { // If any movement key is pressed
             if (keyHandler.upPressed) { // If the up key is pressed
                 direction = "up"; // Set direction to up
             }
@@ -97,7 +98,7 @@ public class Player extends Entity {
 
             gp.keyHandler.enterPressed = false;
 
-            if (collisionOn == false) {
+            if (collisionOn == false && keyHandler.enterPressed == false) {
 
                 switch (direction) {
                     case "up":
@@ -115,6 +116,8 @@ public class Player extends Entity {
                 }
 
             }
+
+            keyHandler.enterPressed = false;
 
             spriteCounter++; // Increment sprite counter for animation
             if (spriteCounter > 10) { // If sprite counter exceeds threshold
