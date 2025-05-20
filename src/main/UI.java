@@ -233,11 +233,10 @@ public class UI {
         g2.drawString("Next Level", textX, textY);
         textY += lineHeight;
         g2.drawString("Coin", textX, textY);
-        textY += lineHeight;
+        textY += lineHeight + 55;
         g2.drawString("Weapon", textX, textY);
-        textY += lineHeight;
+        textY += lineHeight + 15;
         g2.drawString("Shield", textX, textY);
-        textY += lineHeight;
 
         // VALUES
         int tailX = frameX + frameWidth - 30;
@@ -286,6 +285,12 @@ public class UI {
         value = String.valueOf(gp.player.coin);
         textX = getXForAlignToRightText(value, tailX);
         g2.drawString(value, textX, textY);
+
+        textY += gp.tileSize;
+        g2.drawImage(gp.player.currentWeapon.down1, tailX - gp.tileSize, textY, null);
+
+        textY += gp.tileSize;
+        g2.drawImage(gp.player.currentShield.down1, tailX - gp.tileSize, textY, null);
 
     }
 
