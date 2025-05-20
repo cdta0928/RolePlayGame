@@ -59,7 +59,10 @@ public class UI {
             drawPlayerLife();
             drawDialogueScreen();
         }
-
+        // CHARACTER STATE
+        if (gp.gameState == gp.characterState) {
+            drawCharacterScreen();
+        }
     }
 
     public void drawPauseScreen() {
@@ -187,6 +190,10 @@ public class UI {
             x += gp.tileSize;
         }
 
+    }
+
+    public void drawCharacterScreen() {
+        
     }
 
 }
