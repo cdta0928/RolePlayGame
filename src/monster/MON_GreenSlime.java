@@ -15,6 +15,7 @@ public class MON_GreenSlime extends entity.Entity {
         life = maxLife;
         attack = 5;
         defense = 0;
+        exp = 2;
 
         solidArea = new java.awt.Rectangle(3, 18, 42, 30);
         solidAreaDefaultX = 3;
