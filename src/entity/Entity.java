@@ -133,9 +133,10 @@ public class Entity {
 
         spriteCounter++; 
         if (spriteCounter > 10) { 
-            if (spriteNum == 1) spriteNum = 2; else spriteNum = 1; 
+            if (spriteNum == 1) spriteNum = 2; 
+            else spriteNum = 1; 
+            spriteCounter = 0; 
         }
-        spriteCounter = 0; 
         if (invincible == true) {
             invincibleCounter++;
             if (invincibleCounter > 40) {

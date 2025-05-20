@@ -1,10 +1,8 @@
 package main;
 
 public class KeyHandler implements java.awt.event.KeyListener {
-
-    public boolean upPressed, downPressed, leftPressed, rightPressed, enterPressed; // Movement flags
-
     GamePanel gp;
+    public boolean upPressed, downPressed, leftPressed, rightPressed, enterPressed; // Movement flags
 
     public KeyHandler(GamePanel gp) {
         this.gp = gp;
@@ -17,23 +15,28 @@ public class KeyHandler implements java.awt.event.KeyListener {
     
     @Override
     public void keyPressed(java.awt.event.KeyEvent e) {
-        int code = e.getKeyCode(); // Get the key code of the pressed key
+        int code = e.getKeyCode(); 
+
         // TITLE STATE
         if (gp.gameState == gp.titleState) {
             titleState(code);
         }
+
         // PLAY STATE
         else if (gp.gameState == gp.playState) {
             playState(code);
         }
+
         // PAUSE STATE
         else if (gp.gameState == gp.pauseState) {
             pauseState(code);
         }
+
         // DIALOGUE STATE
         else if (gp.gameState == gp.dialogueState) {
             dialogueState(code);
         }
+
         // CHARACTER STATE
         else if (gp.gameState == gp.characterState) {
             characterState(code);
@@ -42,19 +45,11 @@ public class KeyHandler implements java.awt.event.KeyListener {
 
     @Override
     public void keyReleased(java.awt.event.KeyEvent e) {
-        int code = e.getKeyCode(); // Get the key code of the released key
-        if (code == java.awt.event.KeyEvent.VK_W) { // If the 'W' key is released
-            upPressed = false; // Set the upPressed flag to false
-        }
-        if (code == java.awt.event.KeyEvent.VK_A) { // If the 'A' key is released
-            leftPressed = false; // Set the leftPressed flag to false
-        }
-        if (code == java.awt.event.KeyEvent.VK_S) { // If the 'S' key is released
-            downPressed = false; // Set the rightPressed flag to false
-        }
-        if (code == java.awt.event.KeyEvent.VK_D) { // If the 'D' key is released
-            rightPressed = false; // Set the downPressed flag to false
-        }
+        int code = e.getKeyCode(); 
+        if (code == java.awt.event.KeyEvent.VK_W) { upPressed = false; }
+        if (code == java.awt.event.KeyEvent.VK_A) { leftPressed = false; }
+        if (code == java.awt.event.KeyEvent.VK_S) { downPressed = false; }
+        if (code == java.awt.event.KeyEvent.VK_D) { rightPressed = false; }
     }
 
     public void titleState(int code) {
@@ -82,43 +77,26 @@ public class KeyHandler implements java.awt.event.KeyListener {
                 }
             }
     }
+
     public void playState(int code) {
-            if (code == java.awt.event.KeyEvent.VK_W) { 
-                upPressed = true; // Set the upPressed flag to true
-            }
-            if (code == java.awt.event.KeyEvent.VK_A) { 
-                leftPressed = true; // Set the leftPressed flag to true
-            }
-            if (code == java.awt.event.KeyEvent.VK_S) { 
-                downPressed = true; // Set the rightPressed flag to true
-            }
-            if (code == java.awt.event.KeyEvent.VK_D) { 
-                rightPressed = true; // Set the downPressed flag to true
-            }
-            if (code == java.awt.event.KeyEvent.VK_P) {
-                gp.gameState = gp.pauseState;
-            }
-            if (code == java.awt.event.KeyEvent.VK_ENTER) {
-                enterPressed = true;
-            }
-            if (code == java.awt.event.KeyEvent.VK_C) {
-                gp.gameState = gp.characterState;
-            }
+        if (code == java.awt.event.KeyEvent.VK_W) { upPressed = true; }
+        if (code == java.awt.event.KeyEvent.VK_A) { leftPressed = true; }
+        if (code == java.awt.event.KeyEvent.VK_S) { downPressed = true; }
+        if (code == java.awt.event.KeyEvent.VK_D) { rightPressed = true; }
+        if (code == java.awt.event.KeyEvent.VK_P) { gp.gameState = gp.pauseState; }
+        if (code == java.awt.event.KeyEvent.VK_ENTER) { enterPressed = true; }
+        if (code == java.awt.event.KeyEvent.VK_C) { gp.gameState = gp.characterState; }
     }
+
     public void pauseState(int code) {
-            if (code == java.awt.event.KeyEvent.VK_P) {
-                gp.gameState = gp.playState;
-            }
+        if (code == java.awt.event.KeyEvent.VK_P) { gp.gameState = gp.playState; }
     }
+
     public void dialogueState(int code) {
-            if (code == java.awt.event.KeyEvent.VK_ENTER) {
-                gp.gameState = gp.playState;
-            }
+        if (code == java.awt.event.KeyEvent.VK_ENTER) { gp.gameState = gp.playState; }
     }
+
     public void characterState(int code) {
-            if (code == java.awt.event.KeyEvent.VK_C) {
-                gp.gameState = gp.playState;
-            }
+        if (code == java.awt.event.KeyEvent.VK_C) { gp.gameState = gp.playState; }
     }
-    
 }

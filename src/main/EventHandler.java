@@ -10,9 +10,12 @@ public class EventHandler {
     
     public EventHandler(GamePanel gp) {
         this.gp = gp;
+
         eventRect = new EventRect[gp.maxWorldCol][gp.maxWorldRow];
+
         int col = 0;
         int row = 0;
+
         while (col < gp.maxWorldCol && row < gp.maxWorldRow) {
             eventRect[col][row] = new EventRect();
             eventRect[col][row].x = 23;
@@ -22,6 +25,7 @@ public class EventHandler {
             eventRect[col][row].eventRectDefaultX = eventRect[col][row].x;
             eventRect[col][row].eventRectDefaultY = eventRect[col][row].y;
             col++;
+
             if (col == gp.maxWorldCol) {
                 row++;
                 col = 0;
@@ -30,17 +34,14 @@ public class EventHandler {
     }
 
     public void checkEvent() {
-        // Check if the player character is more than 1 tile away from the last event
         int xDistance = Math.abs(gp.player.worldX - previousEventX);
         int yDistance = Math.abs(gp.player.worldY - previousEventY);
+
         int distance = Math.max(xDistance, yDistance);
-        if (distance > gp.tileSize) {
-            canTouchEvent = true;
-        }
+        if (distance > gp.tileSize) { canTouchEvent = true; }
 
         if (canTouchEvent == true) {
-            if (hit(26, 15, "right") == true) {
-                // Event happens
+            if (hit(26, 15, "right") == true) { 
                 damagePit(26, 15, gp.dialogueState);
             }
             if (hit(23, 7, "up") == true) {
@@ -50,7 +51,6 @@ public class EventHandler {
             //     teleport(26, 15, gp.dialogueState);
             // }
         }
-
     }
 
     public boolean hit(int col, int row, String reqDirection) {
@@ -104,5 +104,4 @@ public class EventHandler {
         eventRect[col][row].eventDone = true;
         // canTouchEvent = false;
     }
-
 }

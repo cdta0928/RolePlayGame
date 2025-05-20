@@ -2,11 +2,11 @@ package entity;
 
 public class Player extends Entity {
 
-    main.KeyHandler keyHandler; // Reference to the KeyHandler for input handling
+    main.KeyHandler keyHandler; 
 
     // POSITION IN SCREEN
-    public final int screenX; // X position on the screen
-    public final int screenY; // Y position on the screen
+    public final int screenX; 
+    public final int screenY;
     int standCounter = 0;
 
     public boolean attackCanceled = false;
@@ -17,28 +17,28 @@ public class Player extends Entity {
     public Player(main.GamePanel gp, main.KeyHandler keyHandler) {
         super(gp);
 
-        type = 0; // Player
-        this.keyHandler = keyHandler; // Initialize the KeyHandler
-        screenX = gp.screenWidth / 2 - (gp.tileSize / 2); // Center the player on the screen
-        screenY = gp.screenHeight / 2 - (gp.tileSize / 2); // Center the player on the screen
+        type = 0; 
+        this.keyHandler = keyHandler; 
+        screenX = gp.screenWidth / 2 - (gp.tileSize / 2); 
+        screenY = gp.screenHeight / 2 - (gp.tileSize / 2);
         
         // SOLID AREA
         solidArea = new java.awt.Rectangle(8,16, 32, 32); 
         solidAreaDefaultX = solidArea.x;
         solidAreaDefaultY = solidArea.y;
 
-        // ATTACK
+        // ATTACK AREA
         attackArea = new java.awt.Rectangle(0, 0, 36, 36);
 
-        setDefaultValues(); // Set default values for the player
-        getPlayerImage(); // Load player images
+        setDefaultValues(); 
+        getPlayerImage(); 
     }
 
     public void setDefaultValues() {
-        worldX = gp.tileSize * 23; // Set default X position
-        worldY = gp.tileSize * 21; // Set default Y position
-        speed = 4; // Set default speed
-        direction = "down"; // Set default direction
+        worldX = gp.tileSize * 23; 
+        worldY = gp.tileSize * 21; 
+        speed = 4; 
+        direction = "down"; 
 
         // PLAYER STATUS
         level = 1;
@@ -54,9 +54,11 @@ public class Player extends Entity {
         attack = getAttack();
         defense = getDefense();
     }
+
     public int getAttack() {
         return attack = strength * currentWeapon.attackValue;
     }
+
     public int getDefense() {
         return defense = dexterity * currentShield.defenseValue;
     }
@@ -86,19 +88,11 @@ public class Player extends Entity {
             attacking();
         }
         else if (keyHandler.upPressed || keyHandler.downPressed || keyHandler.leftPressed || keyHandler.rightPressed
-            || keyHandler.enterPressed) { // If any movement key is pressed
-            if (keyHandler.upPressed) { // If the up key is pressed
-                direction = "up"; // Set direction to up
-            }
-            if (keyHandler.downPressed) { // If the down key is pressed
-                direction = "down"; // Set direction to down
-            }
-            if (keyHandler.leftPressed) { // If the left key is pressed
-                direction = "left"; // Set direction to left
-            }
-            if (keyHandler.rightPressed) { // If the right key is pressed
-                direction = "right"; // Set direction to right
-            }
+            || keyHandler.enterPressed) { 
+            if (keyHandler.upPressed) { direction = "up"; }
+            if (keyHandler.downPressed) { direction = "down"; }
+            if (keyHandler.leftPressed) { direction = "left"; }
+            if (keyHandler.rightPressed) { direction = "right"; }
 
             // CHECK TILE COLLISION
             collisionOn = false;
@@ -121,18 +115,10 @@ public class Player extends Entity {
 
             if (collisionOn == false && keyHandler.enterPressed == false) {
                 switch (direction) {
-                    case "up":
-                        worldY -= speed;
-                        break;
-                    case "down":
-                        worldY += speed;
-                        break;
-                    case "left":
-                        worldX -= speed;
-                        break;
-                    case "right":
-                        worldX += speed;
-                        break;
+                    case "up": worldY -= speed; break;
+                    case "down": worldY += speed; break;
+                    case "left": worldX -= speed; break;
+                    case "right": worldX += speed; break;
                 }
             }
 
@@ -145,14 +131,10 @@ public class Player extends Entity {
 
             keyHandler.enterPressed = false;
 
-            spriteCounter++; // Increment sprite counter for animation
-            if (spriteCounter > 10) { // If sprite counter exceeds threshold
-                if (spriteNum == 1) { // If current sprite is 1
-                    spriteNum = 2; // Switch to sprite 2
-                } else if (spriteNum == 2) { // If current sprite is 2
-                    spriteNum = 1; // Switch to sprite 1
-                }
-                spriteCounter = 0; // Reset sprite counter
+            spriteCounter++; 
+            if (spriteCounter > 10) { 
+                if (spriteNum == 1) spriteNum = 2; else spriteNum = 1; 
+                spriteCounter = 0; 
             }
 
             if (invincible == true) {
@@ -172,20 +154,16 @@ public class Player extends Entity {
                 case "Key":
                     hasKey++;
                     gp.obj[i] = null;
-                    gp.ui.showMessage("You got a key !");
                     break;
                 case "Door":
                     if (hasKey > 0) {
                         hasKey--;
                         gp.obj[i] = null;
-                        gp.ui.showMessage("You opened the door !");
                     }
-                    else gp.ui.showMessage("You need the key !");
                     break;
                 case "Boots":
                     speed += 2;
                     gp.obj[i] = null;
-                    gp.ui.showMessage("Speed up !");
                     break;
                 case "Chest":
                     gp.ui.gameFinished = true;
@@ -205,13 +183,11 @@ public class Player extends Entity {
     }
 
     public void draw(java.awt.Graphics2D g2) {
-        // g2.setColor(java.awt.Color.white); // Set color for the player
-        // g2.fillRect(x, y, gp.tileSize, gp.tileSize); // Draw the player as a rectangle
-        java.awt.image.BufferedImage image = null; // Placeholder for the player image
+        java.awt.image.BufferedImage image = null; 
         int tempScreenX = screenX;
         int tempScreenY = screenY;
 
-        switch (direction) { // Determine which image to use based on direction
+        switch (direction) { 
             case "up":
                 if (attacking == false) {
                     if (spriteNum == 1) { image = up1; } 
@@ -256,10 +232,10 @@ public class Player extends Entity {
                 break;
         }
         if (invincible == true) {
-            g2.setComposite(java.awt.AlphaComposite.getInstance(java.awt.AlphaComposite.SRC_OVER, 0.4f));
+            changeAlpha(g2, 0.4f);
         }
-        g2.drawImage(image, tempScreenX, tempScreenY, null); // Draw the player image
-        g2.setComposite(java.awt.AlphaComposite.getInstance(java.awt.AlphaComposite.SRC_OVER, 1f));
+        g2.drawImage(image, tempScreenX, tempScreenY, null); 
+        changeAlpha(g2, 1f);
         g2.setColor(java.awt.Color.RED);
         g2.drawRect(screenX + solidArea.x, screenY + solidArea.y, solidArea.width, solidArea.height);
     }
@@ -294,22 +270,16 @@ public class Player extends Entity {
 
             // ATTACK AREA
             switch (direction) {
-                case "up":
-                    worldY -= attackArea.height;
-                    break;
-                case "down":
-                    worldY += attackArea.height;
-                    break;
-                case "left":
-                    worldX -= attackArea.width;
-                    break;
-                case "right":
-                    worldX += attackArea.width;
-                    break;
+                case "up": worldY -= attackArea.height; break;
+                case "down": worldY += attackArea.height; break;
+                case "left": worldX -= attackArea.width; break;
+                case "right": worldX += attackArea.width; break;
             }
+
             // ATTACK AREA -> SOLID AREA
             solidArea.width = attackArea.width;
             solidArea.height = attackArea.height;
+
             // CHECK MONSTER AFTER UPDATE SOLID AREA
             int monsterIndex = gp.cChecker.checkEntity(this, gp.monster);
             damageMonster(monsterIndex);
@@ -319,6 +289,7 @@ public class Player extends Entity {
             solidArea.width = solidAreaWidth;
             solidArea.height  = solidAreaHeight;
         }
+
         if (spriteCounter > 25) {
             spriteNum = 1;
             spriteCounter = 0;
@@ -343,7 +314,5 @@ public class Player extends Entity {
                 }
             }
         }
-        else System.out.println("Miss!");
     }
-
 }

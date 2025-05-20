@@ -1,15 +1,16 @@
 package tile;
 
 public class TileManager {
-
     main.GamePanel gp;
     public Tile[] tile;
     public int mapTileNum[][];
 
     public TileManager(main.GamePanel gp) {
         this.gp = gp;
+        
         tile = new Tile[10];
         mapTileNum = new int[gp.maxWorldCol][gp.maxWorldRow];
+
         getTileImage();
         loadMap("/res/maps/world01.txt");
     }
@@ -69,7 +70,6 @@ public class TileManager {
     }
 
     public void draw(java.awt.Graphics2D g2) {
-        
         int worldCol = 0;
         int worldRow = 0;
         while (worldCol < gp.maxWorldCol && worldRow < gp.maxWorldRow) {
@@ -89,7 +89,5 @@ public class TileManager {
                 worldRow++;
             }
         }
-
     }
-
 }
