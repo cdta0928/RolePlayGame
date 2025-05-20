@@ -5,6 +5,6 @@ public class OBJ_Boots extends entity.Entity {
         super(gp);
 
         name = "Boots";
-        down1 = setup("/res/object/boots.png", gp.tileSize, gp.tileSize);
+        down1 = setup("/res/object/boots", gp.tileSize, gp.tileSize);
     }
 }

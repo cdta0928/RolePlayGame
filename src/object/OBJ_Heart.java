@@ -7,8 +7,8 @@ public class OBJ_Heart extends entity.Entity {
         super(gp);
         
         name = "Heart";
-        image = setup("/res/object/heart/heart_full.png", gp.tileSize, gp.tileSize);
-        image2 = setup("/res/object/heart/heart_half.png", gp.tileSize, gp.tileSize);
-        image3 = setup("/res/object/heart/heart_blank.png", gp.tileSize, gp.tileSize);
+        image = setup("/res/object/heart/heart_full", gp.tileSize, gp.tileSize);
+        image2 = setup("/res/object/heart/heart_half", gp.tileSize, gp.tileSize);
+        image3 = setup("/res/object/heart/heart_blank", gp.tileSize, gp.tileSize);
     }
 }

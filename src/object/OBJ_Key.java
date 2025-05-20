@@ -6,6 +6,6 @@ public class OBJ_Key extends entity.Entity {
         super(gp);
 
         name = "Key";
-        down1 = setup("/res/object/Key.png", gp.tileSize, gp.tileSize); 
+        down1 = setup("/res/object/Key", gp.tileSize, gp.tileSize); 
     }
 }

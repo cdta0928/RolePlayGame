@@ -1,7 +1,5 @@
 package main;
 
-import object.OBJ_Heart;
-
 public class UI {
     
     GamePanel gp;
@@ -12,8 +10,8 @@ public class UI {
     java.awt.image.BufferedImage heart_full, heart_half, heart_blank;
 
     public boolean messageOn = false;
-    public String message = "";
-    int messageCounter = 0;
+    java.util.ArrayList<String> message = new java.util.ArrayList<>();
+    java.util.ArrayList<Integer> messageCounter = new java.util.ArrayList<>();
     public String currentDialogue = "";
 
     public boolean gameFinished = false;
@@ -26,15 +24,39 @@ public class UI {
         arial_80B = new java.awt.Font("Arial", java.awt.Font.BOLD, 80);
 
         // CREATE HUD OBJECT
-        entity.Entity heart = new OBJ_Heart(gp);
+        entity.Entity heart = new object.OBJ_Heart(gp);
         heart_full = heart.image;
         heart_half = heart.image2;
         heart_blank = heart.image3;
     }
 
-    public void showMessage(String text) {
-        message = text;
-        messageOn = true;
+    public void addMessage(String text) {
+        message.add(text);
+        messageCounter.add(0);
+    }
+
+    public void drawMessage() {
+        int messageX  = gp.tileSize;
+        int messageY = gp.tileSize*3;
+        g2.setFont(g2.getFont().deriveFont(java.awt.Font.BOLD, 22F));
+
+        for (int i = 0; i < message.size(); i++) {
+            if (message.get(i) != null) {
+                g2.setColor(java.awt.Color.black);
+                g2.drawString(message.get(i),  messageX + 2, messageY + 2);
+                g2.setColor(java.awt.Color.white);
+                g2.drawString(message.get(i), messageX, messageY);
+
+                int counter = messageCounter.get(i) + 1; // messageCounter++
+                messageCounter.set(i, counter); // set the counter to the arr
+
+                messageY += 50;
+                if (messageCounter.get(i) > 180) {
+                    message.remove(i);
+                    messageCounter.remove(i);
+                }
+            }
+        }
     }
 
     public void draw(java.awt.Graphics2D g2) {
@@ -52,6 +74,7 @@ public class UI {
         if (gp.gameState == gp.playState) {
             //...
             drawPlayerLife();
+            drawMessage();
         }
 
         // PAUSE STATE
