@@ -20,6 +20,8 @@ public class Entity {
     public boolean invincible = false;
     String dialogues[] = new String[20];
     boolean attacking = false;
+    public boolean alive = true;
+    public boolean dying = false;
 
     // SOLID AREA
     public java.awt.Rectangle solidArea = new java.awt.Rectangle(0, 0, 48, 48); // Rectangle for collision detection
@@ -32,6 +34,7 @@ public class Entity {
     public int spriteCounter = 0; // Counter for sprite animation
     public int invincibleCounter = 0;
     public int actionLockCounter = 0;
+    int dyingCounter = 0;
 
     // CHAR ATTIBUTES
     public String name;
@@ -138,6 +141,44 @@ public class Entity {
             }
     }
 
+    public void dyingAnimation(java.awt.Graphics2D g2) {
+        dyingCounter++;
+        
+        int i = 5;
+
+        if (dyingCounter <= i) {
+            changeAlpha(g2, 0f);
+        }
+        if (dyingCounter > i && dyingCounter <= i*2) {
+            changeAlpha(g2, 1f);
+        }
+        if (dyingCounter > i*2 && dyingCounter <= i*3) {
+            changeAlpha(g2, 0f);
+        }
+        if (dyingCounter > i*3 && dyingCounter <= i*4) {
+            changeAlpha(g2, 1f);
+        }
+        if (dyingCounter > i*4 && dyingCounter <= i*5) {
+            changeAlpha(g2, 0f);
+        }
+        if (dyingCounter > i*5 && dyingCounter <= i*6) {
+            changeAlpha(g2, 1f);
+        }
+        if (dyingCounter > i*6 && dyingCounter <= i*7) {
+            changeAlpha(g2, 0f);
+        }
+        if (dyingCounter > i*7 && dyingCounter <= i*8) {
+            changeAlpha(g2, 1f);
+        }
+        if (dyingCounter > i*8) {
+            dying = false;
+            alive = false;
+        }
+    }
+
+    public void changeAlpha(java.awt.Graphics2D g2, float alphaValue) {
+        g2.setComposite(java.awt.AlphaComposite.getInstance(java.awt.AlphaComposite.SRC_OVER, alphaValue));
+    }
     public void draw(java.awt.Graphics2D g2) {
         java.awt.image.BufferedImage image = null;
 
@@ -168,6 +209,9 @@ public class Entity {
             }
             if (invincible == true) {
                 g2.setComposite(java.awt.AlphaComposite.getInstance(java.awt.AlphaComposite.SRC_OVER, 0.4f));
+            }
+            if (dying == true) {
+                dyingAnimation(g2);
             }
             g2.drawImage(image, screenX, screenY, gp.tileSize, gp.tileSize, null);
             g2.setComposite(java.awt.AlphaComposite.getInstance(java.awt.AlphaComposite.SRC_OVER, 1f));

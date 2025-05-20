@@ -7,6 +7,7 @@ public class Player extends Entity {
     // POSITION IN SCREEN
     public final int screenX; // X position on the screen
     public final int screenY; // Y position on the screen
+    int standCounter = 0;
 
     // INVENTORY
     public int hasKey = 0;
@@ -303,7 +304,7 @@ public class Player extends Entity {
                 gp.monster[i].life -= 1;
                 gp.monster[i].invincible = true;
                 if (gp.monster[i].life <= 0) {
-                    gp.monster[i] = null;
+                    gp.monster[i].dying =  true;
                 }
             }
         }
