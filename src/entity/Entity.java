@@ -6,33 +6,36 @@ public class Entity {
     
     // IMAGE
     public java.awt.image.BufferedImage image, image2, image3;
-    public java.awt.image.BufferedImage up1, up2, down1, down2, left1, left2, right1, right2; // Images for different directions
+    public java.awt.image.BufferedImage up1, up2, down1, down2, left1, left2, right1, right2; 
     public java.awt.image.BufferedImage attackUp1, attackUp2, attackDown1, attackDown2, attackLeft1, attackLeft2, attackRight1, attackRight2;
-    
-    public boolean collision = false; // Flag for collision detection
 
     // STATE
     public int worldX, worldY;
     public String direction = "down"; // Direction of the entity (up, down, left, right)
     public int spriteNum = 1; // Current sprite number (1 or 2)
-    int dialogueIndex = 0;
-    public boolean collisionOn = false; // Flag for collision detection
-    public boolean invincible = false;
-    String dialogues[] = new String[20];
-    boolean attacking = false;
-    public boolean alive = true;
-    public boolean dying = false;
-    public boolean hpBarOn = false;
 
     // SOLID AREA
     public java.awt.Rectangle solidArea = new java.awt.Rectangle(0, 0, 48, 48); // Rectangle for collision detection
     public int solidAreaDefaultX;
     public int solidAreaDefaultY;
 
+    // COLLISION
+    public boolean collision = false; 
+    public boolean collisionOn = false; 
+
+    String dialogues[] = new String[20];
+    int dialogueIndex = 0;
+    
+    public boolean invincible = false;
+    boolean attacking = false;
+    public boolean alive = true;
+    public boolean dying = false;
+    public boolean hpBarOn = false;
+
     public java.awt.Rectangle attackArea = new java.awt.Rectangle(0, 0, 0, 0);
 
     // COUNTER
-    public int spriteCounter = 0; // Counter for sprite animation
+    public int spriteCounter = 0; 
     public int invincibleCounter = 0;
     public int actionLockCounter = 0;
     int dyingCounter = 0;
@@ -44,7 +47,7 @@ public class Entity {
     // player   =   0
     // npc      =   1
     // monster  =   2
-    public int speed; // Speed of the entity
+    public int speed; 
     public int maxLife;
     public int life;
 
@@ -63,9 +66,7 @@ public class Entity {
     public int attackValue;
     public int defenseValue;
 
-    public Entity(main.GamePanel gp) {
-        this.gp = gp;
-    }
+    public Entity(main.GamePanel gp) { this.gp = gp; }
 
     public java.awt.image.BufferedImage setup(String imagePath, int width, int height) {
         main.UtilityTool uTool = new main.UtilityTool();
@@ -83,6 +84,7 @@ public class Entity {
     public void setAction() {
 
     }
+
     public void speak() {
         if (dialogues[dialogueIndex] == null) {
             dialogueIndex = 0;
@@ -92,18 +94,10 @@ public class Entity {
         dialogueIndex++;
         
         switch (gp.player.direction) {
-            case "up":
-                direction = "down";
-                break;
-            case "down":
-                direction = "up";
-                break;
-            case "left":
-                direction = "right";
-                break;
-            case "right":
-                direction = "left";
-                break;
+            case "up": direction = "down"; break;
+            case "down": direction = "up"; break;
+            case "left": direction = "right"; break;
+            case "right": direction = "left"; break;
         }
     }
     public void update() {
@@ -118,75 +112,50 @@ public class Entity {
 
         if (this.type == 2 && contactPlayer == true) {
             if (gp.player.invincible == false) {
-                gp.player.life--;
+                int damage = attack - gp.player.defense;
+                if (damage < 0) {
+                    damage = 0;
+                }
+
+                gp.player.life -= damage;
                 gp.player.invincible = true;
             }
         }
 
-            if (collisionOn == false) {
-                switch (direction) {
-                    case "up":
-                        worldY -= speed;
-                        break;
-                    case "down":
-                        worldY += speed;
-                        break;
-                    case "left":
-                        worldX -= speed;
-                        break;
-                    case "right":
-                        worldX += speed;
-                        break;
-                }
+        if (collisionOn == false) {
+            switch (direction) {
+                case "up": worldY -= speed; break;
+                case "down": worldY += speed; break;
+                case "left": worldX -= speed; break;
+                case "right": worldX += speed; break;
             }
+        }
 
-            spriteCounter++; // Increment sprite counter for animation
-            if (spriteCounter > 10) { // If sprite counter exceeds threshold
-                if (spriteNum == 1) { // If current sprite is 1
-                    spriteNum = 2; // Switch to sprite 2
-                } else if (spriteNum == 2) { // If current sprite is 2
-                    spriteNum = 1; // Switch to sprite 1
-                }
-                spriteCounter = 0; // Reset sprite counter
+        spriteCounter++; 
+        if (spriteCounter > 10) { 
+            if (spriteNum == 1) spriteNum = 2; else spriteNum = 1; 
+        }
+        spriteCounter = 0; 
+        if (invincible == true) {
+            invincibleCounter++;
+            if (invincibleCounter > 40) {
+                invincible = false;
+                invincibleCounter = 0;
             }
-            if (invincible == true) {
-                invincibleCounter++;
-                if (invincibleCounter > 40) {
-                    invincible = false;
-                    invincibleCounter = 0;
-                }
-            }
+        }
     }
 
     public void dyingAnimation(java.awt.Graphics2D g2) {
         dyingCounter++;
-        
         int i = 5;
-
-        if (dyingCounter <= i) {
-            changeAlpha(g2, 0f);
-        }
-        if (dyingCounter > i && dyingCounter <= i*2) {
-            changeAlpha(g2, 1f);
-        }
-        if (dyingCounter > i*2 && dyingCounter <= i*3) {
-            changeAlpha(g2, 0f);
-        }
-        if (dyingCounter > i*3 && dyingCounter <= i*4) {
-            changeAlpha(g2, 1f);
-        }
-        if (dyingCounter > i*4 && dyingCounter <= i*5) {
-            changeAlpha(g2, 0f);
-        }
-        if (dyingCounter > i*5 && dyingCounter <= i*6) {
-            changeAlpha(g2, 1f);
-        }
-        if (dyingCounter > i*6 && dyingCounter <= i*7) {
-            changeAlpha(g2, 0f);
-        }
-        if (dyingCounter > i*7 && dyingCounter <= i*8) {
-            changeAlpha(g2, 1f);
-        }
+        if (dyingCounter <= i) { changeAlpha(g2, 0f); }
+        if (dyingCounter > i && dyingCounter <= i*2) { changeAlpha(g2, 1f); }
+        if (dyingCounter > i*2 && dyingCounter <= i*3) { changeAlpha(g2, 0f); }
+        if (dyingCounter > i*3 && dyingCounter <= i*4) { changeAlpha(g2, 1f); }
+        if (dyingCounter > i*4 && dyingCounter <= i*5) { changeAlpha(g2, 0f); }
+        if (dyingCounter > i*5 && dyingCounter <= i*6) { changeAlpha(g2, 1f); }
+        if (dyingCounter > i*6 && dyingCounter <= i*7) { changeAlpha(g2, 0f); }
+        if (dyingCounter > i*7 && dyingCounter <= i*8) { changeAlpha(g2, 1f); }
         if (dyingCounter > i*8) {
             dying = false;
             alive = false;
@@ -211,7 +180,7 @@ public class Entity {
         worldX - gp.tileSize < gp.player.worldX + gp.player.screenX &&
         worldY + gp.tileSize > gp.player.worldY - gp.player.screenY &&
         worldY - gp.tileSize < gp.player.worldY + gp.player.screenY) {
-            switch (direction) { // Determine which image to use based on direction
+            switch (direction) { 
                 case "up":
                     if (spriteNum == 1) { image = up1; } 
                     else if (spriteNum == 2) { image = up2; }
@@ -252,9 +221,9 @@ public class Entity {
                 hpBarCounter = 0;
                 changeAlpha(g2, 0.4f);
             }
-            if (dying == true) {
-                dyingAnimation(g2);
-            }
+
+            if (dying == true) { dyingAnimation(g2); }
+
             g2.drawImage(image, screenX, screenY, gp.tileSize, gp.tileSize, null);
             changeAlpha(g2, 1f);
         }
