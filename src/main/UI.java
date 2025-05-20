@@ -193,7 +193,12 @@ public class UI {
     }
 
     public void drawCharacterScreen() {
-        
+        // CREATE A FRAME
+        final int frameX = gp.tileSize*2;
+        final int frameY = gp.tileSize;
+        final int frameWidth = gp.tileSize*6;
+        final int frameHeight = gp.tileSize*10;
+        drawSubWindow(frameX, frameY, frameWidth, frameHeight);
     }
 
 }
