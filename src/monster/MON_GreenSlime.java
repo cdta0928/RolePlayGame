@@ -1,11 +1,12 @@
 package monster;
 
-import java.util.Random;
-
 public class MON_GreenSlime extends entity.Entity {
+
+    main.GamePanel gp;
 
     public MON_GreenSlime(main.GamePanel gp) {
         super(gp);
+        this.gp = gp;
         type = 2;
         name = "Green Slime";
         speed = 1;
@@ -38,7 +39,7 @@ public class MON_GreenSlime extends entity.Entity {
 
         actionLockCounter++;
         if (actionLockCounter == 120) {
-            Random random = new Random();
+            java.util.Random random = new java.util.Random();
             int i = random.nextInt(100) + 1;
 
             if (i <= 25) {
@@ -59,6 +60,12 @@ public class MON_GreenSlime extends entity.Entity {
             actionLockCounter = 0;
         }
 
+    }
+
+    public void damageReaction() {
+        actionLockCounter = 0;
+
+        direction = gp.player.direction; 
     }
 
 }

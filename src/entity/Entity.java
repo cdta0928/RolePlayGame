@@ -181,6 +181,11 @@ public class Entity {
     public void changeAlpha(java.awt.Graphics2D g2, float alphaValue) {
         g2.setComposite(java.awt.AlphaComposite.getInstance(java.awt.AlphaComposite.SRC_OVER, alphaValue));
     }
+
+    public void damageReaction() {
+        
+    }
+
     public void draw(java.awt.Graphics2D g2) {
         java.awt.image.BufferedImage image = null;
 
