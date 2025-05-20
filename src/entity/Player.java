@@ -9,6 +9,8 @@ public class Player extends Entity {
     public final int screenY; // Y position on the screen
     int standCounter = 0;
 
+    public boolean attackCanceled = false;
+
     // INVENTORY
     public int hasKey = 0;
 
@@ -101,8 +103,6 @@ public class Player extends Entity {
             // CHECK EVENT
             gp.eHandler.checkEvent();
 
-            keyHandler.enterPressed = false;
-
             if (collisionOn == false && keyHandler.enterPressed == false) {
                 switch (direction) {
                     case "up":
@@ -119,6 +119,13 @@ public class Player extends Entity {
                         break;
                 }
             }
+
+            if (keyHandler.enterPressed == true && attackCanceled == false) {
+                attacking = true;
+                spriteCounter = 0;
+            }
+
+            attackCanceled = false;
 
             keyHandler.enterPressed = false;
 
@@ -174,10 +181,10 @@ public class Player extends Entity {
     public void interactNPC(int i) {
         if (gp.keyHandler.enterPressed == true) {
             if (i != 999) {
+                attackCanceled = true;
                 gp.gameState = gp.dialogueState;
                 gp.npc[i].speak();
             }
-            else attacking = true;
         }
     }
 
