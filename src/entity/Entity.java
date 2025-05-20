@@ -22,6 +22,7 @@ public class Entity {
     boolean attacking = false;
     public boolean alive = true;
     public boolean dying = false;
+    public boolean hpBarOn = false;
 
     // SOLID AREA
     public java.awt.Rectangle solidArea = new java.awt.Rectangle(0, 0, 48, 48); // Rectangle for collision detection
@@ -35,6 +36,7 @@ public class Entity {
     public int invincibleCounter = 0;
     public int actionLockCounter = 0;
     int dyingCounter = 0;
+    int hpBarCounter = 0;
 
     // CHAR ATTIBUTES
     public String name;
@@ -207,14 +209,34 @@ public class Entity {
                     else if (spriteNum == 2) { image = right2; }
                     break;
             }
+            
+            // MONSTER HEALTH BAR
+            if (type == 2 && hpBarOn == true) {
+                double oneScale = (double)gp.tileSize/maxLife;
+                double hpBarValue = oneScale*life;
+
+                g2.setColor(new java.awt.Color(35, 35, 35));
+                g2.fillRect(screenX - 1, screenY -16, gp.tileSize + 2, 12);
+                g2.setColor(new java.awt.Color(255, 0, 30));
+                g2.fillRect(screenX, screenY - 15, (int)hpBarValue, 10);
+
+                hpBarCounter++;
+                if (hpBarCounter > 600) {
+                    hpBarOn = false;
+                    hpBarCounter = 0;
+                }
+            }
+
             if (invincible == true) {
-                g2.setComposite(java.awt.AlphaComposite.getInstance(java.awt.AlphaComposite.SRC_OVER, 0.4f));
+                hpBarOn = true;
+                hpBarCounter = 0;
+                changeAlpha(g2, 0.4f);
             }
             if (dying == true) {
                 dyingAnimation(g2);
             }
             g2.drawImage(image, screenX, screenY, gp.tileSize, gp.tileSize, null);
-            g2.setComposite(java.awt.AlphaComposite.getInstance(java.awt.AlphaComposite.SRC_OVER, 1f));
+            changeAlpha(g2, 1f);
         }
     }
 }
