@@ -75,6 +75,8 @@ public class Player extends Entity {
         inventory.add(new object.OBJ_Key(gp));
         inventory.add(new object.OBJ_Key(gp));
         inventory.add(new object.OBJ_Key(gp));
+        inventory.add(new object.OBJ_Key(gp));
+        inventory.add(new object.OBJ_Key(gp));
     }
 
     public int getAttack() {
@@ -171,26 +173,16 @@ public class Player extends Entity {
 
     public void pickupObject(int i) {
         if (i != 999) {
-            String objectName = gp.obj[i].name;
-            switch (objectName) {
-                case "Key":
-                    hasKey++;
-                    gp.obj[i] = null;
-                    break;
-                case "Door":
-                    if (hasKey > 0) {
-                        hasKey--;
-                        gp.obj[i] = null;
-                    }
-                    break;
-                case "Boots":
-                    speed += 2;
-                    gp.obj[i] = null;
-                    break;
-                case "Chest":
-                    gp.ui.gameFinished = true;
-                    break;
+            String text = "";
+            if (inventory.size() != maxInventorySize) {
+                inventory.add(gp.obj[i]);
+                text = "Got a " + gp.obj[i].name + "!";
             }
+            else {
+                text = "You cannot carry any more!";
+            }
+            gp.ui.addMessage(text);
+            gp.obj[i] = null;
         }
     }
 
