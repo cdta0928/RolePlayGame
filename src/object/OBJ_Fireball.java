@@ -11,7 +11,7 @@ public class OBJ_Fireball extends entity.Projectile {
         speed = 5;
         maxLife = 80;
         life = maxLife;
-        attack = 2;
+        attack = 6;
         useCost = 1;
         alive = false;
         getImage();
