@@ -43,6 +43,14 @@ public class AssetSetter {
         gp.obj[i].worldX = 37 * gp.tileSize;
         gp.obj[i].worldY = 42 * gp.tileSize;
         i++;
+        gp.obj[i] = new object.OBJ_Axe(gp);
+        gp.obj[i].worldX = 25 * gp.tileSize;
+        gp.obj[i].worldY = 20 * gp.tileSize;  
+        i++;
+        gp.obj[i] = new object.OBJ_Shiled_Blue(gp);
+        gp.obj[i].worldX = 24 * gp.tileSize;
+        gp.obj[i].worldY = 21 * gp.tileSize;  
+        i++;
     }
 
     public void setNPC() {

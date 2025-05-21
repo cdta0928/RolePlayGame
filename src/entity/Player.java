@@ -30,7 +30,7 @@ public class Player extends Entity {
         solidAreaDefaultY = solidArea.y;
 
         // ATTACK AREA
-        attackArea = new java.awt.Rectangle(0, 0, 36, 36);
+        // attackArea = new java.awt.Rectangle(0, 0, 36, 36);
 
         setDefaultValues(); 
         getPlayerImage(); 
@@ -79,7 +79,26 @@ public class Player extends Entity {
         inventory.add(new object.OBJ_Key(gp));
     }
 
+    public void selectItem() {
+        int itemIndex = gp.ui.getItemIndexOnSlot();
+        if (itemIndex < inventory.size()) {
+            entity.Entity selectedItem = inventory.get(itemIndex);
+            if (selectedItem.type == type_sword || selectedItem.type == type_axe) {
+                currentWeapon = selectedItem;
+                attack = getAttack();
+            }
+            if (selectedItem.type == type_shield) {
+                currentShield = selectedItem;
+                defense = getDefense();
+            }
+            if (selectedItem.type == type_consumable) {
+                // later
+            }
+        }
+    }
+
     public int getAttack() {
+        attackArea = currentWeapon.attackArea;
         return attack = strength * currentWeapon.attackValue;
     }
 

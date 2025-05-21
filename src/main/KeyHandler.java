@@ -118,5 +118,8 @@ public class KeyHandler implements java.awt.event.KeyListener {
                 gp.ui.slotCol++;
             }
         }
+        if (code == java.awt.event.KeyEvent.VK_ENTER) {
+            gp.player.selectItem();
+        }
     }
 }
