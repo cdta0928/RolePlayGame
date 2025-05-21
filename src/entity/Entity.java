@@ -47,6 +47,9 @@ public class Entity {
     public int maxLife;
     public int life;
 
+    public int maxMana;
+    public int mana;
+
     public int level;
     public int strength;
     public int dexterity;
@@ -58,10 +61,14 @@ public class Entity {
     public Entity currentWeapon;
     public Entity currentShield;
 
+    public Projectile projectile;
+
     // ITEM ATTRIBUTES
     public int attackValue;
     public int defenseValue;
     public String description = "";
+
+    public int useCost;
 
     // TYPE
     public int type; 
@@ -173,7 +180,7 @@ public class Entity {
         if (dyingCounter > i*6 && dyingCounter <= i*7) { changeAlpha(g2, 0f); }
         if (dyingCounter > i*7 && dyingCounter <= i*8) { changeAlpha(g2, 1f); }
         if (dyingCounter > i*8) {
-            dying = false;
+            // dying = false;
             alive = false;
         }
     }

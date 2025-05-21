@@ -274,7 +274,7 @@ public class Player extends Entity {
 
     public void contactMonster(int i) {
         if (i != 999) {
-            if (invincible == false) {
+            if (invincible == false && gp.monster[i].dying == false) {
                 int damage = gp.monster[i].attack - defense;
                 if (damage < 0) {
                     damage = 0;
