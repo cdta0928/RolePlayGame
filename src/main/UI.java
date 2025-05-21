@@ -133,6 +133,29 @@ public class UI {
         g2.setColor(java.awt.Color.white);
         g2.setStroke(new java.awt.BasicStroke(3));
         g2.drawRoundRect(cursorX, cursorY, cursorWidth, cursorHeight, 10, 10);
+
+        // DESCRIPTION WINDOW
+        int dFrameX = frameX;
+        int dFrameY = frameY + frameHeight;
+        int dFrameWidth = frameWidth;
+        int dFrameHeight = gp.tileSize*3;
+        drawSubWindow(dFrameX, dFrameY, dFrameWidth, dFrameHeight);
+        // DRAW TEXT DESCRIPTION
+        int textX = dFrameX + 20;
+        int textY = dFrameY + gp.tileSize;
+        g2.setFont(g2.getFont().deriveFont(24F));
+        int itemIndex = getItemIndexOnSlot();
+        if (itemIndex < gp.player.inventory.size()) {
+            for (String line:gp.player.inventory.get(itemIndex).description.split("\n")) {
+                g2.drawString(line, textX, textY);
+                textY += 32;
+            }
+        }
+    }
+
+    public int getItemIndexOnSlot() {
+        int itemIndex = slotCol + slotRow*5;
+        return itemIndex;
     }
 
     public void drawPauseScreen() {
