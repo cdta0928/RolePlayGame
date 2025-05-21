@@ -13,6 +13,8 @@ public class Player extends Entity {
 
     // INVENTORY
     public int hasKey = 0;
+    public java.util.ArrayList<Entity> inventory = new java.util.ArrayList<>();
+    public final int inventorySize = 20;
 
     public Player(main.GamePanel gp, main.KeyHandler keyHandler) {
         super(gp);
@@ -32,6 +34,7 @@ public class Player extends Entity {
 
         setDefaultValues(); 
         getPlayerImage(); 
+        setItems();
     }
 
     public void setDefaultValues() {
@@ -53,6 +56,13 @@ public class Player extends Entity {
         currentShield = new object.OBJ_Shield_Wood(gp);
         attack = getAttack();
         defense = getDefense();
+    }
+
+    public void setItems() {
+        inventory.add(currentWeapon);
+        inventory.add(currentShield);
+        inventory.add(new object.OBJ_Key(gp));
+        inventory.add(new object.OBJ_Key(gp));
     }
 
     public int getAttack() {
