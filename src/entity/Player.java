@@ -14,7 +14,7 @@ public class Player extends Entity {
     // INVENTORY
     public int hasKey = 0;
     public java.util.ArrayList<Entity> inventory = new java.util.ArrayList<>();
-    public final int inventorySize = 20;
+    public final int maxInventorySize = 20;
 
     public Player(main.GamePanel gp, main.KeyHandler keyHandler) {
         super(gp);
@@ -61,6 +61,18 @@ public class Player extends Entity {
     public void setItems() {
         inventory.add(currentWeapon);
         inventory.add(currentShield);
+        inventory.add(new object.OBJ_Key(gp));
+        inventory.add(new object.OBJ_Key(gp));
+        inventory.add(new object.OBJ_Key(gp));
+        inventory.add(new object.OBJ_Key(gp));
+        inventory.add(new object.OBJ_Key(gp));
+        inventory.add(new object.OBJ_Key(gp));
+        inventory.add(new object.OBJ_Key(gp));
+        inventory.add(new object.OBJ_Key(gp));
+        inventory.add(new object.OBJ_Key(gp));
+        inventory.add(new object.OBJ_Key(gp));
+        inventory.add(new object.OBJ_Key(gp));
+        inventory.add(new object.OBJ_Key(gp));
         inventory.add(new object.OBJ_Key(gp));
         inventory.add(new object.OBJ_Key(gp));
     }

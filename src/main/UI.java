@@ -112,6 +112,16 @@ public class UI {
         final int slotYStart = frameY + 20;
         int slotX = slotXStart;
         int slotY = slotYStart;
+
+        // DRAW ITEMS
+        for (int i = 0; i < gp.player.inventory.size(); i++) {
+            g2.drawImage(gp.player.inventory.get(i).down1, slotX, slotY, null);
+            slotX += gp.tileSize;
+            if (i % 5 == 4) {
+                slotX = slotXStart;
+                slotY += gp.tileSize;
+            }
+        }
         
         // CURSOR
         int cursorX = slotXStart + (gp.tileSize * slotCol);
