@@ -120,6 +120,7 @@ public class UI {
         int cursorHeight = gp.tileSize;
         // DRAW CURSOR
         g2.setColor(java.awt.Color.white);
+        g2.setStroke(new java.awt.BasicStroke(3));
         g2.drawRoundRect(cursorX, cursorY, cursorWidth, cursorHeight, 10, 10);
     }
 
