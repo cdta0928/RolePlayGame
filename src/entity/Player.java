@@ -1,5 +1,7 @@
 package entity;
 
+import object.OBJ_Fireball;
+
 public class Player extends Entity {
 
     main.KeyHandler keyHandler; 
@@ -54,6 +56,7 @@ public class Player extends Entity {
         coin = 0;
         currentWeapon = new object.OBJ_Sword_Normal(gp);
         currentShield = new object.OBJ_Shield_Wood(gp);
+        projectile = new OBJ_Fireball(gp);
         attack = getAttack();
         defense = getDefense();
     }

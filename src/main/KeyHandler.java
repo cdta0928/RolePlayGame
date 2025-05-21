@@ -3,6 +3,7 @@ package main;
 public class KeyHandler implements java.awt.event.KeyListener {
     GamePanel gp;
     public boolean upPressed, downPressed, leftPressed, rightPressed, enterPressed; // Movement flags
+    public boolean shotKeyPressed;
 
     public KeyHandler(GamePanel gp) {
         this.gp = gp;
@@ -50,6 +51,7 @@ public class KeyHandler implements java.awt.event.KeyListener {
         if (code == java.awt.event.KeyEvent.VK_A) { leftPressed = false; }
         if (code == java.awt.event.KeyEvent.VK_S) { downPressed = false; }
         if (code == java.awt.event.KeyEvent.VK_D) { rightPressed = false; }
+        if (code == java.awt.event.KeyEvent.VK_F) { shotKeyPressed = false; }
     }
 
     public void titleState(int code) {
@@ -86,6 +88,7 @@ public class KeyHandler implements java.awt.event.KeyListener {
         if (code == java.awt.event.KeyEvent.VK_P) { gp.gameState = gp.pauseState; }
         if (code == java.awt.event.KeyEvent.VK_ENTER) { enterPressed = true; }
         if (code == java.awt.event.KeyEvent.VK_C) { gp.gameState = gp.characterState; }
+        if (code == java.awt.event.KeyEvent.VK_F) { shotKeyPressed = true; }
     }
 
     public void pauseState(int code) {
