@@ -181,15 +181,30 @@ public class Player extends Entity {
                 if (spriteNum == 1) spriteNum = 2; else spriteNum = 1; 
                 spriteCounter = 0; 
             }
-
-            if (invincible == true) {
-                invincibleCounter++;
-                if (invincibleCounter > 60) {
-                    invincible = false;
-                    invincibleCounter = 0;
-                }
-            }
         } 
+        else {
+            standCounter++;
+            if (standCounter == 20) {
+                spriteNum = 1;
+                standCounter = 0;
+            }
+        }
+
+        if (gp.keyHandler.shotKeyPressed == true && projectile.alive == false) {
+            // SET DEFAULT COORDINATES, DIRECTION, USER
+            projectile.set(worldX, worldY, direction, true, this);
+
+            // ADD TO LIST
+            gp.projectileList.add(projectile);
+        }
+
+        if (invincible == true) {
+            invincibleCounter++;
+            if (invincibleCounter > 60) {
+                invincible = false;
+                invincibleCounter = 0;
+            }
+        }
     }
 
     public void pickupObject(int i) {
