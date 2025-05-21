@@ -172,24 +172,42 @@ public class UI {
         text = "NEW  GAME";
         x = getXForCenteredText(text);
         y += gp.tileSize*3.5;
+        g2.setColor(java.awt.Color.black);
+        g2.drawString(text, x + 5, y + 5);
+        g2.setColor(java.awt.Color.white);
         g2.drawString(text, x, y);
         if (commandNum == 0) {
+            g2.setColor(java.awt.Color.black);
+            g2.drawString(">", x - gp.tileSize + 5, y + 5);
+            g2.setColor(java.awt.Color.white);
             g2.drawString(">", x - gp.tileSize, y);
         }
 
         text = "LOAD GAME";
         x = getXForCenteredText(text);
         y += gp.tileSize;
+        g2.setColor(java.awt.Color.black);
+        g2.drawString(text, x + 5, y + 5);
+        g2.setColor(java.awt.Color.white);
         g2.drawString(text, x, y);
         if (commandNum == 1) {
+            g2.setColor(java.awt.Color.black);
+            g2.drawString(">", x - gp.tileSize + 5, y + 5);
+            g2.setColor(java.awt.Color.white);
             g2.drawString(">", x - gp.tileSize, y);
         }
 
         text = "QUIT";
         x = getXForCenteredText(text);
         y += gp.tileSize;
+        g2.setColor(java.awt.Color.black);
+        g2.drawString(text, x + 5, y + 5);
+        g2.setColor(java.awt.Color.white);
         g2.drawString(text, x, y);
         if (commandNum == 2) {
+            g2.setColor(java.awt.Color.black);
+            g2.drawString(">", x - gp.tileSize + 5, y + 5);
+            g2.setColor(java.awt.Color.white);
             g2.drawString(">", x - gp.tileSize, y);
         }
     }
