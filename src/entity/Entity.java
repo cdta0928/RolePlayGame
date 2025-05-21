@@ -110,6 +110,11 @@ public class Entity {
             case "right": direction = "left"; break;
         }
     }
+
+    public void use(Entity entity) {
+        
+    }
+
     public void update() {
         setAction();
 

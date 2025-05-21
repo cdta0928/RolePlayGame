@@ -62,21 +62,6 @@ public class Player extends Entity {
         inventory.add(currentWeapon);
         inventory.add(currentShield);
         inventory.add(new object.OBJ_Key(gp));
-        inventory.add(new object.OBJ_Key(gp));
-        inventory.add(new object.OBJ_Key(gp));
-        inventory.add(new object.OBJ_Key(gp));
-        inventory.add(new object.OBJ_Key(gp));
-        inventory.add(new object.OBJ_Key(gp));
-        inventory.add(new object.OBJ_Key(gp));
-        inventory.add(new object.OBJ_Key(gp));
-        inventory.add(new object.OBJ_Key(gp));
-        inventory.add(new object.OBJ_Key(gp));
-        inventory.add(new object.OBJ_Key(gp));
-        inventory.add(new object.OBJ_Key(gp));
-        inventory.add(new object.OBJ_Key(gp));
-        inventory.add(new object.OBJ_Key(gp));
-        inventory.add(new object.OBJ_Key(gp));
-        inventory.add(new object.OBJ_Key(gp));
     }
 
     public void selectItem() {
@@ -93,7 +78,8 @@ public class Player extends Entity {
                 defense = getDefense();
             }
             if (selectedItem.type == type_consumable) {
-                // later
+                selectedItem.use(this);
+                inventory.remove(itemIndex);
             }
         }
     }

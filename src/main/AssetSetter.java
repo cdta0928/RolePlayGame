@@ -34,10 +34,10 @@ public class AssetSetter {
         gp.obj[i] = new object.OBJ_Door(gp);
         gp.obj[i].worldX = 12 * gp.tileSize;
         gp.obj[i].worldY = 22 * gp.tileSize;
-        i++;
-        gp.obj[i] = new object.OBJ_Chest(gp);
-        gp.obj[i].worldX = 10 * gp.tileSize;
-        gp.obj[i].worldY = 7 * gp.tileSize;
+        // i++;
+        // gp.obj[i] = new object.OBJ_Chest(gp);
+        // gp.obj[i].worldX = 10 * gp.tileSize;
+        // gp.obj[i].worldY = 7 * gp.tileSize;
         i++;
         gp.obj[i] = new object.OBJ_Boots(gp);
         gp.obj[i].worldX = 37 * gp.tileSize;
@@ -50,6 +50,10 @@ public class AssetSetter {
         gp.obj[i] = new object.OBJ_Shiled_Blue(gp);
         gp.obj[i].worldX = 24 * gp.tileSize;
         gp.obj[i].worldY = 21 * gp.tileSize;  
+        i++;
+        gp.obj[i] = new object.OBJ_Potion_Red(gp);
+        gp.obj[i].worldX = 24 * gp.tileSize;
+        gp.obj[i].worldY = 20 * gp.tileSize;  
         i++;
     }
 
