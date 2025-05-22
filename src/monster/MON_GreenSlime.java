@@ -16,6 +16,7 @@ public class MON_GreenSlime extends entity.Entity {
         attack = 5;
         defense = 0;
         exp = 2;
+        projectile = new object.OBJ_Rock(gp);
 
         solidArea = new java.awt.Rectangle(3, 18, 42, 30);
         solidAreaDefaultX = 3;
@@ -45,6 +46,12 @@ public class MON_GreenSlime extends entity.Entity {
             if (i > 50 && i <= 75) { direction = "left"; } 
             if (i > 75 && i <= 100) { direction = "right"; }
             actionLockCounter = 0;
+        }
+        int i = new java.util.Random().nextInt(100) + 1;
+        if (i > 99 && projectile.alive == false && shotAvailableCounter == 60) {
+            projectile.set(worldX, worldY, direction, true, this);
+            gp.projectileList.add(projectile);
+            shotAvailableCounter = 0;
         }
     }
 
