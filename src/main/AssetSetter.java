@@ -94,4 +94,22 @@ public class AssetSetter {
         gp.monster[i].worldY = gp.tileSize * 42;
     }
 
+    public void setInteractiveTile() {
+        int i = 0;
+        gp.iTile[i] = new tile_interactive.IT_DryTree(gp, 27, 7);
+        i++;
+        gp.iTile[i] = new tile_interactive.IT_DryTree(gp, 28, 7);
+        i++;
+        gp.iTile[i] = new tile_interactive.IT_DryTree(gp, 29, 7);
+        i++;
+        gp.iTile[i] = new tile_interactive.IT_DryTree(gp, 30, 7);
+        i++;
+        gp.iTile[i] = new tile_interactive.IT_DryTree(gp, 31, 7);
+        i++;
+        gp.iTile[i] = new tile_interactive.IT_DryTree(gp, 32, 7);
+        i++;
+        gp.iTile[i] = new tile_interactive.IT_DryTree(gp, 33, 7);
+        i++;
+    }
+
 }

@@ -4,7 +4,7 @@ public class Interactive extends entity.Entity {
     main.GamePanel gp;
     public boolean destructible = false;
 
-    public Interactive(main.GamePanel gp) {
+    public Interactive(main.GamePanel gp, int col, int row) {
         super(gp);
         this.gp = gp;
     }
