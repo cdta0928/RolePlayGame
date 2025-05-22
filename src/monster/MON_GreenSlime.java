@@ -59,4 +59,20 @@ public class MON_GreenSlime extends entity.Entity {
         actionLockCounter = 0;
         direction = gp.player.direction; 
     }
+
+    public void checkDrop() {
+        // CAST A DIE
+        int i = new java.util.Random().nextInt(100) + 1;
+
+        // SET THE MONSTER DROP
+        if (i < 50) {
+            dropItem(new object.OBJ_Coin_Bronze(gp));
+        }
+        if (i >= 50 && i < 75) {
+            dropItem(new object.OBJ_Heart(gp));
+        }
+        if (i >= 75 && i <= 100) {
+            dropItem(new object.OBJ_ManaCrystal(gp));
+        }
+    }
 }

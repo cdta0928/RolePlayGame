@@ -32,7 +32,7 @@ public class GamePanel extends javax.swing.JPanel implements Runnable {
 
     // PLAYER, ENTITY, OBJECT
     public entity.Player player = new entity.Player(this, keyHandler); 
-    public entity.Entity obj[] = new entity.Entity[10];
+    public entity.Entity obj[] = new entity.Entity[20];
     public entity.Entity npc[] = new entity.Entity[10];
     public entity.Entity monster[] = new entity.Entity[20];
     java.util.ArrayList<entity.Entity> entityList = new java.util.ArrayList<>(); 
@@ -112,6 +112,7 @@ public class GamePanel extends javax.swing.JPanel implements Runnable {
                         monster[i].update();
                     }
                     if (monster[i].alive == false) {
+                        monster[i].checkDrop();
                         monster[i] = null;
                     }
                 }
