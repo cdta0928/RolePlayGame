@@ -8,6 +8,7 @@ public class IT_DryTree extends Interactive {
         this.gp = gp;
         this.worldX = gp.tileSize*col;
         this.worldY = gp.tileSize*row;
+        life = 3;
         down1 = setup("/res/tiles_interactive/drytree", gp.tileSize, gp.tileSize);
         destructible = true;
     }
