@@ -14,6 +14,11 @@ public class Interactive extends entity.Entity {
         return isCorrectItem;
     }
 
+    public Interactive getDestroyedForm() {
+        Interactive tile = null;
+        return tile;
+    }
+
     public void update() {
         
     }

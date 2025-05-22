@@ -17,4 +17,9 @@ public class IT_DryTree extends Interactive {
         if (entity.currentWeapon.type == type_axe) { isCorrectItem = true; }
         return isCorrectItem;
     }
+
+    public Interactive getDestroyedForm() {
+        Interactive tile = new IT_Trunk(gp, worldX/gp.tileSize, worldY/gp.tileSize);
+        return tile;
+    }
 }
