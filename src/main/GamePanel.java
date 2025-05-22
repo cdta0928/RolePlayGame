@@ -129,6 +129,16 @@ public class GamePanel extends javax.swing.JPanel implements Runnable {
                     }
                 }
             }
+            for (int i = 0; i < particleList.size(); i++) {
+                if (particleList.get(i) != null) {
+                    if (particleList.get(i).alive == true){
+                        particleList.get(i).update();
+                    }
+                    if (particleList.get(i).alive == false) {
+                        particleList.remove(i);
+                    }
+                }
+            }
             for (int i = 0; i < iTile.length; i++) {
                 if (iTile[i] != null) {
                     iTile[i].update();
@@ -178,6 +188,11 @@ public class GamePanel extends javax.swing.JPanel implements Runnable {
             for (int i = 0; i < projectileList.size(); i++) {
                 if (projectileList.get(i) != null) {
                     entityList.add(projectileList.get(i));
+                }
+            }
+            for (int i = 0; i < particleList.size(); i++) {
+                if (particleList.get(i) != null) {
+                    entityList.add(particleList.get(i));
                 }
             }
 
