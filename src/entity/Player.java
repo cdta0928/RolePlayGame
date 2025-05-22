@@ -57,8 +57,8 @@ public class Player extends Entity {
         coin = 0;
         currentWeapon = new object.OBJ_Sword_Normal(gp);
         currentShield = new object.OBJ_Shield_Wood(gp);
-        // projectile = new object.OBJ_Fireball(gp);
-        projectile = new object.OBJ_Rock(gp);
+        projectile = new object.OBJ_Fireball(gp);
+        // projectile = new object.OBJ_Rock(gp);
         attack = getAttack();
         defense = getDefense();
     }
@@ -216,6 +216,9 @@ public class Player extends Entity {
         if (shotAvailableCounter < 60) {
             shotAvailableCounter++;
         }
+
+        if (life > maxLife) { life = maxLife; }
+        if (mana > maxMana) { mana = maxMana; }
     }
 
     public void pickupObject(int i) {
