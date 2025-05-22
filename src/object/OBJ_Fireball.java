@@ -12,7 +12,7 @@ public class OBJ_Fireball extends entity.Projectile {
         maxLife = 80;
         life = maxLife;
         attack = 6;
-        useCost = 1;
+        useCost = 1; // Mana cost
         alive = false;
         getImage();
     }
@@ -26,5 +26,17 @@ public class OBJ_Fireball extends entity.Projectile {
         left2 = setup("/res/projectile/fireball_left_2", gp.tileSize, gp.tileSize);
         right1 = setup("/res/projectile/fireball_right_1", gp.tileSize, gp.tileSize);
         right2 = setup("/res/projectile/fireball_right_2", gp.tileSize, gp.tileSize);
+    }
+    
+    public boolean haveResource(entity.Entity user) {
+        boolean haveResource = false;
+        if (user.mana >= useCost) {
+            haveResource = true;
+        }
+        return haveResource;
+    }
+
+    public void subtractResource(entity.Entity user) {
+        user.mana -= useCost;
     }
 }
