@@ -1,7 +1,5 @@
 package entity;
 
-import object.OBJ_Fireball;
-
 public class Player extends Entity {
 
     main.KeyHandler keyHandler; 
@@ -51,6 +49,7 @@ public class Player extends Entity {
         life = maxLife;
         maxMana = 4;
         mana = maxMana;
+        ammo = 10;
         strength = 1;
         dexterity = 1;
         exp = 0;
@@ -58,7 +57,8 @@ public class Player extends Entity {
         coin = 0;
         currentWeapon = new object.OBJ_Sword_Normal(gp);
         currentShield = new object.OBJ_Shield_Wood(gp);
-        projectile = new OBJ_Fireball(gp);
+        // projectile = new object.OBJ_Fireball(gp);
+        projectile = new object.OBJ_Rock(gp);
         attack = getAttack();
         defense = getDefense();
     }
