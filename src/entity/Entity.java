@@ -256,7 +256,7 @@ public class Entity {
 
             if (dying == true) { dyingAnimation(g2); }
 
-            g2.drawImage(image, screenX, screenY, gp.tileSize, gp.tileSize, null);
+            g2.drawImage(image, screenX, screenY, null);
             changeAlpha(g2, 1f);
         }
     }
