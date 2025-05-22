@@ -2,7 +2,6 @@ package object;
 
 public class OBJ_Potion_Red extends entity.Entity {
     main.GamePanel gp;
-    int value = 5;
 
     public OBJ_Potion_Red(main.GamePanel gp) {
         super(gp);
@@ -10,6 +9,7 @@ public class OBJ_Potion_Red extends entity.Entity {
 
         type = type_consumable;
         name = "Red Potion";
+        value = 5;
         down1 = setup("/res/object/inventory/potion_red", gp.tileSize, gp.tileSize);
         description = "[" + name + "]\nHeals your life by " + value + ".";
     }
