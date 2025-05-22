@@ -11,4 +11,10 @@ public class IT_DryTree extends Interactive {
         down1 = setup("/res/tiles_interactive/drytree", gp.tileSize, gp.tileSize);
         destructible = true;
     }
+
+    public boolean isCorrectItem(entity.Entity entity) {
+        boolean isCorrectItem = false;
+        if (entity.currentWeapon.type == type_axe) { isCorrectItem = true; }
+        return isCorrectItem;
+    }
 }

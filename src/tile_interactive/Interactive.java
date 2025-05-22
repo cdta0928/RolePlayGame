@@ -9,6 +9,11 @@ public class Interactive extends entity.Entity {
         this.gp = gp;
     }
 
+    public boolean isCorrectItem(entity.Entity entity) {
+        boolean isCorrectItem = false;
+        return isCorrectItem;
+    }
+
     public void update() {
         
     }
