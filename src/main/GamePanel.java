@@ -37,6 +37,7 @@ public class GamePanel extends javax.swing.JPanel implements Runnable {
     public entity.Entity monster[] = new entity.Entity[20];
     java.util.ArrayList<entity.Entity> entityList = new java.util.ArrayList<>(); 
     public java.util.ArrayList<entity.Entity> projectileList = new java.util.ArrayList<>(); 
+    public java.util.ArrayList<entity.Entity> particleList = new java.util.ArrayList<>();  
     public tile_interactive.Interactive iTile[] = new tile_interactive.Interactive[50];
     // GAME STATE
     public int gameState;

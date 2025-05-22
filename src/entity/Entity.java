@@ -278,4 +278,28 @@ public class Entity {
             changeAlpha(g2, 1f);
         }
     }
+
+    public java.awt.Color getParticleColor() {
+        java.awt.Color color = null;
+        return color;
+    }
+    
+    public int getParticleSize() {
+        int size = 0;
+        return size;
+    }
+
+    public int getParticleSpeed() {
+        int speed = 0;
+        return speed;
+    }
+    
+    public int getParticleMaxLife() {
+        int maxLife = 0;
+        return maxLife;
+    }
+
+    public void generateParticle(Entity generator, Entity target) {
+        // Later
+    }
 }
