@@ -1,4 +1,8 @@
 package object;
+
+import tile_interactive.IT_Trunk;
+import tile_interactive.Interactive;
+
 public class OBJ_Rock extends entity.Projectile {
     main.GamePanel gp;
 
@@ -10,7 +14,7 @@ public class OBJ_Rock extends entity.Projectile {
         speed = 8;
         maxLife = 80;
         life = maxLife;
-        attack = 6;
+        attack = 3;
         useCost = 1;
         alive = false;
         getImage();
@@ -37,5 +41,30 @@ public class OBJ_Rock extends entity.Projectile {
 
     public void subtractResource(entity.Entity user) {
         user.ammo -= useCost;
+    }
+
+    public Interactive getDestroyedForm() {
+        Interactive tile = new IT_Trunk(gp, worldX/gp.tileSize, worldY/gp.tileSize);
+        return tile;
+    }
+
+    public java.awt.Color getParticleColor() {
+        java.awt.Color color = new java.awt.Color(40, 50, 0);
+        return color;
+    }
+    
+    public int getParticleSize() {
+        int size = 10; // 6 pixels
+        return size;
+    }
+
+    public int getParticleSpeed() {
+        int speed = 1;
+        return speed;
+    }
+    
+    public int getParticleMaxLife() {
+        int maxLife = 20;
+        return maxLife;
     }
 }
