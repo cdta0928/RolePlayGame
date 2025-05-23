@@ -36,6 +36,7 @@ public class GamePanel extends javax.swing.JPanel implements Runnable {
     public CollisionChecker cChecker = new CollisionChecker(this);
     public AssetSetter aSetter = new AssetSetter(this);
     public EventHandler eHandler = new EventHandler(this);
+    Config config = new Config(this);
 
     // PLAYER, ENTITY, OBJECT
     public entity.Player player = new entity.Player(this, keyHandler); 
@@ -77,7 +78,9 @@ public class GamePanel extends javax.swing.JPanel implements Runnable {
 
         tempScreen = new java.awt.image.BufferedImage(screenWidth, screenHeight, java.awt.image.BufferedImage.TYPE_INT_ARGB);
         g2 = (java.awt.Graphics2D)tempScreen.getGraphics();
-        setFullScreen();
+        if (fullScreenOn == true) {
+            setFullScreen();
+        }
     }
 
     @Override

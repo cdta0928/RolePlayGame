@@ -227,6 +227,7 @@ public class UI {
         if (gp.fullScreenOn == true) {
             g2.fillRect(textX, textY, 24, 24);
         }
+        gp.config.saveConfig();
     }
 
     public void optionFullScreenNotification(int frameX, int frameY) {
