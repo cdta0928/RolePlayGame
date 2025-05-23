@@ -166,6 +166,33 @@ public class GamePanel extends javax.swing.JPanel implements Runnable {
         }
     }
 
+    /*
+     * Retry
+     * Keep: level, aquiredItems, Progress, ...
+     * Reset: Positions, Life/Mana, Monsters/NPCs
+     */
+
+    /*
+     * Restart
+     * Keep: Nothing
+     */
+
+    public void retry() {
+        player.setDefaultPositions();
+        player.restoreLifeAndMana();
+        aSetter.setNPC();
+        aSetter.setMonster();
+    }
+
+    public void restart() {
+        player.setDefaultValues();
+        player.setItems();
+        aSetter.setObject();
+        aSetter.setNPC();
+        aSetter.setMonster();
+        aSetter.setInteractiveTile();
+    }
+    
     public void drawToTempScreen() {
         // TITLE SCREEN
         if (gameState == titleState) { ui.draw(g2); }

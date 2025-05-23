@@ -140,6 +140,8 @@ public class UI {
             g2.drawString(">", x - 40, y);
             if (gp.keyHandler.enterPressed == true) {
                 gp.gameState = gp.playState;
+                gp.retry();
+                commandNum = 0;
             }
         }
 
@@ -151,9 +153,13 @@ public class UI {
         if (commandNum == 1) {
             g2.drawString(">", x - 40, y);
             if (gp.keyHandler.enterPressed == true) {
-                gp.gameState = gp.tileSize;
+                gp.gameState = gp.titleState;
+                gp.restart();
+                commandNum = 0;
             }
         }
+
+        gp.keyHandler.enterPressed = false;
     }
 
     public void drawOptionScreen() {
