@@ -234,7 +234,45 @@ public class UI {
     }
 
     public void tradeSell() {
+        // DRAW PLAYER INVENTORY
+        drawInventory(gp.player, true);
 
+        // DRAW HINT WINDOW
+        int x = gp.tileSize*2;
+        int y = gp.tileSize*9;
+        int width = gp.tileSize*6;
+        int height = gp.tileSize*2; 
+        drawSubWindow(x, y, width, height);
+        g2.drawString("[ESC] Back", x + 24, y + 60);
+
+        // DRAW PLAYER COIN WINDOW
+        x = gp.tileSize*12;
+        y = gp.tileSize*9;
+        width = gp.tileSize*6;
+        height = gp.tileSize*2;
+        drawSubWindow(x, y, width, height);
+        g2.drawString("Your coin: " + gp.player.coin, x + 24, y + 60);
+
+        // DRAW PRICE WINDOW
+        int itemIndex = getItemIndexOnSlot(playerSlotCol, playerSlotRow);
+        if (itemIndex < gp.player.inventory.size()) {
+            x = (int)(gp.tileSize*15.5);
+            y = (int)(gp.tileSize*5.5);
+            width = (int)(gp.tileSize*2.5);
+            height = gp.tileSize;
+            drawSubWindow(x, y, width, height);
+            g2.drawImage(coin, x + 10, y + 8, 32, 32, null);
+
+            int price = gp.player.inventory.get(itemIndex).price;
+            String text = "" + price;
+            x = getXForAlignToRightText(text, gp.tileSize*18 - 20);
+            g2.drawString(text, x, y + 34);
+
+            // SELL AN ITEM
+            if (gp.keyHandler.enterPressed == true) {
+                
+            }
+        }
     }
 
     public void drawTransition() {

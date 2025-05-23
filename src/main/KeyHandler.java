@@ -123,7 +123,10 @@ public class KeyHandler implements java.awt.event.KeyListener {
                 merchantInventory(code);
                 if (code == java.awt.event.KeyEvent.VK_ESCAPE) { gp.ui.subState = 0; }
                 break;
-            case 2: break;
+            case 2: 
+                playerInventory(code);
+                if (code == java.awt.event.KeyEvent.VK_ESCAPE) { gp.ui.subState = 0; }
+                break;
         }
     }
     
