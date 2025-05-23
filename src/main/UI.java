@@ -20,6 +20,7 @@ public class UI {
     public int slotCol;
     public int slotRow;
     int subState = 0;
+    int counter = 0;
 
     public UI(GamePanel gp) {
         this.gp = gp;   
@@ -108,6 +109,25 @@ public class UI {
         // GAME OVER STATE
         if (gp.gameState == gp.gameOverState) {
             drawGameOverScreen();
+        }
+        // TRANSITION STATE
+        if (gp.gameState == gp.transitionState) {
+            drawTransition();
+        }
+    }
+
+    public void drawTransition() {
+        counter++;
+        g2.setColor(new java.awt.Color(0, 0, 0, counter*5));
+        g2.fillRect(0, 0, gp.screenWidth, gp.screenHeight);
+        if (counter == 50) {
+            counter = 0;
+            gp.gameState = gp.playState;
+            gp.currentMap = gp.eHandler.tempMap;
+            gp.player.worldX = gp.tileSize*gp.eHandler.tempCol;
+            gp.player.worldY = gp.tileSize*gp.eHandler.tempRow;
+            gp.eHandler.previousEventX = gp.player.worldX;
+            gp.eHandler.previousEventY = gp.player.worldY;
         }
     }
 
