@@ -120,9 +120,46 @@ public class UI {
             case 0: optionTop(frameX, frameY); break;
             case 1: optionFullScreenNotification(frameX, frameY); break;
             case 2: optionControl(frameX, frameY); break;
+            case 3: optionEndGame(frameX, frameY); break;
         }
 
         gp.keyHandler.enterPressed = false;
+    }
+
+    public void optionEndGame(int frameX, int frameY) {
+        int textX = frameX + gp.tileSize;
+        int textY = frameY + gp.tileSize*3;
+
+        currentDialogue = "Quit the game and \nreturn to the title screen?";
+        for (String line:currentDialogue.split("\n")) {
+            g2.drawString(line, textX, textY);
+            textY += 40;
+        }
+
+        // YES
+        String text = "Yes";
+        textX = getXForCenteredText(text);
+        textY += gp.tileSize*2;
+        g2.drawString(text, textX, textY);
+        if (commandNum == 0) {
+            g2.drawString(">", textX - 25, textY);
+            if (gp.keyHandler.enterPressed == true) {
+                subState = 0;
+                gp.gameState = gp.titleState;
+            }
+        }
+        // NO
+        text = "No";
+        textX = getXForCenteredText(text);
+        textY += gp.tileSize;
+        g2.drawString(text, textX, textY);
+        if (commandNum == 1) {
+            g2.drawString(">", textX - 25, textY);
+            if (gp.keyHandler.enterPressed == true) {
+                subState = 0;
+                commandNum = 2;
+            }
+        }
     }
 
     public void optionTop(int frameX, int frameY) {
@@ -160,11 +197,15 @@ public class UI {
             }
         }
         
-        // EXIT
+        // END GAME
         textY += gp.tileSize;
         g2.drawString("End Game", textX, textY);
         if (commandNum == 2) {
             g2.drawString(">", textX - 25, textY);
+            if (gp.keyHandler.enterPressed == true) {
+                subState = 3;
+                commandNum = 0;
+            }
         }
 
         // BACK
@@ -227,6 +268,7 @@ public class UI {
             g2.drawString(">", textX - 25, textY);
             if (gp.keyHandler.enterPressed == true) {
                 subState = 0;
+                commandNum = 1;
             }
         }
 

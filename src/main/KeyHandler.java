@@ -141,6 +141,7 @@ public class KeyHandler implements java.awt.event.KeyListener {
         int maxCommandNum = 0;
         switch (gp.ui.subState) {
             case 0: maxCommandNum = 3; break;
+            case 3: maxCommandNum = 1; break;
         }
         if (code == java.awt.event.KeyEvent.VK_W || code == java.awt.event.KeyEvent.VK_UP) {
             gp.ui.commandNum--;
