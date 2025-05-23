@@ -46,6 +46,10 @@ public class KeyHandler implements java.awt.event.KeyListener {
         else if (gp.gameState == gp.optionState) {
             optionState(code);
         }
+        // GAME OVER STATE
+        else if (gp.gameState == gp.gameOverState) {
+            gameOverState(code);
+        }
     }
 
     @Override
@@ -155,5 +159,22 @@ public class KeyHandler implements java.awt.event.KeyListener {
                 gp.ui.commandNum = 0;
             }
         }   
+    }
+
+    public void gameOverState(int code) {
+        int maxCommandNum = 1;
+        if (code == java.awt.event.KeyEvent.VK_W || code == java.awt.event.KeyEvent.VK_UP) {
+            gp.ui.commandNum--;
+            if (gp.ui.commandNum < 0) {
+                gp.ui.commandNum = maxCommandNum;
+            }
+        }   
+        if (code == java.awt.event.KeyEvent.VK_S || code == java.awt.event.KeyEvent.VK_DOWN) {
+            gp.ui.commandNum++;
+            if (gp.ui.commandNum > maxCommandNum) {
+                gp.ui.commandNum = 0;
+            }
+        }   
+        if (code == java.awt.event.KeyEvent.VK_ENTER) { enterPressed = true; }
     }
 }

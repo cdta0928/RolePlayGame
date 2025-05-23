@@ -55,6 +55,7 @@ public class GamePanel extends javax.swing.JPanel implements Runnable {
     public final int titleState = 0;
     public final int characterState = 4;
     public final int optionState = 5;
+    public final int gameOverState = 6;
 
     public GamePanel() {
         this.setPreferredSize(new java.awt.Dimension(screenWidth, screenHeight));

@@ -105,6 +105,55 @@ public class UI {
         if (gp.gameState == gp.optionState) {
             drawOptionScreen();
         }
+        // GAME OVER STATE
+        if (gp.gameState == gp.gameOverState) {
+            drawGameOverScreen();
+        }
+    }
+
+    public void drawGameOverScreen() {
+        g2.setColor(new java.awt.Color(0, 0, 0, 150));
+        g2.fillRect(0, 0, gp.screenWidth, gp.screenHeight);
+
+        int x;
+        int y;
+        String text;
+        g2.setFont(g2.getFont().deriveFont(java.awt.Font.BOLD, 100F));
+        
+        text = "Game Over";
+        g2.setColor(java.awt.Color.black);
+        x = getXForCenteredText(text);
+        y = gp.tileSize * 4;
+
+        g2.drawString(text, x, y);
+        // Main
+        g2.setColor(java.awt.Color.white);
+        g2.drawString(text, x - 4, y - 4);
+
+        // Retry
+        g2.setFont(g2.getFont().deriveFont(50F));
+        text = "Retry";
+        x = getXForCenteredText(text);
+        y += gp.tileSize*4;
+        g2.drawString(text, x, y);
+        if (commandNum == 0) {
+            g2.drawString(">", x - 40, y);
+            if (gp.keyHandler.enterPressed == true) {
+                gp.gameState = gp.playState;
+            }
+        }
+
+        // Back to title screen 
+        text = "Quit";
+        x = getXForCenteredText(text);
+        y += 60;
+        g2.drawString(text, x, y);
+        if (commandNum == 1) {
+            g2.drawString(">", x - 40, y);
+            if (gp.keyHandler.enterPressed == true) {
+                gp.gameState = gp.tileSize;
+            }
+        }
     }
 
     public void drawOptionScreen() {
