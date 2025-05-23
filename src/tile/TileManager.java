@@ -35,7 +35,7 @@ public class TileManager {
         tile[4].collision = true; // Tree
         tile[5].collision = false; // Sand
         
-        tile[6].collision = true;
+        tile[6].collision = false;
         tile[7].collision = false;
         tile[8].collision = true;
     }

@@ -67,6 +67,11 @@ public class AssetSetter {
         gp.npc[mapNum][i] = new entity.NPC_OldMan(gp);
         gp.npc[mapNum][i].worldX = gp.tileSize * 21;
         gp.npc[mapNum][i].worldY = gp.tileSize * 21; i++;
+
+        mapNum = 1;
+        gp.npc[mapNum][i] = new entity.NPC_OldMan(gp);
+        gp.npc[mapNum][i].worldX = gp.tileSize * 12;
+        gp.npc[mapNum][i].worldY = gp.tileSize * 7; i++;
     }
 
     public void setMonster() {
