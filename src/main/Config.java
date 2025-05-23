@@ -36,6 +36,7 @@ public class Config {
             if (s.equals("Off")) {
                 gp.fullScreenOn = false;
             }
+            br.close();
         } catch (java.io.IOException e) {
             e.printStackTrace();
         }

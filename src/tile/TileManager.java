@@ -23,6 +23,9 @@ public class TileManager {
         setTileImage(3, "/res/tiles/earth.png");
         setTileImage(4, "/res/tiles/tree.png");
         setTileImage(5, "/res/tiles/sand.png");
+        setTileImage(6, "/res/tiles/hut.png");
+        setTileImage(7, "/res/tiles/floor01.png");
+        setTileImage(8, "/res/tiles/table01.png");
 
         tile[0].collision = false; // Grass
         tile[1].collision = true; // Wall
@@ -30,7 +33,10 @@ public class TileManager {
         tile[3].collision = false; // Earth
         tile[4].collision = true; // Tree
         tile[5].collision = false; // Sand
-
+        
+        tile[6].collision = true;
+        tile[7].collision = false;
+        tile[8].collision = true;
     }
 
     public void loadMap(String filePath) {
