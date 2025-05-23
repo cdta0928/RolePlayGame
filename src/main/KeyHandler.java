@@ -138,5 +138,21 @@ public class KeyHandler implements java.awt.event.KeyListener {
         if (code == java.awt.event.KeyEvent.VK_ENTER) {
             enterPressed = true;
         }
+        int maxCommandNum = 0;
+        switch (gp.ui.subState) {
+            case 0: maxCommandNum = 3; break;
+        }
+        if (code == java.awt.event.KeyEvent.VK_W || code == java.awt.event.KeyEvent.VK_UP) {
+            gp.ui.commandNum--;
+            if (gp.ui.commandNum < 0) {
+                gp.ui.commandNum = maxCommandNum;
+            }
+        }   
+        if (code == java.awt.event.KeyEvent.VK_S || code == java.awt.event.KeyEvent.VK_DOWN) {
+            gp.ui.commandNum++;
+            if (gp.ui.commandNum > maxCommandNum) {
+                gp.ui.commandNum = 0;
+            }
+        }   
     }
 }
