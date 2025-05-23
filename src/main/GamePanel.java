@@ -7,7 +7,7 @@ public class GamePanel extends javax.swing.JPanel implements Runnable {
     final int scale = 3; 
 
     public final int tileSize = originalTileSize * scale; 
-    public final int maxScreenCol = 16; 
+    public final int maxScreenCol = 20; 
     public final int maxScreenRow = 12; 
     public final int screenWidth = tileSize * maxScreenCol; 
     public final int screenHeight = tileSize * maxScreenRow; 
@@ -17,6 +17,12 @@ public class GamePanel extends javax.swing.JPanel implements Runnable {
     public final int maxWorldRow = 50; 
     public final int worldWith = tileSize * maxWorldCol;
     public final int worldHeight = tileSize * maxWorldRow; 
+
+    // FOR FULL SCREEN
+    int screenWidth2 = screenWidth;
+    int screenHeight2 = screenHeight;
+    java.awt.image.BufferedImage tempScreen;
+    java.awt.Graphics2D g2;     
 
     // FPS (Frames Per Second) settings
     int FPS = 60; 
@@ -67,6 +73,10 @@ public class GamePanel extends javax.swing.JPanel implements Runnable {
         aSetter.setMonster();
         aSetter.setInteractiveTile();
         gameState = titleState;
+
+        tempScreen = new java.awt.image.BufferedImage(screenWidth, screenHeight, java.awt.image.BufferedImage.TYPE_INT_ARGB);
+        g2 = (java.awt.Graphics2D)tempScreen.getGraphics();
+        
     }
 
     @Override
