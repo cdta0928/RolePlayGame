@@ -100,7 +100,6 @@ public class UI {
 
         // DIALOGUE STATE
         if (gp.gameState == gp.dialogueState) {
-            drawPlayerLife();
             drawDialogueScreen();
         }
 
@@ -263,14 +262,23 @@ public class UI {
             drawSubWindow(x, y, width, height);
             g2.drawImage(coin, x + 10, y + 8, 32, 32, null);
 
-            int price = gp.player.inventory.get(itemIndex).price;
+            int price = gp.player.inventory.get(itemIndex).price/2;
             String text = "" + price;
             x = getXForAlignToRightText(text, gp.tileSize*18 - 20);
             g2.drawString(text, x, y + 34);
 
             // SELL AN ITEM
             if (gp.keyHandler.enterPressed == true) {
-                
+                if (gp.player.inventory.get(itemIndex) == gp.player.currentWeapon || gp.player.inventory.get(itemIndex) == gp.player.currentShield) {
+                    subState = 0;
+                    commandNum = 0;
+                    gp.gameState = gp.dialogueState;
+                    currentDialogue = "You cannot sell an equipped item!";
+                }
+                else {
+                    gp.player.inventory.remove(itemIndex);
+                    gp.player.coin += price;
+                }
             }
         }
     }
