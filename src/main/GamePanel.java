@@ -76,7 +76,7 @@ public class GamePanel extends javax.swing.JPanel implements Runnable {
 
         tempScreen = new java.awt.image.BufferedImage(screenWidth, screenHeight, java.awt.image.BufferedImage.TYPE_INT_ARGB);
         g2 = (java.awt.Graphics2D)tempScreen.getGraphics();
-        
+
     }
 
     @Override
@@ -96,7 +96,8 @@ public class GamePanel extends javax.swing.JPanel implements Runnable {
             lastTime = currentTime; 
             if (delta >= 1) { 
                 update();
-                repaint();
+                drawToTempScreen();
+                drawToScreen();
                 delta--; 
                 drawCount++; 
             }
@@ -160,12 +161,7 @@ public class GamePanel extends javax.swing.JPanel implements Runnable {
         }
     }
 
-    @Override
-    public void paintComponent(java.awt.Graphics g) {
-        super.paintComponent(g); 
-        // Draw game elements here (e.g., tiles, characters, etc.)
-        java.awt.Graphics2D g2 = (java.awt.Graphics2D) g;
-        
+    public void drawToTempScreen() {
         // TITLE SCREEN
         if (gameState == titleState) { ui.draw(g2); }
 
@@ -225,7 +221,11 @@ public class GamePanel extends javax.swing.JPanel implements Runnable {
 
             // UI
             ui.draw(g2);
-            g2.dispose(); 
-        } 
+        }
+    }
+    public void drawToScreen() {
+        java.awt.Graphics g = getGraphics();
+        g.drawImage(tempScreen, 0, 0, screenWidth2, screenHeight2, null);
+        g.dispose();
     }
 }

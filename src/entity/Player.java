@@ -312,7 +312,9 @@ public class Player extends Entity {
         g2.drawImage(image, tempScreenX, tempScreenY, null); 
         changeAlpha(g2, 1f);
         g2.setColor(java.awt.Color.RED);
-        g2.drawRect(screenX + solidArea.x, screenY + solidArea.y, solidArea.width, solidArea.height);
+
+        // HITBOX
+        // g2.drawRect(screenX + solidArea.x, screenY + solidArea.y, solidArea.width, solidArea.height);
     }
 
     public void contactMonster(int i) {
