@@ -98,6 +98,16 @@ public class KeyHandler implements java.awt.event.KeyListener {
         if (code == java.awt.event.KeyEvent.VK_C) { gp.gameState = gp.characterState; }
         if (code == java.awt.event.KeyEvent.VK_F) { shotKeyPressed = true; }
         if (code == java.awt.event.KeyEvent.VK_ESCAPE) { gp.gameState = gp.optionState; }
+        if (code == java.awt.event.KeyEvent.VK_R) { 
+            switch (gp.currentMap) {
+                case 0:
+                    gp.tileManager.loadMap("/res/maps/world01.txt", 0);
+                    break;
+                case 1:
+                    gp.tileManager.loadMap("/res/maps/interior01.txt", 1);
+                    break;
+            }
+        }
     }
 
     public void pauseState(int code) {
