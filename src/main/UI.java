@@ -114,12 +114,12 @@ public class UI {
         int frameX = gp.tileSize*6;
         int frameY = gp.tileSize*2;
         int frameWidth = gp.tileSize*8;
-        int frameHeight = gp.tileSize*8;
+        int frameHeight = gp.tileSize*9;
         drawSubWindow(frameX, frameY, frameWidth, frameHeight);
         switch (subState) {
             case 0: optionTop(frameX, frameY); break;
             case 1: optionFullScreenNotification(frameX, frameY); break;
-            case 2: break;
+            case 2: optionControl(frameX, frameY); break;
         }
 
         gp.keyHandler.enterPressed = false;
@@ -154,6 +154,10 @@ public class UI {
         g2.drawString("Control", textX, textY);
         if (commandNum == 1) {
             g2.drawString(">", textX - 25, textY);
+            if (gp.keyHandler.enterPressed == true) {
+                subState = 2;
+                commandNum = 0;
+            }
         }
         
         // EXIT
@@ -165,7 +169,7 @@ public class UI {
 
         // BACK
         textY += gp.tileSize*2;
-        g2.drawString("End Game", textX, textY);
+        g2.drawString("Back", textX, textY);
         if (commandNum == 3) {
             g2.drawString(">", textX - 25, textY);
         }
@@ -197,6 +201,43 @@ public class UI {
                 subState = 0;
             }
         }
+    }
+
+    public void optionControl(int frameX, int frameY) {
+        int textX;
+        int textY;
+
+        // TITLE
+        String text = "Control";
+        textX = getXForCenteredText(text);
+        textY = frameY + gp.tileSize;
+        g2.drawString(text, textX, textY);
+
+        textX = frameX + gp.tileSize;
+        textY += gp.tileSize;
+        g2.drawString("Move", textX, textY); textY += gp.tileSize;
+        g2.drawString("Confirm/Attack", textX, textY); textY += gp.tileSize;
+        g2.drawString("Shoot/Cast", textX, textY); textY += gp.tileSize;
+        g2.drawString("Character Screen", textX, textY); textY += gp.tileSize;
+        g2.drawString("Pause", textX, textY); textY += gp.tileSize;
+        g2.drawString("Options", textX, textY); textY += gp.tileSize;
+        // BACK
+        g2.drawString("Back", textX, textY);
+        if (commandNum == 0) {
+            g2.drawString(">", textX - 25, textY);
+            if (gp.keyHandler.enterPressed == true) {
+                subState = 0;
+            }
+        }
+
+        textX = frameX + gp.tileSize*6;
+        textY = frameY + gp.tileSize*2;
+        g2.drawString("WASD", textX, textY); textY += gp.tileSize;
+        g2.drawString("ENTER", textX, textY); textY += gp.tileSize;
+        g2.drawString("F", textX, textY); textY += gp.tileSize;
+        g2.drawString("C", textX, textY); textY += gp.tileSize;
+        g2.drawString("P", textX, textY); textY += gp.tileSize;
+        g2.drawString("ESC", textX, textY); textY += gp.tileSize;
     }
 
     public void drawInventory() {
