@@ -71,6 +71,9 @@ public class Entity {
     public int defenseValue;
     public String description = "";
 
+    public java.util.ArrayList<Entity> inventory = new java.util.ArrayList<>();
+    public final int maxInventorySize = 20;
+
     public int useCost;
 
     // TYPE
@@ -166,7 +169,7 @@ public class Entity {
         }
 
         spriteCounter++; 
-        if (spriteCounter > 10) { 
+        if (spriteCounter > 24) { 
             if (spriteNum == 1) spriteNum = 2; 
             else spriteNum = 1; 
             spriteCounter = 0; 
