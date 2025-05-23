@@ -60,9 +60,20 @@ public class EventHandler {
             else if (hit(1, 12, 13, "any") == true) {
                 teleport(0, 11, 37, gp.dialogueState);
             }
+            else if (hit(1, 12, 9, "up") == true) {
+                speak(gp.npc[1][0]);
+            }
             // if (hit (26, 15, "any")) {
             //     teleport(26, 15, gp.dialogueState);
             // }
+        }
+    }
+
+    public void speak(entity.Entity entity) {
+        if (gp.keyHandler.enterPressed == true) {
+            gp.gameState = gp.dialogueState;
+            gp.player.attackCanceled = true;
+            entity.speak();
         }
     }
 

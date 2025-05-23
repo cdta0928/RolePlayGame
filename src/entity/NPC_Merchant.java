@@ -41,4 +41,10 @@ public class NPC_Merchant extends Entity {
         inventory.add(new object.OBJ_Shield_Wood(gp));
         inventory.add(new object.OBJ_Shiled_Blue(gp));
     }
+
+    public void speak() {
+        super.speak();
+        gp.gameState = gp.tradeState;
+        gp.ui.merchant = this;
+    }
 }
