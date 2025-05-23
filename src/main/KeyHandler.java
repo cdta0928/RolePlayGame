@@ -42,6 +42,10 @@ public class KeyHandler implements java.awt.event.KeyListener {
         else if (gp.gameState == gp.characterState) {
             characterState(code);
         }
+        // OPTION STATE
+        else if (gp.gameState == gp.optionState) {
+            optionState(code);
+        }
     }
 
     @Override
@@ -89,6 +93,7 @@ public class KeyHandler implements java.awt.event.KeyListener {
         if (code == java.awt.event.KeyEvent.VK_ENTER) { enterPressed = true; }
         if (code == java.awt.event.KeyEvent.VK_C) { gp.gameState = gp.characterState; }
         if (code == java.awt.event.KeyEvent.VK_F) { shotKeyPressed = true; }
+        if (code == java.awt.event.KeyEvent.VK_ESCAPE) { gp.gameState = gp.optionState; }
     }
 
     public void pauseState(int code) {
@@ -123,6 +128,15 @@ public class KeyHandler implements java.awt.event.KeyListener {
         }
         if (code == java.awt.event.KeyEvent.VK_ENTER) {
             gp.player.selectItem();
+        }
+    }
+
+    public void optionState(int code) {
+        if (code == java.awt.event.KeyEvent.VK_ESCAPE) {
+            gp.gameState = gp.playState;
+        }
+        if (code == java.awt.event.KeyEvent.VK_ENTER) {
+            enterPressed = true;
         }
     }
 }

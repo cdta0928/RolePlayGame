@@ -100,6 +100,21 @@ public class UI {
             drawCharacterScreen();
             drawInventory();
         }
+        // OPTION STATE
+        if (gp.gameState == gp.optionState) {
+            drawOptionScreen();
+        }
+    }
+
+    public void drawOptionScreen() {
+        g2.setColor(java.awt.Color.white);
+        g2.setFont(g2.getFont().deriveFont(24F));
+        // SUB WINDOW
+        int frameX = gp.tileSize*6;
+        int frameY = gp.tileSize*2;
+        int frameWidth = gp.tileSize*8;
+        int frameHeight = gp.tileSize*6;
+        drawSubWindow(frameX, frameY, frameWidth, frameHeight);
     }
 
     public void drawInventory() {
