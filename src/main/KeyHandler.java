@@ -93,18 +93,7 @@ public class KeyHandler implements java.awt.event.KeyListener {
 
     public void characterState(int code) {
         if (code == java.awt.event.KeyEvent.VK_C) { gp.gameState = gp.playState; }
-        if (code == java.awt.event.KeyEvent.VK_W) { 
-            if (gp.ui.slotRow != 0) { gp.ui.slotRow--; }
-        }
-        if (code == java.awt.event.KeyEvent.VK_A) {
-            if (gp.ui.slotCol != 0) { gp.ui.slotCol--; }
-        }
-        if (code == java.awt.event.KeyEvent.VK_S) {
-            if (gp.ui.slotRow != 3) { gp.ui.slotRow++; }
-        }
-        if (code == java.awt.event.KeyEvent.VK_D) {
-            if (gp.ui.slotCol != 4) { gp.ui.slotCol++; }
-        }
+        playerInventory(code);
         if (code == java.awt.event.KeyEvent.VK_ENTER) { gp.player.selectItem(); }
     }
 
@@ -130,7 +119,10 @@ public class KeyHandler implements java.awt.event.KeyListener {
             case 0: 
                 switchCommandNum(2, code);
                 break;
-            case 1: break;
+            case 1:
+                merchantInventory(code);
+                if (code == java.awt.event.KeyEvent.VK_ESCAPE) { gp.ui.subState = 0; }
+                break;
             case 2: break;
         }
     }
@@ -147,6 +139,36 @@ public class KeyHandler implements java.awt.event.KeyListener {
             if (gp.ui.commandNum > maxCommandNum) {
                 gp.ui.commandNum = 0;
             }
+        }
+    }
+
+    public void playerInventory(int code) {
+        if (code == java.awt.event.KeyEvent.VK_W) { 
+            if (gp.ui.playerSlotRow != 0) { gp.ui.playerSlotRow--; }
+        }
+        if (code == java.awt.event.KeyEvent.VK_A) {
+            if (gp.ui.playerSlotCol != 0) { gp.ui.playerSlotCol--; }
+        }
+        if (code == java.awt.event.KeyEvent.VK_S) {
+            if (gp.ui.playerSlotRow != 3) { gp.ui.playerSlotRow++; }
+        }
+        if (code == java.awt.event.KeyEvent.VK_D) {
+            if (gp.ui.playerSlotCol != 4) { gp.ui.playerSlotCol++; }
+        }
+    }
+
+    public void merchantInventory(int code) {
+        if (code == java.awt.event.KeyEvent.VK_W) { 
+            if (gp.ui.merchantSlotRow != 0) { gp.ui.merchantSlotRow--; }
+        }
+        if (code == java.awt.event.KeyEvent.VK_A) {
+            if (gp.ui.merchantSlotCol != 0) { gp.ui.merchantSlotCol--; }
+        }
+        if (code == java.awt.event.KeyEvent.VK_S) {
+            if (gp.ui.merchantSlotRow != 3) { gp.ui.merchantSlotRow++; }
+        }
+        if (code == java.awt.event.KeyEvent.VK_D) {
+            if (gp.ui.merchantSlotCol != 4) { gp.ui.merchantSlotCol++; }
         }
     }
 }
