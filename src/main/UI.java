@@ -19,6 +19,7 @@ public class UI {
 
     public int slotCol;
     public int slotRow;
+    int subState = 0;
 
     public UI(GamePanel gp) {
         this.gp = gp;   
@@ -113,8 +114,52 @@ public class UI {
         int frameX = gp.tileSize*6;
         int frameY = gp.tileSize*2;
         int frameWidth = gp.tileSize*8;
-        int frameHeight = gp.tileSize*6;
+        int frameHeight = gp.tileSize*8;
         drawSubWindow(frameX, frameY, frameWidth, frameHeight);
+        switch (subState) {
+            case 0: optionTop(frameX, frameY); break;
+            case 1: break;
+            case 2: break;
+        }
+    }
+
+    public void optionTop(int frameX, int frameY) {
+        int textX;
+        int textY;
+        // TITLE 
+        String text = "Options";
+        textX = getXForCenteredText(text);
+        textY = frameY + gp.tileSize;
+        g2.drawString(text, textX, textY);
+        
+        // FULL SCREEN ON/OFF
+        textX = frameX + gp.tileSize;
+        textY += gp.tileSize*2;
+        g2.drawString("FullScreen", textX, textY);
+        if (commandNum == 0) {
+            g2.drawString(">", textX - 25, textY);
+        }
+
+        // CONTROL
+        textY += gp.tileSize;
+        g2.drawString("Control", textX, textY);
+        if (commandNum == 1) {
+            g2.drawString(">", textX - 25, textY);
+        }
+        
+        // EXIT
+        textY += gp.tileSize;
+        g2.drawString("End Game", textX, textY);
+        if (commandNum == 2) {
+            g2.drawString(">", textX - 25, textY);
+        }
+
+        // BACK
+        textY += gp.tileSize*2;
+        g2.drawString("End Game", textX, textY);
+        if (commandNum == 3) {
+            g2.drawString(">", textX - 25, textY);
+        }
     }
 
     public void drawInventory() {
