@@ -118,9 +118,11 @@ public class UI {
         drawSubWindow(frameX, frameY, frameWidth, frameHeight);
         switch (subState) {
             case 0: optionTop(frameX, frameY); break;
-            case 1: break;
+            case 1: optionFullScreenNotification(frameX, frameY); break;
             case 2: break;
         }
+
+        gp.keyHandler.enterPressed = false;
     }
 
     public void optionTop(int frameX, int frameY) {
@@ -138,6 +140,13 @@ public class UI {
         g2.drawString("FullScreen", textX, textY);
         if (commandNum == 0) {
             g2.drawString(">", textX - 25, textY);
+            if (gp.keyHandler.enterPressed == true) {
+                if (gp.fullScreenOn == false) {
+                    gp.fullScreenOn = true;
+                }
+                else gp.fullScreenOn = false;
+                subState = 1;
+            }
         }
 
         // CONTROL
@@ -159,6 +168,34 @@ public class UI {
         g2.drawString("End Game", textX, textY);
         if (commandNum == 3) {
             g2.drawString(">", textX - 25, textY);
+        }
+
+        // FULLSCREEN CHECKBOX
+        textX = frameX + (int)(gp.tileSize*4.5);
+        textY = frameY + gp.tileSize*2 + 24;
+        g2.setStroke(new java.awt.BasicStroke(3));
+        g2.drawRect(textX, textY, 24, 24);
+        if (gp.fullScreenOn == true) {
+            g2.fillRect(textX, textY, 24, 24);
+        }
+    }
+
+    public void optionFullScreenNotification(int frameX, int frameY) {
+        int textX = frameX + gp.tileSize;
+        int textY = frameY + gp.tileSize*3;
+        currentDialogue = "The change will take effect\n after restating the game.";
+        for (String line:currentDialogue.split("\n")) {
+            g2.drawString(line, textX, textY);
+            textY += 40;
+        }
+        // BACK
+        textY = frameY + gp.tileSize*7;
+        g2.drawString("Back", textX, textY);
+        if (commandNum == 0) {
+            g2.drawString(">", textX - 25, textY);
+            if (gp.keyHandler.enterPressed == true) {
+                subState = 0;
+            }
         }
     }
 

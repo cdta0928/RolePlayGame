@@ -23,6 +23,7 @@ public class GamePanel extends javax.swing.JPanel implements Runnable {
     int screenHeight2 = screenHeight;
     java.awt.image.BufferedImage tempScreen;
     java.awt.Graphics2D g2;     
+    public boolean fullScreenOn = false;
 
     // FPS (Frames Per Second) settings
     int FPS = 60; 
