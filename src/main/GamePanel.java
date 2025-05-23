@@ -15,7 +15,7 @@ public class GamePanel extends javax.swing.JPanel implements Runnable {
     // WORLD SETTINGS
     public final int maxWorldCol = 50; 
     public final int maxWorldRow = 50; 
-    public final int worldWith = tileSize * maxWorldCol;
+    public final int worldWidth = tileSize * maxWorldCol;
     public final int worldHeight = tileSize * maxWorldRow; 
 
     // FOR FULL SCREEN
@@ -59,7 +59,6 @@ public class GamePanel extends javax.swing.JPanel implements Runnable {
         this.setDoubleBuffered(true); 
         this.addKeyListener(keyHandler);
         this.setFocusable(true);
-        setUpGame();
     }
 
     public void startGameThread() {
@@ -76,7 +75,7 @@ public class GamePanel extends javax.swing.JPanel implements Runnable {
 
         tempScreen = new java.awt.image.BufferedImage(screenWidth, screenHeight, java.awt.image.BufferedImage.TYPE_INT_ARGB);
         g2 = (java.awt.Graphics2D)tempScreen.getGraphics();
-
+        setFullScreen();
     }
 
     @Override
@@ -223,9 +222,21 @@ public class GamePanel extends javax.swing.JPanel implements Runnable {
             ui.draw(g2);
         }
     }
+
     public void drawToScreen() {
         java.awt.Graphics g = getGraphics();
         g.drawImage(tempScreen, 0, 0, screenWidth2, screenHeight2, null);
         g.dispose();
+    }
+
+    public void setFullScreen() {
+        // GET LOCAL SCREEN DEVICE
+        java.awt.GraphicsEnvironment ge = java.awt.GraphicsEnvironment.getLocalGraphicsEnvironment();
+        java.awt.GraphicsDevice gd = ge.getDefaultScreenDevice();
+        gd.setFullScreenWindow(Main.window);
+
+        // GET FULL SCREEN WIDTH AND HEIGHT
+        screenWidth2 = Main.window.getWidth();
+        screenHeight2 = Main.window.getHeight();
     }
 }
