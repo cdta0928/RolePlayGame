@@ -8,5 +8,6 @@ public class OBJ_Key extends entity.Entity {
         name = "Key";
         down1 = setup("/res/object/Key", gp.tileSize, gp.tileSize); 
         description = "[" + name + "]\nUse to open the door.";
+        price = 100;
     }
 }

@@ -75,6 +75,7 @@ public class Entity {
     public final int maxInventorySize = 20;
 
     public int useCost;
+    public int price;
 
     // TYPE
     public int type; 

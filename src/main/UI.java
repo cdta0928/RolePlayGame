@@ -7,7 +7,7 @@ public class UI {
 
     java.awt.Font arial_40, arial_80B;
 
-    java.awt.image.BufferedImage heart_full, heart_half, heart_blank, crystal_full, crystal_blank;
+    java.awt.image.BufferedImage heart_full, heart_half, heart_blank, crystal_full, crystal_blank, coin;
 
     public boolean messageOn = false;
     java.util.ArrayList<String> message = new java.util.ArrayList<>();
@@ -41,6 +41,8 @@ public class UI {
         entity.Entity crystal = new object.OBJ_ManaCrystal(gp);
         crystal_full = crystal.image;
         crystal_blank = crystal.image2;
+        entity.Entity bronze_coin = new object.OBJ_Coin_Bronze(gp);
+        coin = bronze_coin.down1;
     }
 
     public void addMessage(String text) {
@@ -177,6 +179,58 @@ public class UI {
         // DRAW INVENTORY
         drawInventory(gp.player, false);
         drawInventory(merchant, true);
+
+        // DRAW HINT WINDOW
+        int x = gp.tileSize*2;
+        int y = gp.tileSize*9;
+        int width = gp.tileSize*6;
+        int height = gp.tileSize*2; 
+        drawSubWindow(x, y, width, height);
+        g2.drawString("[ESC] Back", x + 24, y + 60);
+
+        // DRAW PLAYER COIN WINDOW
+        x = gp.tileSize*12;
+        y = gp.tileSize*9;
+        width = gp.tileSize*6;
+        height = gp.tileSize*2;
+        drawSubWindow(x, y, width, height);
+        g2.drawString("Your coin: " + gp.player.coin, x + 24, y + 60);
+
+        // DRAW PRICE WINDOW
+        int itemIndex = getItemIndexOnSlot(merchantSlotCol, merchantSlotRow);
+        if (itemIndex < merchant.inventory.size()) {
+            x = (int)(gp.tileSize*5.5);
+            y = (int)(gp.tileSize*5.5);
+            width = (int)(gp.tileSize*2.5);
+            height = gp.tileSize;
+            drawSubWindow(x, y, width, height);
+            g2.drawImage(coin, x + 10, y + 8, 32, 32, null);
+
+            int price = merchant.inventory.get(itemIndex).price;
+            String text = "" + price;
+            x = getXForAlignToRightText(text, gp.tileSize*8 - 20);
+            g2.drawString(text, x, y + 34);
+
+            // BUY AN ITEM
+            if (gp.keyHandler.enterPressed == true) {
+                if (merchant.inventory.get(itemIndex).price > gp.player.coin) {
+                    subState = 0;
+                    gp.gameState = gp.dialogueState;
+                    currentDialogue = "You need more coin to buy that!";
+                    drawDialogueScreen();
+                }
+                else if (gp.player.inventory.size() == gp.player.maxInventorySize) {
+                    subState = 0;
+                    gp.gameState = gp.dialogueState;
+                    currentDialogue = "You cannot carry any more!";
+                    drawDialogueScreen();
+                }
+                else {
+                    gp.player.coin -= merchant.inventory.get(itemIndex).price;
+                    gp.player.inventory.add(merchant.inventory.get(itemIndex));
+                }
+            }
+        }
     }
 
     public void tradeSell() {

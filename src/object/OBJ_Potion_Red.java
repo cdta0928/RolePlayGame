@@ -12,6 +12,7 @@ public class OBJ_Potion_Red extends entity.Entity {
         value = 5;
         down1 = setup("/res/object/inventory/potion_red", gp.tileSize, gp.tileSize);
         description = "[" + name + "]\nHeals your life by " + value + ".";
+        price = 25;
     }
     public void use(entity.Entity entity) {
         gp.gameState = gp.dialogueState; 
