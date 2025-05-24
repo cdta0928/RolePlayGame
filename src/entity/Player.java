@@ -82,9 +82,6 @@ public class Player extends Entity {
         inventory.clear();
         inventory.add(currentWeapon);
         inventory.add(currentShield);
-        inventory.add(new object.OBJ_Key(gp));
-        inventory.add(new object.OBJ_Key(gp));
-        inventory.add(new object.OBJ_Key(gp));
     }
 
     public void selectItem() {

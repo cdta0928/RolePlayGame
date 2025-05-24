@@ -26,7 +26,7 @@ public class OBJ_Chest extends entity.Entity {
         if (opened == false) {
             StringBuilder sb = new StringBuilder();
             sb.append("You open the chest and found a " + loot.name + "!");
-            if (gp.player.inventory.size() == gp.player.maxInventorySize) {
+            if (gp.player.canObtainItem(loot) == false) {
                 sb.append("\n.. But you cannot carry any more!");
             }
             else {

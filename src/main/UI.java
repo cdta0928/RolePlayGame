@@ -572,6 +572,22 @@ public class UI {
                     g2.fillRoundRect(slotX, slotY, gp.tileSize, gp.tileSize, 10, 10);
                 }
             g2.drawImage(entity.inventory.get(i).down1, slotX, slotY, null);
+            // DISPLAY AMOUNT
+            if (entity.inventory.get(i).amount > 1) {
+                g2.setFont(g2.getFont().deriveFont(24F));
+                int amountX;
+                int amountY;
+                String s = "" + entity.inventory.get(i).amount;
+                amountX = getXForAlignToRightText(s, slotX + 44);
+                amountY = slotY + gp.tileSize;
+                // SHADOW
+                g2.setColor(new java.awt.Color(60, 60, 60));
+                g2.drawString(s, amountX, amountY);
+                // NUMBER
+                g2.setColor(java.awt.Color.white);
+                g2.drawString(s, amountX - 3, amountY - 3);
+
+            }
             slotX += slotSize;
             if (i % 5 == 4) {
                 slotX = slotXStart;
