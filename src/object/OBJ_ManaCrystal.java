@@ -15,8 +15,9 @@ public class OBJ_ManaCrystal extends entity.Entity {
         image2 = setup("/res/projectile/manacrystal_blank", gp.tileSize, gp.tileSize);
     }
 
-    public void use(entity.Entity entity) {
+    public boolean use(entity.Entity entity) {
         gp.ui.addMessage("Mana +" + value);
         entity.mana += value;
+        return true;
     }
 }
