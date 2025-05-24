@@ -11,7 +11,7 @@ public class OBJ_Rock extends entity.Projectile {
         this.gp = gp;
 
         name = "Rock";
-        speed = 8;
+        speed = 2;
         maxLife = 80;
         life = maxLife;
         attack = 3;
