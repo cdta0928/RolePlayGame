@@ -128,7 +128,7 @@ public class Entity {
     }
 
     public void searchPath(int goalCol, int goalRow) {
-        
+
     }
 
     public void use(Entity entity) {
@@ -150,9 +150,7 @@ public class Entity {
         }
     }
 
-    public void update() {
-        setAction();
-
+    public void checkCollision() {
         collisionOn = false;
         gp.cChecker.checkTile(this);
         gp.cChecker.checkEntity(this, gp.iTile);
@@ -164,7 +162,11 @@ public class Entity {
         if (this.type == type_monster && contactPlayer == true) {
             damagePlayer(attack);
         }
+    }
 
+    public void update() {
+        setAction();
+        checkCollision();
         if (collisionOn == false) {
             switch (direction) {
                 case "up": worldY -= speed; break;
