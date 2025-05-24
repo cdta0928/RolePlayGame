@@ -95,6 +95,7 @@ public class Entity {
     public final int type_shield = 5;
     public final int type_consumable = 6;
     public final int type_pickupOnly = 7;
+    public final int type_obstacle = 8;
 
     public Entity(main.GamePanel gp) { this.gp = gp; }
 
@@ -113,6 +114,10 @@ public class Entity {
 
     public void setAction() {
 
+    }
+
+    public void interact() {
+        
     }
 
     public void speak() {
