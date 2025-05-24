@@ -31,7 +31,7 @@ public class GamePanel extends javax.swing.JPanel implements Runnable {
     int FPS = 60; 
 
     // SYSTEM
-    tile.TileManager tileManager = new tile.TileManager(this); 
+    public tile.TileManager tileManager = new tile.TileManager(this); 
     public KeyHandler keyHandler = new KeyHandler(this); 
     public UI ui = new UI(this);
     Thread gameThread; 
