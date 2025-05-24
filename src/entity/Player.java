@@ -38,9 +38,9 @@ public class Player extends Entity {
     public void setDefaultValues() {
         worldX = gp.tileSize * 12; 
         worldY = gp.tileSize * 12; 
-        // worldX = gp.tileSize * 23; 
-        // worldY = gp.tileSize * 21; 
-        gp.currentMap = 1;
+        worldX = gp.tileSize * 23; 
+        worldY = gp.tileSize * 21; 
+        gp.currentMap = 0;
         speed = 4; 
         direction = "down"; 
 
@@ -146,6 +146,7 @@ public class Player extends Entity {
     }
 
     public void update() {
+        // System.out.println(worldX/gp.tileSize + " " + worldY/gp.tileSize);
         if (attacking == true) {
             attacking();
         }

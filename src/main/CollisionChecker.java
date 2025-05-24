@@ -60,7 +60,7 @@ public class CollisionChecker {
     public int checkObject(entity.Entity entity, boolean player) {
         int index = 999;
 
-        for (int i = 0; i < gp.obj[1].length; i++) {
+        for (int i = 0; i < gp.obj[gp.currentMap].length; i++) {
             if (gp.obj[gp.currentMap][i] != null) {
                 entity.solidArea.x = entity.worldX + entity.solidArea.x;
                 entity.solidArea.y = entity.worldY + entity.solidArea.y;
@@ -91,7 +91,7 @@ public class CollisionChecker {
     public int checkEntity(entity.Entity entity, entity.Entity[][] target) {
         int index = 999;
         
-        for (int i = 0; i < target[1].length; i++) {
+        for (int i = 0; i < target[gp.currentMap].length; i++) {
             if (target[gp.currentMap][i] != null) {
                 entity.solidArea.x = entity.worldX + entity.solidArea.x;
                 entity.solidArea.y = entity.worldY + entity.solidArea.y;

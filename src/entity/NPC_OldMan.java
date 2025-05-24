@@ -7,12 +7,12 @@ public class NPC_OldMan extends Entity {
 
         type = 1;
         direction = "down";
-        speed = 1;
+        speed = 2;
 
         getOldManImage();
         setDialogue();
 
-        solidArea = new java.awt.Rectangle(0, 16, 48, 32);
+        solidArea = new java.awt.Rectangle(8, 16, 30, 30);
         solidAreaDefaultX = solidArea.x;
         solidAreaDefaultY = solidArea.y;
 
@@ -35,7 +35,11 @@ public class NPC_OldMan extends Entity {
             int goalCol = 10;
             int goalRow = 8;
             searchPath(goalCol, goalRow);
-            
+            System.out.println(worldX/gp.tileSize + " " + worldY/gp.tileSize);
+            System.out.println(collisionOn);
+            if (worldX/gp.tileSize == 11 && worldY/gp.tileSize == 20) {
+                direction = "down";
+            }
         }
         else {
             actionLockCounter++;

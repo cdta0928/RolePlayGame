@@ -39,6 +39,7 @@ public class GamePanel extends javax.swing.JPanel implements Runnable {
     public AssetSetter aSetter = new AssetSetter(this);
     public EventHandler eHandler = new EventHandler(this);
     Config config = new Config(this);
+    public ai.PathFinder pFinder = new ai.PathFinder(this);
 
     // PLAYER, ENTITY, OBJECT
     public entity.Player player = new entity.Player(this, keyHandler); 
