@@ -22,7 +22,7 @@ public class PathFinder {
         int col = 0;
         int row = 0;
 
-        while(col < gp.maxWorldCol && row < gp.maxWorldCol) {
+        while(col < gp.maxWorldCol && row < gp.maxWorldRow) {
             node[col][row] = new Node(col, row);
 
             col++;
@@ -57,7 +57,7 @@ public class PathFinder {
         step = 0;
     }
 
-    public void setNodes(int startCol, int startRow, int goalCol, int goalRow, entity.Entity entity) {
+    public void setNodes(int startCol, int startRow, int goalCol, int goalRow) {
         resetNodes();
 
         // Set start & goal node
@@ -121,8 +121,8 @@ public class PathFinder {
 
             if (row - 1 >= 0) { openNode(node[col][row - 1]); }
             if (col - 1 >= 0) { openNode(node[col - 1][row]); }
-            if (row + 1 >= 0) { openNode(node[col][row + 1]); }
-            if (col + 1 >= 0) { openNode(node[col + 1][row]); }
+            if (row + 1 < gp.maxWorldRow) { openNode(node[col][row + 1]); }
+            if (col + 1 < gp.maxWorldCol) { openNode(node[col + 1][row]); }
 
             // Find best node
             int bestNodeIndex = 0;
@@ -157,7 +157,7 @@ public class PathFinder {
     }
 
     public void openNode(Node node) {
-        if (node.open == false && node.checked == false) {
+        if (node.open == false && node.checked == false && node.solid == false) {
             node.open = true;
             node.parent = currNode;
             openList.add(node);
@@ -168,7 +168,7 @@ public class PathFinder {
         Node curr = goalNode;
         while (curr != startNode) {
             pathList.add(0, curr);
-            curr= curr.parent;
+            curr = curr.parent;
         }
     }
 }
