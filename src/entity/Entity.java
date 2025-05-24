@@ -80,6 +80,7 @@ public class Entity {
 
     public int useCost;
     public int price;
+    public int knockBackPower = 0;
 
     // TYPE
     public int type; 
@@ -253,7 +254,7 @@ public class Entity {
                 }
             }
             knockBackCounter++;
-            if (knockBackCounter == 5) {
+            if (knockBackCounter == 10) {
                 knockBack = false;
                 knockBackCounter = 0;
                 speed = defaultSpeed;

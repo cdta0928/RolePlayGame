@@ -114,9 +114,9 @@ public class Player extends Entity {
         return defense = dexterity * currentShield.defenseValue;
     }
 
-    public void knockBack(Entity entity) {
+    public void knockBack(Entity entity, int knockBackPower) {
         entity.direction = direction;
-        entity.speed += 10;
+        entity.speed += knockBackPower;
         entity.knockBack = true;
     }
 
@@ -389,7 +389,7 @@ public class Player extends Entity {
 
             // CHECK MONSTER AFTER UPDATE SOLID AREA
             int monsterIndex = gp.cChecker.checkEntity(this, gp.monster);
-            damageMonster(monsterIndex, attack);
+            damageMonster(monsterIndex, attack, currentWeapon.knockBackPower);
 
             // CHECK ATTACK INTERACTIVE TILE
             int iTileIndex = gp.cChecker.checkEntity(this, gp.iTile);
@@ -429,10 +429,10 @@ public class Player extends Entity {
         }
     }
     
-    public void damageMonster(int i, int attack) {
+    public void damageMonster(int i, int attack, int knockBackPower) {
         if (i != 999) {
             if (gp.monster[gp.currentMap][i].invincible == false) {
-                knockBack(gp.monster[gp.currentMap][i]);
+                if (knockBackPower > 0) knockBack(gp.monster[gp.currentMap][i], knockBackPower);
                 int damage = attack - gp.monster[gp.currentMap][i].defense;
                 if (damage < 0) {
                     damage = 0;
