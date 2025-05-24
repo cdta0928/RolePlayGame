@@ -74,6 +74,8 @@ public class Entity {
     public int attackValue;
     public int defenseValue;
     public String description = "";
+    public boolean stackable = false;
+    public int amount = 1;
 
     public java.util.ArrayList<Entity> inventory = new java.util.ArrayList<>();
     public final int maxInventorySize = 20;
