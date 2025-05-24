@@ -13,6 +13,7 @@ public class Entity {
     public int worldX, worldY;
     public String direction = "down"; // Direction of the entity (up, down, left, right)
     public int spriteNum = 1; // Current sprite number (1 or 2)
+    public boolean onPath = false;
 
     // SOLID AREA
     public java.awt.Rectangle solidArea = new java.awt.Rectangle(0, 0, 48, 48); // Rectangle for collision detection
@@ -124,6 +125,10 @@ public class Entity {
             case "left": direction = "right"; break;
             case "right": direction = "left"; break;
         }
+    }
+
+    public void searchPath(int goalCol, int goalRow) {
+        
     }
 
     public void use(Entity entity) {
