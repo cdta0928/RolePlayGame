@@ -218,16 +218,26 @@ public class UI {
                     currentDialogue = "You need more coin to buy that!";
                     drawDialogueScreen();
                 }
-                else if (gp.player.inventory.size() == gp.player.maxInventorySize) {
-                    subState = 0;
-                    gp.gameState = gp.dialogueState;
-                    currentDialogue = "You cannot carry any more!";
-                    drawDialogueScreen();
-                }
                 else {
-                    gp.player.coin -= merchant.inventory.get(itemIndex).price;
-                    gp.player.inventory.add(merchant.inventory.get(itemIndex));
+                    if (gp.player.canObtainItem(merchant.inventory.get(itemIndex)) == true) {
+                        gp.player.coin -= merchant.inventory.get(itemIndex).price;
+                    } 
+                    else {
+                        subState = 0;
+                        gp.gameState = gp.dialogueState;
+                        currentDialogue = "You cannot carry any more!";
+                    }
                 }
+                // else if (gp.player.inventory.size() == gp.player.maxInventorySize) {
+                //     subState = 0;
+                //     gp.gameState = gp.dialogueState;
+                //     currentDialogue = "You cannot carry any more!";
+                //     drawDialogueScreen();
+                // }
+                // else {
+                //     gp.player.coin -= merchant.inventory.get(itemIndex).price;
+                //     gp.player.inventory.add(merchant.inventory.get(itemIndex));
+                // }
             }
         }
     }
@@ -276,7 +286,12 @@ public class UI {
                     currentDialogue = "You cannot sell an equipped item!";
                 }
                 else {
-                    gp.player.inventory.remove(itemIndex);
+                    if (gp.player.inventory.get(itemIndex).amount > 1) {
+                        gp.player.inventory.get(itemIndex).amount--;
+                    }
+                    else {
+                        gp.player.inventory.remove(itemIndex);
+                    }
                     gp.player.coin += price;
                 }
             }
@@ -573,7 +588,7 @@ public class UI {
                 }
             g2.drawImage(entity.inventory.get(i).down1, slotX, slotY, null);
             // DISPLAY AMOUNT
-            if (entity.inventory.get(i).amount > 1) {
+            if (entity == gp.player && entity.inventory.get(i).amount > 1) {
                 g2.setFont(g2.getFont().deriveFont(24F));
                 int amountX;
                 int amountY;
