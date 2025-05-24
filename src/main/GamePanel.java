@@ -47,7 +47,8 @@ public class GamePanel extends javax.swing.JPanel implements Runnable {
     public entity.Entity npc[][] = new entity.Entity[maxMap][10];
     public entity.Entity monster[][] = new entity.Entity[maxMap][20];
     java.util.ArrayList<entity.Entity> entityList = new java.util.ArrayList<>(); 
-    public java.util.ArrayList<entity.Entity> projectileList = new java.util.ArrayList<>(); 
+    public entity.Entity projectile[][] = new entity.Entity[maxMap][20];
+    // public java.util.ArrayList<entity.Entity> projectile[currentMap] = new java.util.ArrayList<>(); 
     public java.util.ArrayList<entity.Entity> particleList = new java.util.ArrayList<>();  
     public tile_interactive.Interactive iTile[][] = new tile_interactive.Interactive[maxMap][50];
     // GAME STATE
@@ -140,13 +141,13 @@ public class GamePanel extends javax.swing.JPanel implements Runnable {
                     }
                 }
             }
-            for (int i = 0; i < projectileList.size(); i++) {
-                if (projectileList.get(i) != null) {
-                    if (projectileList.get(i).alive == true){
-                        projectileList.get(i).update();
+            for (int i = 0; i < projectile[currentMap].length; i++) {
+                if (projectile[currentMap][i] != null) {
+                    if (projectile[currentMap][i].alive == true){
+                        projectile[currentMap][i].update();
                     }
-                    if (projectileList.get(i).alive == false) {
-                        projectileList.remove(i);
+                    if (projectile[currentMap][i].alive == false) {
+                        projectile[currentMap][i] = null;
                     }
                 }
             }
@@ -228,9 +229,9 @@ public class GamePanel extends javax.swing.JPanel implements Runnable {
                     entityList.add(monster[currentMap][i]);
                 }
             }
-            for (int i = 0; i < projectileList.size(); i++) {
-                if (projectileList.get(i) != null) {
-                    entityList.add(projectileList.get(i));
+            for (int i = 0; i < projectile[currentMap].length; i++) {
+                if (projectile[currentMap][i] != null) {
+                    entityList.add(projectile[currentMap][i]);
                 }
             }
             for (int i = 0; i < particleList.size(); i++) {

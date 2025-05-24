@@ -219,8 +219,14 @@ public class Player extends Entity {
             // SUBTRACT
             projectile.subtractResource(this);
 
-            // ADD TO LIST
-            gp.projectileList.add(projectile);
+            // CHECK VACANCY
+            for (int i = 0; i < gp.projectile[gp.currentMap].length; i++) {
+                if (gp.projectile[gp.currentMap][i] == null) {
+                    gp.projectile[gp.currentMap][i] = projectile;
+                    break;
+                }
+            }
+
             shotAvailableCounter = 0;
         }
 
@@ -381,6 +387,9 @@ public class Player extends Entity {
             // CHECK ATTACK INTERACTIVE TILE
             int iTileIndex = gp.cChecker.checkEntity(this, gp.iTile);
             damageInteractiveTile(iTileIndex);
+
+            int projectileIndex = gp.cChecker.checkEntity(this, gp.projectile);
+            damageProjectile(projectileIndex);
             
             worldX = currentWorldX;
             worldY = currentWorldY;
@@ -392,6 +401,14 @@ public class Player extends Entity {
             spriteNum = 1;
             spriteCounter = 0;
             attacking = false;
+        }
+    }
+
+    public void damageProjectile(int i) {
+        if (i != 999) {
+            Entity projectile = gp.projectile[gp.currentMap][i];
+            projectile.alive = false;
+            generateParticle(projectile, projectile);
         }
     }
 
