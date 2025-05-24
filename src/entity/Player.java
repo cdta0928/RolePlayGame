@@ -40,8 +40,9 @@ public class Player extends Entity {
         worldY = gp.tileSize * 12; 
         worldX = gp.tileSize * 23; 
         worldY = gp.tileSize * 21; 
-        gp.currentMap = 0;
-        speed = 4; 
+        gp.currentMap = 0; 
+        defaultSpeed = 4;
+        speed = defaultSpeed;
         direction = "down"; 
 
         // PLAYER STATUS
@@ -111,6 +112,12 @@ public class Player extends Entity {
 
     public int getDefense() {
         return defense = dexterity * currentShield.defenseValue;
+    }
+
+    public void knockBack(Entity entity) {
+        entity.direction = direction;
+        entity.speed += 10;
+        entity.knockBack = true;
     }
 
     public void getPlayerImage() {
@@ -425,6 +432,7 @@ public class Player extends Entity {
     public void damageMonster(int i, int attack) {
         if (i != 999) {
             if (gp.monster[gp.currentMap][i].invincible == false) {
+                knockBack(gp.monster[gp.currentMap][i]);
                 int damage = attack - gp.monster[gp.currentMap][i].defense;
                 if (damage < 0) {
                     damage = 0;

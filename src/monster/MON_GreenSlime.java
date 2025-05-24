@@ -10,7 +10,8 @@ public class MON_GreenSlime extends entity.Entity {
 
         type = type_monster;
         name = "Green Slime";
-        speed = 1;
+        defaultSpeed = 1;
+        speed = defaultSpeed;
         maxLife = 4;
         life = maxLife;
         attack = 2;

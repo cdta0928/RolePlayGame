@@ -14,6 +14,7 @@ public class Entity {
     public String direction = "down"; // Direction of the entity (up, down, left, right)
     public int spriteNum = 1; // Current sprite number (1 or 2)
     public boolean onPath = false;
+    public boolean knockBack = false;
 
     // SOLID AREA
     public java.awt.Rectangle solidArea = new java.awt.Rectangle(0, 0, 48, 48); // Rectangle for collision detection
@@ -42,9 +43,11 @@ public class Entity {
     int dyingCounter = 0;
     int hpBarCounter = 0;
     public int shotAvailableCounter = 0;
+    int knockBackCounter = 0;
 
     // CHAR ATTIBUTES
     public String name;
+    public int defaultSpeed;
     public int speed; 
     public int maxLife;
     public int life;
@@ -234,14 +237,38 @@ public class Entity {
     }
 
     public void update() {
-        setAction();
-        checkCollision();
-        if (collisionOn == false) {
-            switch (direction) {
-                case "up": worldY -= speed; break;
-                case "down": worldY += speed; break;
-                case "left": worldX -= speed; break;
-                case "right": worldX += speed; break;
+        if (knockBack == true) {
+            checkCollision();
+            if (collisionOn == true) {
+                knockBackCounter = 0;
+                knockBack = false;
+                speed = defaultSpeed;
+            }
+            else if (collisionOn == false) {
+                switch (gp.player.direction) {
+                    case "up": worldY -= speed; break;
+                    case "down": worldY += speed; break;
+                    case "left": worldX -= speed; break;
+                    case "right": worldX += speed; break;
+                }
+            }
+            knockBackCounter++;
+            if (knockBackCounter == 5) {
+                knockBack = false;
+                knockBackCounter = 0;
+                speed = defaultSpeed;
+            }
+        }
+        else {
+            setAction();
+            checkCollision();
+            if (collisionOn == false) {
+                switch (direction) {
+                    case "up": worldY -= speed; break;
+                    case "down": worldY += speed; break;
+                    case "left": worldX -= speed; break;
+                    case "right": worldX += speed; break;
+                }
             }
         }
 
