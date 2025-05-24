@@ -9,7 +9,7 @@ public class IT_Trunk extends Interactive{
         this.worldX = gp.tileSize*col;
         this.worldY = gp.tileSize*row;
         down1 = setup("/res/tiles_interactive/trunk", gp.tileSize, gp.tileSize);
-        destructible = true;
+        destructible = false;
         solidArea = new java.awt.Rectangle(0, 0, 0, 0);
         solidAreaDefaultX = 0;
         solidAreaDefaultY = 0;
