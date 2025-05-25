@@ -2,7 +2,7 @@ package environmemt;
 
 public class EnvironmentManager {
     main.GamePanel gp;
-    Lightning lightning;
+    public Lightning lightning;
 
     public EnvironmentManager(main.GamePanel gp) {
         this.gp = gp;

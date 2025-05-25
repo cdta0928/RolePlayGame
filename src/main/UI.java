@@ -124,6 +124,30 @@ public class UI {
         if (gp.gameState == gp.tradeState) {
             drawTradeScreen();
         }
+        // SLEEP STATE
+        if (gp.gameState == gp.sleepState) {
+            drawSleepScreen();
+        }
+    }
+
+    public void drawSleepScreen() {
+        counter++;
+
+        if (counter < 120) {
+            gp.eManager.lightning.filterAlpha += 0.01f;
+            if (gp.eManager.lightning.filterAlpha > 1f) {
+                gp.eManager.lightning.filterAlpha = 1f;
+            }
+        }
+        if (counter >= 120) {
+            gp.eManager.lightning.filterAlpha -= 0.01f;
+            if (gp.eManager.lightning.filterAlpha <= 0f) {
+                gp.eManager.lightning.filterAlpha = 0f;
+                counter = 0;
+                gp.eManager.lightning.dayState = gp.eManager.lightning.day;
+                gp.gameState = gp.playState;
+            }
+        }
     }
 
     public void drawTradeScreen() {

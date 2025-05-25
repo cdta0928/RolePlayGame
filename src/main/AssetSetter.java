@@ -62,10 +62,10 @@ public class AssetSetter {
         gp.obj[mapNum][i].worldX = 24 * gp.tileSize;
         gp.obj[mapNum][i].worldY = 21 * gp.tileSize;  
         i++;
-        // gp.obj[mapNum][i] = new object.OBJ_Coin_Bronze(gp);
-        // gp.obj[mapNum][i].worldX = 23 * gp.tileSize;
-        // gp.obj[mapNum][i].worldY = 20 * gp.tileSize;  
-        // i++;
+        gp.obj[mapNum][i] = new object.OBJ_Tent(gp);
+        gp.obj[mapNum][i].worldX = 23 * gp.tileSize;
+        gp.obj[mapNum][i].worldY = 20 * gp.tileSize;  
+        i++;
     }
 
     public void setNPC() {
