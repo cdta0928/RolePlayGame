@@ -31,7 +31,7 @@ public class Lightning {
         java.awt.Graphics2D g2 = (java.awt.Graphics2D)darknessFilter.getGraphics();
 
         if (gp.player.currentLight == null) {
-            g2.setColor(new java.awt.Color(0, 0, 0, 0.98f));
+            g2.setColor(new java.awt.Color(0, 0, 0.1f, 0.98f));
         }
         else {
             // Get the center x and y of the light circle
@@ -42,18 +42,18 @@ public class Lightning {
             java.awt.Color color[] = new java.awt.Color[12];
             float fraction[] = new float[12];
 
-            color[0] = new java.awt.Color(0, 0, 0, 0.1f);
-            color[1] = new java.awt.Color(0, 0, 0, 0.42f);
-            color[2] = new java.awt.Color(0, 0, 0, 0.52f);
-            color[3] = new java.awt.Color(0, 0, 0, 0.61f);
-            color[4] = new java.awt.Color(0, 0, 0, 0.69f);
-            color[5] = new java.awt.Color(0, 0, 0, 0.76f);
-            color[6] = new java.awt.Color(0, 0, 0, 0.82f);
-            color[7] = new java.awt.Color(0, 0, 0, 0.87f);
-            color[8] = new java.awt.Color(0, 0, 0, 0.91f);
-            color[9] = new java.awt.Color(0, 0, 0, 0.94f);
-            color[10] = new java.awt.Color(0, 0, 0, 0.96f);
-            color[11] = new java.awt.Color(0, 0, 0, 0.98f);
+            color[0] = new java.awt.Color(0, 0, 0.1f, 0.1f);
+            color[1] = new java.awt.Color(0, 0, 0.1f, 0.42f);
+            color[2] = new java.awt.Color(0, 0, 0.1f, 0.52f);
+            color[3] = new java.awt.Color(0, 0, 0.1f, 0.61f);
+            color[4] = new java.awt.Color(0, 0, 0.1f, 0.69f);
+            color[5] = new java.awt.Color(0, 0, 0.1f, 0.76f);
+            color[6] = new java.awt.Color(0, 0, 0.1f, 0.82f);
+            color[7] = new java.awt.Color(0, 0, 0.1f, 0.87f);
+            color[8] = new java.awt.Color(0, 0, 0.1f, 0.91f);
+            color[9] = new java.awt.Color(0, 0, 0.1f, 0.94f);
+            color[10] = new java.awt.Color(0, 0, 0.1f, 0.96f);
+            color[11] = new java.awt.Color(0, 0, 0.1f, 0.98f);
 
             fraction[0] = 0f;
             fraction[1] = 0.4f;
