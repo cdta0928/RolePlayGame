@@ -8,7 +8,7 @@ public class EnvironmentManager {
         this.gp = gp;
     }
     public void setup() {
-        lightning = new Lightning(gp, 350);
+        lightning = new Lightning(gp, 350); // Kích thưóc vòng sáng
     }
     public void draw(java.awt.Graphics2D g2) {
         lightning.draw(g2);
