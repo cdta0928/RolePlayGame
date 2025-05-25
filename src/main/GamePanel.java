@@ -41,6 +41,7 @@ public class GamePanel extends javax.swing.JPanel implements Runnable {
     Config config = new Config(this);
     public ai.PathFinder pFinder = new ai.PathFinder(this);
     environmemt.EnvironmentManager eManager = new environmemt.EnvironmentManager(this);
+    tile.Map map = new tile.Map(this);
 
     // PLAYER, ENTITY, OBJECT
     public entity.Player player = new entity.Player(this, keyHandler); 
@@ -64,6 +65,7 @@ public class GamePanel extends javax.swing.JPanel implements Runnable {
     public final int transitionState = 7;
     public final int tradeState = 8;
     public final int sleepState = 9;
+    public final int mapState = 10;
 
     public GamePanel() {
         this.setPreferredSize(new java.awt.Dimension(screenWidth, screenHeight));
@@ -206,7 +208,10 @@ public class GamePanel extends javax.swing.JPanel implements Runnable {
     public void drawToTempScreen() {
         // TITLE SCREEN
         if (gameState == titleState) { ui.draw(g2); }
-
+        // MAP SCREEN
+        else if (gameState == mapState) {
+            map.drawFullMapScreen(g2);
+        }
         // OTHER
         else {
             // TILE 
@@ -262,6 +267,8 @@ public class GamePanel extends javax.swing.JPanel implements Runnable {
             entityList.clear();
 
             eManager.draw(g2);
+
+            map.drawMiniMap(g2);
 
             // UI
             ui.draw(g2);

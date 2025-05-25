@@ -1,5 +1,11 @@
 package tile;
 
+import java.io.IOException;
+
+import javax.imageio.ImageIO;
+
+import main.UtilityTool;
+
 public class TileManager {
     main.GamePanel gp;
     public Tile[] tile;
@@ -18,27 +24,15 @@ public class TileManager {
     }
 
     public void getTileImage() {
-        
-        setTileImage(0, "/res/tiles/grass.png");
-        setTileImage(1, "/res/tiles/wall.png");
-        setTileImage(2, "/res/tiles/water.png");
-        setTileImage(3, "/res/tiles/earth.png");
-        setTileImage(4, "/res/tiles/tree.png");
-        setTileImage(5, "/res/tiles/sand.png");
-        setTileImage(6, "/res/tiles/hut.png");
-        setTileImage(7, "/res/tiles/floor01.png");
-        setTileImage(8, "/res/tiles/table01.png");
-
-        tile[0].collision = false; // Grass
-        tile[1].collision = true; // Wall
-        tile[2].collision = true; // Water
-        tile[3].collision = false; // Earth
-        tile[4].collision = true; // Tree
-        tile[5].collision = false; // Sand
-        
-        tile[6].collision = false;
-        tile[7].collision = false;
-        tile[8].collision = true;
+        setup(0, "grass.png", false);
+        setup(1, "wall.png", true);
+        setup(2, "water.png", true);
+        setup(3, "earth.png", false);
+        setup(4, "tree.png", true);
+        setup(5, "sand.png", false);
+        setup(6, "hut.png", false);
+        setup(7, "floor01.png", false);
+        setup(8, "table01.png", true);
     }
 
     public void loadMap(String filePath, int map) {
@@ -68,11 +62,16 @@ public class TileManager {
         }
     }
 
-    public void setTileImage(int index, String imagePath) {
+    public void setup(int index, String imageName, boolean collision) {
+        UtilityTool uTool = new UtilityTool();                            
         try {
             tile[index] = new Tile();
-            tile[index].image = javax.imageio.ImageIO.read(getClass().getResourceAsStream(imagePath));
-        } catch (java.io.IOException e) {
+            tile[index].image = ImageIO.read(getClass().getResourceAsStream("/res/tiles/"+ imageName));
+            tile[index].image = uTool.scaleImage(tile[index].image, gp.tileSize, gp.tileSize);
+            tile[index].collision = collision;
+        }
+        catch (IOException e)
+        {
             e.printStackTrace();
         }
     }

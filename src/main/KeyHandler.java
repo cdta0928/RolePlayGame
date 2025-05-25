@@ -37,6 +37,9 @@ public class KeyHandler implements java.awt.event.KeyListener {
 
         // TRADE STATE
         else if (gp.gameState == gp.tradeState) { tradeState(code); }
+        
+        // MAP STATE
+        else if (gp.gameState == gp.mapState) { mapState(code); }
     }
 
     @Override
@@ -71,6 +74,13 @@ public class KeyHandler implements java.awt.event.KeyListener {
         if (code == java.awt.event.KeyEvent.VK_C) { gp.gameState = gp.characterState; }
         if (code == java.awt.event.KeyEvent.VK_F) { shotKeyPressed = true; }
         if (code == java.awt.event.KeyEvent.VK_ESCAPE) { gp.gameState = gp.optionState; }
+        if (code == java.awt.event.KeyEvent.VK_M) { gp.gameState = gp.mapState; }
+        if (code == java.awt.event.KeyEvent.VK_X) {
+            if (gp.map.miniMapOn == false) {
+                gp.map.miniMapOn = true;
+            }
+            else gp.map.miniMapOn = false;
+        }
         if (code == java.awt.event.KeyEvent.VK_R) { 
             switch (gp.currentMap) {
                 case 0:
@@ -173,5 +183,9 @@ public class KeyHandler implements java.awt.event.KeyListener {
         if (code == java.awt.event.KeyEvent.VK_D) {
             if (gp.ui.merchantSlotCol != 4) { gp.ui.merchantSlotCol++; }
         }
+    }
+
+    public void mapState(int code) {
+        if (code == java.awt.event.KeyEvent.VK_M) { gp.gameState = gp.playState; }
     }
 }
