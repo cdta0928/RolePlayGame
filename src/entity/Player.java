@@ -118,6 +118,17 @@ public class Player extends Entity {
         }
     }
 
+    public void getSleepingImage(java.awt.image.BufferedImage image) {
+            up1 = image;
+            up2 = image;
+            down1 = image;
+            down2 = image;
+            left1 = image;
+            left2 = image;
+            right1 = image;
+            right2 = image;
+    }
+
     public int searchItemInventory(String itemName) {
         int itemIndex = 999;
         for (int i = 0; i < inventory.size(); i++) {

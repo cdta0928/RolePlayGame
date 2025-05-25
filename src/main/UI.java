@@ -144,8 +144,10 @@ public class UI {
             if (gp.eManager.lightning.filterAlpha <= 0f) {
                 gp.eManager.lightning.filterAlpha = 0f;
                 counter = 0;
+                gp.eManager.lightning.dayCounter = 0;
                 gp.eManager.lightning.dayState = gp.eManager.lightning.day;
                 gp.gameState = gp.playState;
+                gp.player.getPlayerImage();
             }
         }
     }

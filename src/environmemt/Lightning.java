@@ -3,7 +3,7 @@ package environmemt;
 public class Lightning {
     main.GamePanel gp;
     java.awt.image.BufferedImage darknessFilter;
-    int dayCounter;
+    public int dayCounter;
     public float filterAlpha = 0f;
 
     // DAY STATE
