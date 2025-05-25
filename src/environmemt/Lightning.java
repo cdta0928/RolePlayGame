@@ -20,7 +20,9 @@ public class Lightning {
     }
 
     public void draw(java.awt.Graphics2D g2) {
+        g2.setComposite(java.awt.AlphaComposite.getInstance(java.awt.AlphaComposite.SRC_OVER, filterAlpha));
         g2.drawImage(darknessFilter, 0, 0, null);
+        g2.setComposite(java.awt.AlphaComposite.getInstance(java.awt.AlphaComposite.SRC_OVER, 1F));
     }
 
     public void setLightSource() {
@@ -82,6 +84,40 @@ public class Lightning {
         if (gp.player.lightUpdated == true) {
             setLightSource();
             gp.player.lightUpdated = false;
+        }
+
+        // Check the state of the day
+        if (dayState == day) {
+            dayCounter++;
+            if (dayCounter > 600) {
+                dayState = dusk;
+                dayCounter = 0;
+            }
+        }
+
+        if (dayState == dusk) {
+            filterAlpha += 0.001F;
+        }
+
+        if (filterAlpha > 1f) {
+            filterAlpha = 1f;
+            dayState = night;
+        }
+
+        if (dayState == night) {
+            dayCounter++;
+            if (dayCounter > 600) {
+                dayState = dawn;
+                dayCounter = 0;
+            }
+        }
+
+        if (dayState == dawn) {
+            filterAlpha -= 0.001F;
+            if (filterAlpha < 0F) {
+                filterAlpha = 0;
+                dayState = day;
+            }
         }
     }
 }
