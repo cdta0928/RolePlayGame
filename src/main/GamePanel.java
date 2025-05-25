@@ -1,5 +1,7 @@
 package main;
 
+import environmemt.EnvironmentManager;
+
 public class GamePanel extends javax.swing.JPanel implements Runnable {
 
     // SCRREEN SETTINGS
@@ -40,6 +42,7 @@ public class GamePanel extends javax.swing.JPanel implements Runnable {
     public EventHandler eHandler = new EventHandler(this);
     Config config = new Config(this);
     public ai.PathFinder pFinder = new ai.PathFinder(this);
+    EnvironmentManager eManager = new EnvironmentManager(this);
 
     // PLAYER, ENTITY, OBJECT
     public entity.Player player = new entity.Player(this, keyHandler); 
@@ -81,6 +84,7 @@ public class GamePanel extends javax.swing.JPanel implements Runnable {
         aSetter.setNPC();
         aSetter.setMonster();
         aSetter.setInteractiveTile();
+        eManager.setup();
         gameState = titleState;
 
         tempScreen = new java.awt.image.BufferedImage(screenWidth, screenHeight, java.awt.image.BufferedImage.TYPE_INT_ARGB);
@@ -256,6 +260,8 @@ public class GamePanel extends javax.swing.JPanel implements Runnable {
 
             // EMPTY ENTITY LIST
             entityList.clear();
+
+            eManager.draw(g2);
 
             // UI
             ui.draw(g2);
