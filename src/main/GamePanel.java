@@ -1,7 +1,5 @@
 package main;
 
-import environmemt.EnvironmentManager;
-
 public class GamePanel extends javax.swing.JPanel implements Runnable {
 
     // SCRREEN SETTINGS
@@ -42,7 +40,7 @@ public class GamePanel extends javax.swing.JPanel implements Runnable {
     public EventHandler eHandler = new EventHandler(this);
     Config config = new Config(this);
     public ai.PathFinder pFinder = new ai.PathFinder(this);
-    EnvironmentManager eManager = new EnvironmentManager(this);
+    environmemt.EnvironmentManager eManager = new environmemt.EnvironmentManager(this);
 
     // PLAYER, ENTITY, OBJECT
     public entity.Player player = new entity.Player(this, keyHandler); 
@@ -171,6 +169,7 @@ public class GamePanel extends javax.swing.JPanel implements Runnable {
                 }
             }
         }
+        eManager.update();
         if (gameState == pauseState) {
             // ...
         }
