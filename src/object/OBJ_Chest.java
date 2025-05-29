@@ -31,8 +31,9 @@ public class OBJ_Chest extends entity.Entity {
             }
             else {
                 sb.append("\nYou obtain the " + loot.name + "!");
-                gp.player.inventory.add(loot);
+                // gp.player.inventory.add(loot);
                 down1 = image2;
+                opened = true;
             }
             gp.ui.currentDialogue = sb.toString();
         }

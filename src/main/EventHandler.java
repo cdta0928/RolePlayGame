@@ -54,13 +54,13 @@ public class EventHandler {
             else if (hit(0, 23, 7, "up") == true) {
                 healingPool(23, 7, gp.dialogueState);
             }
-            else if (hit(0, 11, 37, "any") == true) {
+            else if (hit(0, 11, 8, "any") == true) {
                 teleport(1, 12, 13, gp.dialogueState);
             }
             else if (hit(1, 12, 13, "any") == true) {
-                teleport(0, 11, 37, gp.dialogueState);
+                teleport(0, 11, 8, gp.dialogueState);
             }
-            else if (hit(1, 12, 9, "up") == true) {
+            else if (hit(1, 12, 9, "up") == true || hit(1, 12, 8, "any")) {
                 speak(gp.npc[1][0]);
             }
             // if (hit (26, 15, "any")) {

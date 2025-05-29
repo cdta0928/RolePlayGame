@@ -15,7 +15,7 @@ public class TileManager {
     public TileManager(main.GamePanel gp) {
         this.gp = gp;
         
-        tile = new Tile[10];
+        tile = new Tile[50];
         mapTileNum = new int[gp.maxMap][gp.maxWorldCol][gp.maxWorldRow];
 
         getTileImage();
@@ -24,15 +24,18 @@ public class TileManager {
     }
 
     public void getTileImage() {
-        setup(0, "grass.png", false);
-        setup(1, "wall.png", true);
-        setup(2, "water.png", true);
-        setup(3, "earth.png", false);
-        setup(4, "tree.png", true);
-        setup(5, "sand.png", false);
-        setup(6, "hut.png", false);
-        setup(7, "floor01.png", false);
-        setup(8, "table01.png", true);
+        for (int i = 0; i <= 33; i++) {
+            String path = "";
+            if (i <= 9) { path = "00" + i; }
+            else { path = "0" + i; }
+
+            if ((i >= 0 && i <= 2) || (i >= 18 && i <= 25 || i == 31 || i == 33)) {
+                setup(i, path, false);
+            } 
+            else {
+                setup(i, path, true);
+            }
+        }
     }
 
     public void loadMap(String filePath, int map) {
@@ -66,7 +69,7 @@ public class TileManager {
         UtilityTool uTool = new UtilityTool();                            
         try {
             tile[index] = new Tile();
-            tile[index].image = ImageIO.read(getClass().getResourceAsStream("/res/tiles/"+ imageName));
+            tile[index].image = ImageIO.read(getClass().getResourceAsStream("/res/tiles/"+ imageName + ".png"));
             tile[index].image = uTool.scaleImage(tile[index].image, gp.tileSize, gp.tileSize);
             tile[index].collision = collision;
         }

@@ -24,7 +24,7 @@ public class Player extends Entity {
         screenY = gp.screenHeight / 2 - (gp.tileSize / 2);
         
         // SOLID AREA
-        solidArea = new java.awt.Rectangle(8,16, 32, 32); 
+        solidArea = new java.awt.Rectangle(9, 24, 30, 21);
         solidAreaDefaultX = solidArea.x;
         solidAreaDefaultY = solidArea.y;
 
@@ -37,11 +37,11 @@ public class Player extends Entity {
     }
 
     public void setDefaultValues() {
-        // worldX = gp.tileSize * 12; 
-        // worldY = gp.tileSize * 12; 
-        worldX = gp.tileSize * 23; 
-        worldY = gp.tileSize * 21; 
-        gp.currentMap = 0; 
+        worldX = gp.tileSize * 12; 
+        worldY = gp.tileSize * 12; 
+        // worldX = gp.tileSize * 20; 
+        // worldY = gp.tileSize * 31; 
+        gp.currentMap = 1; 
         defaultSpeed = 4;
         speed = defaultSpeed;
         direction = "down"; 
@@ -53,13 +53,12 @@ public class Player extends Entity {
         maxMana = 4;
         mana = maxMana;
         ammo = 10;
-        strength = 1;
+        strength = 10;
         dexterity = 1;
         exp = 0;
         nextLevelExp = 5;
         coin = 500;
-        currentWeapon = new object.OBJ_Sword_Normal(gp);
-        // currentWeapon = new object.OBJ_Axe(gp);
+        currentWeapon = new object.OBJ_Axe(gp);
         currentShield = new object.OBJ_Shield_Wood(gp);
         projectile = new object.OBJ_Fireball(gp);
         // projectile = new object.OBJ_Rock(gp);
@@ -68,8 +67,8 @@ public class Player extends Entity {
     }
 
     public void setDefaultPositions() {
-        worldX = gp.tileSize * 23; 
-        worldY = gp.tileSize * 21; 
+        worldX = gp.tileSize * 20; 
+        worldY = gp.tileSize * 31; 
         direction = "down";
     }
 
@@ -180,34 +179,34 @@ public class Player extends Entity {
     }
 
     public void getPlayerImage() {
-            up1 = setup("/res/player/boy_up_1", gp.tileSize, gp.tileSize);
-            up2 = setup("/res/player/boy_up_2", gp.tileSize, gp.tileSize);
-            down1 = setup("/res/player/boy_down_1", gp.tileSize, gp.tileSize);
-            down2 = setup("/res/player/boy_down_2", gp.tileSize, gp.tileSize);
-            left1 = setup("/res/player/boy_left_1", gp.tileSize, gp.tileSize);
-            left2 = setup("/res/player/boy_left_2", gp.tileSize, gp.tileSize);
-            right1 = setup("/res/player/boy_right_1", gp.tileSize, gp.tileSize);
-            right2 = setup("/res/player/boy_right_2", gp.tileSize, gp.tileSize);
+            up1 = setup("/res/player/up1", gp.tileSize, gp.tileSize);
+            up2 = setup("/res/player/up2", gp.tileSize, gp.tileSize);
+            down1 = setup("/res/player/down1", gp.tileSize, gp.tileSize);
+            down2 = setup("/res/player/down2", gp.tileSize, gp.tileSize);
+            left1 = setup("/res/player/left1", gp.tileSize, gp.tileSize);
+            left2 = setup("/res/player/left2", gp.tileSize, gp.tileSize);
+            right1 = setup("/res/player/right1", gp.tileSize, gp.tileSize);
+            right2 = setup("/res/player/right2", gp.tileSize, gp.tileSize);
 
             if (currentWeapon.type == type_sword) {
-                attackUp1 = setup("/res/player/attack/boy_attack_up_1", gp.tileSize, gp.tileSize*2);
-                attackUp2 = setup("/res/player/attack/boy_attack_up_2", gp.tileSize, gp.tileSize*2);
-                attackDown1 = setup("/res/player/attack/boy_attack_down_1", gp.tileSize, gp.tileSize*2);
-                attackDown2 = setup("/res/player/attack/boy_attack_down_2", gp.tileSize, gp.tileSize*2);
-                attackLeft1 = setup("/res/player/attack/boy_attack_left_1", gp.tileSize*2, gp.tileSize);
-                attackLeft2 = setup("/res/player/attack/boy_attack_left_2", gp.tileSize*2, gp.tileSize);
-                attackRight1 = setup("/res/player/attack/boy_attack_right_1", gp.tileSize*2, gp.tileSize);
-                attackRight2 = setup("/res/player/attack/boy_attack_right_2", gp.tileSize*2, gp.tileSize);
+                attackUp1 = setup("/res/player/sword/up1", gp.tileSize, gp.tileSize*2);
+                attackUp2 = setup("/res/player/sword/up2", gp.tileSize, gp.tileSize*2);
+                attackDown1 = setup("/res/player/sword/down1", gp.tileSize, gp.tileSize*2);
+                attackDown2 = setup("/res/player/sword/down2", gp.tileSize, gp.tileSize*2);
+                attackLeft1 = setup("/res/player/sword/left1", gp.tileSize*2, gp.tileSize);
+                attackLeft2 = setup("/res/player/sword/left2", gp.tileSize*2, gp.tileSize);
+                attackRight1 = setup("/res/player/sword/right1", gp.tileSize*2, gp.tileSize);
+                attackRight2 = setup("/res/player/sword/right2", gp.tileSize*2, gp.tileSize);
             }
             else if (currentWeapon.type == type_axe) {
-                attackUp1 = setup("/res/player/attack/boy_axe_up_1", gp.tileSize, gp.tileSize*2);
-                attackUp2 = setup("/res/player/attack/boy_axe_up_2", gp.tileSize, gp.tileSize*2);
-                attackDown1 = setup("/res/player/attack/boy_axe_down_1", gp.tileSize, gp.tileSize*2);
-                attackDown2 = setup("/res/player/attack/boy_axe_down_2", gp.tileSize, gp.tileSize*2);
-                attackLeft1 = setup("/res/player/attack/boy_axe_left_1", gp.tileSize*2, gp.tileSize);
-                attackLeft2 = setup("/res/player/attack/boy_axe_left_2", gp.tileSize*2, gp.tileSize);
-                attackRight1 = setup("/res/player/attack/boy_axe_right_1", gp.tileSize*2, gp.tileSize);
-                attackRight2 = setup("/res/player/attack/boy_axe_right_2", gp.tileSize*2, gp.tileSize);
+                attackUp1 = setup("/res/player/axe/boy_axe_up_1", gp.tileSize, gp.tileSize*2);
+                attackUp2 = setup("/res/player/axe/boy_axe_up_2", gp.tileSize, gp.tileSize*2);
+                attackDown1 = setup("/res/player/axe/boy_axe_down_1", gp.tileSize, gp.tileSize*2);
+                attackDown2 = setup("/res/player/axe/boy_axe_down_2", gp.tileSize, gp.tileSize*2);
+                attackLeft1 = setup("/res/player/axe/boy_axe_left_1", gp.tileSize*2, gp.tileSize);
+                attackLeft2 = setup("/res/player/axe/boy_axe_left_2", gp.tileSize*2, gp.tileSize);
+                attackRight1 = setup("/res/player/axe/boy_axe_right_1", gp.tileSize*2, gp.tileSize);
+                attackRight2 = setup("/res/player/axe/boy_axe_right_2", gp.tileSize*2, gp.tileSize);
             }
     }
 

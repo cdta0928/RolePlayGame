@@ -1,18 +1,23 @@
 package main;
 
+import javax.imageio.ImageIO;
+
 public class UI {
     
     GamePanel gp;
     java.awt.Graphics2D g2;
 
     java.awt.Font arial_40, arial_80B;
+    java.awt.Font pixelOBold, pixelOBold16F, pixelOBold32F, pixelOBold64F, pixelOBold48F, pixelOBold56F;
+    java.awt.Font pixelOBold100F, pixelOBold80F;
+    java.awt.Font pixelO;
 
     java.awt.image.BufferedImage heart_full, heart_half, heart_blank, crystal_full, crystal_blank, coin;
+    java.awt.image.BufferedImage couple = null, background = null;
 
     public boolean messageOn = false;
     java.util.ArrayList<String> message = new java.util.ArrayList<>();
     java.util.ArrayList<Integer> messageCounter = new java.util.ArrayList<>();
-    public String currentDialogue = "";
 
     public boolean gameFinished = false;
     public int commandNum = 0;
@@ -21,6 +26,13 @@ public class UI {
     public int playerSlotRow = 0;
     public int merchantSlotCol = 0;
     public int merchantSlotRow = 0;
+
+        // DIALOGUE
+    public String currentDialogue = "";
+    public int displayedCharCount = 0;
+    public int charDisplayDelay = 1; // số frame giữa mỗi ký tự
+    private int charDelayCounter = 0;
+    private String lastDialogue = "";
 
     int subState = 0;
     int counter = 0;
@@ -43,6 +55,30 @@ public class UI {
         crystal_blank = crystal.image2;
         entity.Entity bronze_coin = new object.OBJ_Coin_Bronze(gp);
         coin = bronze_coin.down1;
+        getPixelFont();
+    }
+
+    public void getPixelFont() {
+        try {
+            pixelO = java.awt.Font.createFont(java.awt.Font.TRUETYPE_FONT, getClass().getResourceAsStream("/res/font/PixelOperator.ttf"));
+            pixelOBold = java.awt.Font.createFont(java.awt.Font.TRUETYPE_FONT, getClass().getResourceAsStream("/res/font/PixelOperator-Bold.ttf"));
+            pixelOBold48F = pixelOBold.deriveFont(48F);
+            pixelOBold56F = pixelOBold.deriveFont(56F);
+            pixelOBold32F = pixelOBold.deriveFont(32F);
+            pixelOBold64F = pixelOBold.deriveFont(64F);
+            pixelOBold32F = pixelOBold.deriveFont(32F);
+            pixelOBold16F = pixelOBold.deriveFont(16F);
+            pixelOBold100F = pixelOBold.deriveFont(100F);
+            pixelOBold80F = pixelOBold.deriveFont(80F);
+            background = ImageIO.read(getClass().getResourceAsStream("/res/tiles/image.png"));
+            couple = ImageIO.read(getClass().getResourceAsStream("/res/player/couple.png"));
+        }
+        catch (java.awt.FontFormatException e) {
+            e.printStackTrace(); 
+        }
+        catch (java.io.IOException e) {
+            e.printStackTrace();
+        }
     }
 
     public void addMessage(String text) {
@@ -53,7 +89,7 @@ public class UI {
     public void drawMessage() {
         int messageX  = gp.tileSize;
         int messageY = gp.tileSize*3;
-        g2.setFont(g2.getFont().deriveFont(java.awt.Font.BOLD, 22F));
+        g2.setFont(pixelOBold32F);
 
         for (int i = 0; i < message.size(); i++) {
             if (message.get(i) != null) {
@@ -77,53 +113,58 @@ public class UI {
     public void draw(java.awt.Graphics2D g2) {
         this.g2 = g2;
 
-        g2.setFont(arial_40);
+        g2.setFont(pixelOBold32F);
         g2.setColor(java.awt.Color.white);
 
         // TITLE SCREEN
         if (gp.gameState == gp.titleState) {
             drawTitleScreen();
         }
-
+        else
         // PLAY STATE
         if (gp.gameState == gp.playState) {
             //...
             drawPlayerLife();
             drawMessage();
         }
-
+        else
         // PAUSE STATE
         if (gp.gameState == gp.pauseState) {
             drawPlayerLife();
             drawPauseScreen();
         }
-
+        else
         // DIALOGUE STATE
         if (gp.gameState == gp.dialogueState) {
             drawDialogueScreen();
         }
-
+        else
         // CHARACTER STATE
         if (gp.gameState == gp.characterState) {
             drawCharacterScreen();
             drawInventory(gp.player, true);
         }
+        else
         // OPTION STATE
         if (gp.gameState == gp.optionState) {
             drawOptionScreen();
         }
+        else
         // GAME OVER STATE
         if (gp.gameState == gp.gameOverState) {
             drawGameOverScreen();
         }
+        else
         // TRANSITION STATE
         if (gp.gameState == gp.transitionState) {
             drawTransition();
         }
+        else
         // TRADE STATE
         if (gp.gameState == gp.tradeState) {
             drawTradeScreen();
         }
+        else
         // SLEEP STATE
         if (gp.gameState == gp.sleepState) {
             drawSleepScreen();
@@ -346,11 +387,11 @@ public class UI {
         int x;
         int y;
         String text;
-        g2.setFont(g2.getFont().deriveFont(java.awt.Font.BOLD, 100F));
         
+        g2.setFont(pixelOBold100F);
         text = "Game Over";
         g2.setColor(java.awt.Color.black);
-        x = getXForCenteredText(text);
+        x = getXForCenteredText(text, pixelOBold100F);
         y = gp.tileSize * 4;
 
         g2.drawString(text, x, y);
@@ -359,9 +400,9 @@ public class UI {
         g2.drawString(text, x - 4, y - 4);
 
         // Retry
-        g2.setFont(g2.getFont().deriveFont(50F));
+        g2.setFont(pixelOBold80F);
         text = "Retry";
-        x = getXForCenteredText(text);
+        x = getXForCenteredText(text, pixelOBold80F);
         y += gp.tileSize*4;
         g2.drawString(text, x, y);
         if (commandNum == 0) {
@@ -375,7 +416,7 @@ public class UI {
 
         // Back to title screen 
         text = "Quit";
-        x = getXForCenteredText(text);
+        x = getXForCenteredText(text, pixelOBold80F);
         y += 60;
         g2.drawString(text, x, y);
         if (commandNum == 1) {
@@ -392,7 +433,7 @@ public class UI {
 
     public void drawOptionScreen() {
         g2.setColor(java.awt.Color.white);
-        g2.setFont(g2.getFont().deriveFont(24F));
+        g2.setFont(pixelOBold.deriveFont(24F));
         // SUB WINDOW
         int frameX = gp.tileSize*6;
         int frameY = gp.tileSize*2;
@@ -421,7 +462,7 @@ public class UI {
 
         // YES
         String text = "Yes";
-        textX = getXForCenteredText(text);
+        textX = getXForCenteredText(text, pixelOBold32F);
         textY += gp.tileSize*2;
         g2.drawString(text, textX, textY);
         if (commandNum == 0) {
@@ -433,7 +474,7 @@ public class UI {
         }
         // NO
         text = "No";
-        textX = getXForCenteredText(text);
+        textX = getXForCenteredText(text, pixelOBold32F);
         textY += gp.tileSize;
         g2.drawString(text, textX, textY);
         if (commandNum == 1) {
@@ -450,7 +491,7 @@ public class UI {
         int textY;
         // TITLE 
         String text = "Options";
-        textX = getXForCenteredText(text);
+        textX = getXForCenteredText(text, pixelOBold32F);
         textY = frameY + gp.tileSize;
         g2.drawString(text, textX, textY);
         
@@ -538,7 +579,7 @@ public class UI {
 
         // TITLE
         String text = "Control";
-        textX = getXForCenteredText(text);
+        textX = getXForCenteredText(text, pixelOBold32F);
         textY = frameY + gp.tileSize;
         g2.drawString(text, textX, textY);
 
@@ -616,7 +657,7 @@ public class UI {
             g2.drawImage(entity.inventory.get(i).down1, slotX, slotY, null);
             // DISPLAY AMOUNT
             if (entity == gp.player && entity.inventory.get(i).amount > 1) {
-                g2.setFont(g2.getFont().deriveFont(24F));
+                g2.setFont(pixelOBold.deriveFont(24F));
                 int amountX;
                 int amountY;
                 String s = "" + entity.inventory.get(i).amount;
@@ -657,7 +698,7 @@ public class UI {
             // DRAW TEXT DESCRIPTION
             int textX = dFrameX + 20;
             int textY = dFrameY + gp.tileSize;
-            g2.setFont(g2.getFont().deriveFont(24F));
+            g2.setFont(pixelO.deriveFont(32F));
             int itemIndex = getItemIndexOnSlot(slotCol, slotRow);
             if (itemIndex < entity.inventory.size()) {
                 drawSubWindow(dFrameX, dFrameY, dFrameWidth, dFrameHeight);
@@ -669,6 +710,14 @@ public class UI {
         }
     }
 
+    public void drawText(String text, int x, int y, java.awt.Font font, java.awt.Color cTxt, java.awt.Color cShadow, int offset) {
+        g2.setFont(font);
+        g2.setColor(cShadow);
+        g2.drawString(text, x + offset, y + offset);
+        g2.setColor(cTxt);
+        g2.drawString(text, x, y);
+    }
+
     public int getItemIndexOnSlot(int slotCol, int slotRow) {
         int itemIndex = slotCol + slotRow*5;
         return itemIndex;
@@ -676,16 +725,15 @@ public class UI {
 
     public void drawPauseScreen() {
         String text = "PAUSE";
-        int x = getXForCenteredText(text);
+        int x = getXForCenteredText(text, pixelOBold32F);
         int y = gp.screenHeight/2;
         g2.drawString(text, x, y);
     }
 
-    public int getXForCenteredText(String text) {
-        int x;
-        int length = (int)g2.getFontMetrics().getStringBounds(text, g2).getWidth();
-        x = gp.screenWidth/2 - length/2;
-        return x;
+    public int getXForCenteredText(String text, java.awt.Font font) {
+        java.awt.FontMetrics metrics = g2.getFontMetrics(font);
+        int length = metrics.stringWidth(text);
+        return gp.screenWidth / 2 - length / 2;
     }
 
     public int getXForAlignToRightText(String text, int tailX) {
@@ -696,21 +744,59 @@ public class UI {
     }
 
     public void drawDialogueScreen() {
-        // WINDOW
         int x = gp.tileSize*3;
         int y = gp.tileSize/2;
         int width = gp.screenWidth - (gp.tileSize * 6);
         int height = gp.tileSize*4;
-        drawSubWindow(x, y, width, height);
+        drawBox(x, y, width, height, 30, 4);
 
-        g2.setFont(g2.getFont().deriveFont(java.awt.Font.PLAIN, 25F));
-        x += gp.tileSize;
+        g2.setFont(pixelOBold32F);
+        g2.setColor(java.awt.Color.PINK);
         y += gp.tileSize;
-        for (String line:currentDialogue.split("\n")){
-            g2.drawString(line, x, y);
+
+        if (!currentDialogue.equals(lastDialogue)) {
+            displayedCharCount = 0;
+            charDelayCounter = 0;
+            lastDialogue = currentDialogue;
+        }
+
+        if (displayedCharCount < currentDialogue.length()) {
+            charDelayCounter++;
+            if (charDelayCounter >= charDisplayDelay) {
+                displayedCharCount++;
+                charDelayCounter = 0;
+            }
+        }
+
+        String[] lines = currentDialogue.split("\n");
+        int charsLeft = displayedCharCount;
+        for (String line : lines) {
+            int showLen = Math.min(charsLeft, line.length());
+            String showLine = line.substring(0, showLen);
+            x = getXForCenteredText(line, pixelOBold32F);
+            g2.drawString(showLine, x, y);
             y += 40;
+            charsLeft -= showLen;
+            if (charsLeft <= 0) break;
         }
     }
+
+    public void drawBox(int x, int y, int width, int height, int arc, int offset) {
+        g2.setColor(new java.awt.Color(0, 0, 0, 100));
+        g2.fillRoundRect(x + offset, y + offset, width, height, arc, arc);
+
+        g2.setColor(new java.awt.Color(30, 30, 30, 200));
+        g2.fillRoundRect(x, y, width, height, arc, arc);
+        
+        g2.setColor(java.awt.Color.WHITE);
+        g2.setStroke(new java.awt.BasicStroke(4));
+        g2.drawRoundRect(x + 2, y + 2, width - 4, height - 4, arc - 2, arc - 2);
+
+        g2.setColor(new java.awt.Color(255, 255, 255, 80));
+        g2.setStroke(new java.awt.BasicStroke(2));
+        g2.drawRoundRect(x + 7, y + 7, width - 14, height - 14, arc - 4, arc - 4);
+    }
+
 
     public void drawSubWindow(int x, int y, int width, int height) {
         java.awt.Color c = new java.awt.Color(0, 0, 0, 210);
@@ -723,71 +809,62 @@ public class UI {
         g2.drawRoundRect(x + 5, y + 5, width - 10, height - 10, 25, 25);
     }
 
+    public void changeAlpha(float a) {
+        g2.setComposite(java.awt.AlphaComposite.getInstance(java.awt.AlphaComposite.SRC_OVER, a));
+    }
+
     public void drawTitleScreen() {
-        g2.setColor(new java.awt.Color(70, 120, 80));
+        g2.setColor(java.awt.Color.BLACK);
         g2.fillRect(0, 0, gp.screenWidth, gp.screenHeight);
+        g2.drawImage(background, 0, 0, gp.screenWidth, gp.screenHeight, null);
+        changeAlpha(0.65f);
+        g2.setColor(java.awt.Color.BLACK);
+        g2.fillRect(0, 0, gp.screenWidth, gp.screenHeight);
+        changeAlpha(1f);
+
+        // GROUP NAME
+        String text = "INFINITY CODE PROUDLY PRESENTS";
+        int x = getXForCenteredText(text, pixelOBold48F);
+        int y = (int)(gp.tileSize * 1.5);
+        drawText(text, x, y, pixelOBold48F, java.awt.Color.WHITE, java.awt.Color.BLACK, 4);
 
         // TITLE NAME
-        g2.setFont(g2.getFont().deriveFont(java.awt.Font.BOLD, 76F));
-        String text = "Blue Boy Adventure";
-        int x = getXForCenteredText(text);
-        int y = gp.tileSize*3;
+        g2.setFont(pixelOBold56F);
+        text = "Homebound - Island Survivors";
+        x = getXForCenteredText(text, pixelOBold56F);
+        y += (int)(gp.tileSize * 1.5);
+        drawText(text, x, y, pixelOBold56F, java.awt.Color.WHITE, java.awt.Color.BLACK, 4);
 
-        // SHADOW
-        g2.setColor(java.awt.Color.gray);
-        g2.drawString(text, x + 5, y + 5);
+        // COUPLE IMAGE
+        int width = (int)(gp.tileSize * 4.5);
+        int height = gp.tileSize * 2;
+        x = (int)(gp.screenWidth / 2 - width / 2);
+        y += (int)(gp.tileSize);
+        g2.drawImage(couple, x, y, width, height, null);
 
-        // MAIN COLOR
-        g2.setColor(java.awt.Color.white);
-        g2.drawString(text, x, y); 
-
-        // BLUE BOY IMAGE
-        x = gp.screenWidth/2 - gp.tileSize;
-        y += gp.tileSize*2;
-        g2.drawImage(gp.player.down1, x, y, gp.tileSize*2, gp.tileSize*2, null);
-        
         // MENU
-        g2.setFont(g2.getFont().deriveFont(java.awt.Font.BOLD, 48F));
-        text = "NEW  GAME";
-        x = getXForCenteredText(text);
-        y += gp.tileSize*3.5;
-        g2.setColor(java.awt.Color.black);
-        g2.drawString(text, x + 5, y + 5);
-        g2.setColor(java.awt.Color.white);
-        g2.drawString(text, x, y);
+        text = "NEW GAME";
+        x = getXForCenteredText(text, pixelO.deriveFont(64F));
+        y += height + gp.tileSize * 1.75;
+        drawText(text, x, y, pixelO.deriveFont(64F), java.awt.Color.WHITE, java.awt.Color.BLACK, 3);
         if (commandNum == 0) {
-            g2.setColor(java.awt.Color.black);
-            g2.drawString(">", x - gp.tileSize + 5, y + 5);
-            g2.setColor(java.awt.Color.white);
-            g2.drawString(">", x - gp.tileSize, y);
+            drawText(">", x - gp.tileSize, y, pixelOBold64F, java.awt.Color.WHITE, java.awt.Color.BLACK, 3);
         }
 
         text = "LOAD GAME";
-        x = getXForCenteredText(text);
-        y += gp.tileSize;
-        g2.setColor(java.awt.Color.black);
-        g2.drawString(text, x + 5, y + 5);
-        g2.setColor(java.awt.Color.white);
-        g2.drawString(text, x, y);
+        x = getXForCenteredText(text, pixelO.deriveFont(64F));
+        y += gp.tileSize * 1.5;
+        drawText(text, x, y, pixelO.deriveFont(64F), java.awt.Color.WHITE, java.awt.Color.BLACK, 3);
         if (commandNum == 1) {
-            g2.setColor(java.awt.Color.black);
-            g2.drawString(">", x - gp.tileSize + 5, y + 5);
-            g2.setColor(java.awt.Color.white);
-            g2.drawString(">", x - gp.tileSize, y);
+            drawText(">", x - gp.tileSize, y, pixelOBold64F, java.awt.Color.WHITE, java.awt.Color.BLACK, 3);
         }
 
-        text = "QUIT";
-        x = getXForCenteredText(text);
-        y += gp.tileSize;
-        g2.setColor(java.awt.Color.black);
-        g2.drawString(text, x + 5, y + 5);
-        g2.setColor(java.awt.Color.white);
-        g2.drawString(text, x, y);
+        text = "EXIT";
+        x = getXForCenteredText(text, pixelO.deriveFont(64F));
+        y += gp.tileSize * 1.5;
+        drawText(text, x, y, pixelO.deriveFont(64F), java.awt.Color.WHITE, java.awt.Color.BLACK, 3);
         if (commandNum == 2) {
-            g2.setColor(java.awt.Color.black);
-            g2.drawString(">", x - gp.tileSize + 5, y + 5);
-            g2.setColor(java.awt.Color.white);
-            g2.drawString(">", x - gp.tileSize, y);
+            drawText(">", x - gp.tileSize, y, pixelOBold64F, java.awt.Color.WHITE, java.awt.Color.BLACK, 3);
         }
     }
 
@@ -851,7 +928,7 @@ public class UI {
 
         //TEXT
         g2.setColor(java.awt.Color.white);
-        g2.setFont(g2.getFont().deriveFont(32F));
+        g2.setFont(pixelO.deriveFont(32F));
         
         int textX = frameX + 20;
         int textY = frameY + gp.tileSize;

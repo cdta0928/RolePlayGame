@@ -215,6 +215,8 @@ public class GamePanel extends javax.swing.JPanel implements Runnable {
         // OTHER
         else {
             // TILE 
+            g2.setColor(java.awt.Color.BLACK);
+            g2.fillRect(0, 0, screenWidth, screenHeight);
             tileManager.draw(g2); 
             for (int i = 0; i < iTile[1].length; i++) {
                 if (iTile[currentMap][i] != null) {
@@ -277,6 +279,7 @@ public class GamePanel extends javax.swing.JPanel implements Runnable {
 
     public void drawToScreen() {
         java.awt.Graphics g = getGraphics();
+        // this.setBackground(java.awt.Color.BLACK);
         g.drawImage(tempScreen, 0, 0, screenWidth2, screenHeight2, null);
         g.dispose();
     }

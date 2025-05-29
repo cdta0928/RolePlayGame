@@ -56,7 +56,11 @@ public class KeyHandler implements java.awt.event.KeyListener {
         switchCommandNum(2, code);
 
         if (code == java.awt.event.KeyEvent.VK_ENTER) {
-            if (gp.ui.commandNum == 0) { gp.gameState = gp.playState; }
+            if (gp.ui.commandNum == 0) { 
+                gp.restart();
+                gp.gameState = gp.playState; 
+                gp.repaint();
+            }
             if (gp.ui.commandNum == 1) {
                 // Later
             }
