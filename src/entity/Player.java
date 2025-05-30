@@ -40,7 +40,7 @@ public class Player extends Entity {
         worldX = gp.tileSize * 20; 
         worldY = gp.tileSize * 31; 
         gp.currentMap = 0; 
-        defaultSpeed = 10;
+        defaultSpeed = 4;
         speed = defaultSpeed;
         direction = "down"; 
 
@@ -51,8 +51,8 @@ public class Player extends Entity {
         maxMana = 4;
         mana = maxMana;
         ammo = 1;
-        strength = 100;
-        dexterity = 100;
+        strength = 1;
+        dexterity = 1;
         exp = 0;
         nextLevelExp = 5;
         coin = 0;
