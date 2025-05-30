@@ -47,7 +47,7 @@ public class GamePanel extends javax.swing.JPanel implements Runnable {
     public entity.Player player = new entity.Player(this, keyHandler); 
     public entity.Entity obj[][] = new entity.Entity[maxMap][20];
     public entity.Entity npc[][] = new entity.Entity[maxMap][10];
-    public entity.Entity monster[][] = new entity.Entity[maxMap][20];
+    public entity.Entity monster[][] = new entity.Entity[maxMap][200];
     java.util.ArrayList<entity.Entity> entityList = new java.util.ArrayList<>(); 
     public entity.Entity projectile[][] = new entity.Entity[maxMap][20];
     // public java.util.ArrayList<entity.Entity> projectile[currentMap] = new java.util.ArrayList<>(); 

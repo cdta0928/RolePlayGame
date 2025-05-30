@@ -451,9 +451,9 @@ public class UI {
     }
 
     public void optionEndGame(int frameX, int frameY) {
-        int textX = frameX + gp.tileSize;
+        int textX = frameX + (int)(gp.tileSize*0.5);
         int textY = frameY + gp.tileSize*3;
-
+        g2.setFont(pixelO.deriveFont(32F));
         currentDialogue = "Quit the game and \nreturn to the title screen?";
         for (String line:currentDialogue.split("\n")) {
             g2.drawString(line, textX, textY);
@@ -491,6 +491,7 @@ public class UI {
         int textY;
         // TITLE 
         String text = "Options";
+        g2.setFont(pixelOBold32F);
         textX = getXForCenteredText(text, pixelOBold32F);
         textY = frameY + gp.tileSize;
         g2.drawString(text, textX, textY);
@@ -555,9 +556,10 @@ public class UI {
     }
 
     public void optionFullScreenNotification(int frameX, int frameY) {
+        g2.setFont(pixelO.deriveFont(32F));
         int textX = frameX + gp.tileSize;
         int textY = frameY + gp.tileSize*3;
-        currentDialogue = "The change will take effect\n after restating the game.";
+        currentDialogue = "The change will take\neffect after restating\nthe game.";
         for (String line:currentDialogue.split("\n")) {
             g2.drawString(line, textX, textY);
             textY += 40;
@@ -578,8 +580,9 @@ public class UI {
         int textY;
 
         // TITLE
+        g2.setFont(pixelO.deriveFont(32F));
         String text = "Control";
-        textX = getXForCenteredText(text, pixelOBold32F);
+        textX = getXForCenteredText(text, pixelO.deriveFont(32F));
         textY = frameY + gp.tileSize;
         g2.drawString(text, textX, textY);
 

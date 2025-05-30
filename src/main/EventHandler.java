@@ -48,11 +48,8 @@ public class EventHandler {
         if (distance > gp.tileSize) { canTouchEvent = true; }
 
         if (canTouchEvent == true) {
-            if (hit(0, 26, 15, "right") == true) { 
-                damagePit(26, 15, gp.dialogueState);
-            }
-            else if (hit(0, 23, 7, "up") == true) {
-                healingPool(23, 7, gp.dialogueState);
+            if (hit(0, 28, 33, "any") == true) {
+                healingPool(28,33, gp.dialogueState);
             }
             else if (hit(0, 11, 8, "any") == true) {
                 teleport(1, 12, 13, gp.dialogueState);

@@ -37,12 +37,10 @@ public class Player extends Entity {
     }
 
     public void setDefaultValues() {
-        worldX = gp.tileSize * 12; 
-        worldY = gp.tileSize * 12; 
-        // worldX = gp.tileSize * 20; 
-        // worldY = gp.tileSize * 31; 
-        gp.currentMap = 1; 
-        defaultSpeed = 4;
+        worldX = gp.tileSize * 20; 
+        worldY = gp.tileSize * 31; 
+        gp.currentMap = 0; 
+        defaultSpeed = 10;
         speed = defaultSpeed;
         direction = "down"; 
 
@@ -52,16 +50,15 @@ public class Player extends Entity {
         life = maxLife;
         maxMana = 4;
         mana = maxMana;
-        ammo = 10;
-        strength = 10;
-        dexterity = 1;
+        ammo = 1;
+        strength = 100;
+        dexterity = 100;
         exp = 0;
         nextLevelExp = 5;
-        coin = 500;
-        currentWeapon = new object.OBJ_Axe(gp);
+        coin = 0;
+        currentWeapon = new object.OBJ_Sword_Normal(gp);
         currentShield = new object.OBJ_Shield_Wood(gp);
         projectile = new object.OBJ_Fireball(gp);
-        // projectile = new object.OBJ_Rock(gp);
         attack = getAttack();
         defense = getDefense();
     }
@@ -199,19 +196,18 @@ public class Player extends Entity {
                 attackRight2 = setup("/res/player/sword/right2", gp.tileSize*2, gp.tileSize);
             }
             else if (currentWeapon.type == type_axe) {
-                attackUp1 = setup("/res/player/axe/boy_axe_up_1", gp.tileSize, gp.tileSize*2);
-                attackUp2 = setup("/res/player/axe/boy_axe_up_2", gp.tileSize, gp.tileSize*2);
-                attackDown1 = setup("/res/player/axe/boy_axe_down_1", gp.tileSize, gp.tileSize*2);
-                attackDown2 = setup("/res/player/axe/boy_axe_down_2", gp.tileSize, gp.tileSize*2);
-                attackLeft1 = setup("/res/player/axe/boy_axe_left_1", gp.tileSize*2, gp.tileSize);
-                attackLeft2 = setup("/res/player/axe/boy_axe_left_2", gp.tileSize*2, gp.tileSize);
-                attackRight1 = setup("/res/player/axe/boy_axe_right_1", gp.tileSize*2, gp.tileSize);
-                attackRight2 = setup("/res/player/axe/boy_axe_right_2", gp.tileSize*2, gp.tileSize);
+                attackUp1 = setup("/res/player/axe/up1", gp.tileSize, gp.tileSize*2);
+                attackUp2 = setup("/res/player/axe/up2", gp.tileSize, gp.tileSize*2);
+                attackDown1 = setup("/res/player/axe/down1", gp.tileSize, gp.tileSize*2);
+                attackDown2 = setup("/res/player/axe/down2", gp.tileSize, gp.tileSize*2);
+                attackLeft1 = setup("/res/player/axe/left1", gp.tileSize*2, gp.tileSize);
+                attackLeft2 = setup("/res/player/axe/left2", gp.tileSize*2, gp.tileSize);
+                attackRight1 = setup("/res/player/axe/right1", gp.tileSize*2, gp.tileSize);
+                attackRight2 = setup("/res/player/axe/right2", gp.tileSize*2, gp.tileSize);
             }
     }
 
     public void update() {
-        // System.out.println(worldX/gp.tileSize + " " + worldY/gp.tileSize);
         if (attacking == true) {
             attacking();
         }

@@ -1,42 +1,44 @@
 package monster;
 
-public class MON_Slime extends entity.Entity {
-
+public class MON_Spider extends entity.Entity {
     main.GamePanel gp;
-
-    public MON_Slime(main.GamePanel gp) {
+    
+    public MON_Spider(main.GamePanel gp) {
         super(gp);
         this.gp = gp;
+        setDefaultAttributes();
+        getImage();
+    }
 
+    public void setDefaultAttributes() {
+        name = "Spider";
         type = type_monster;
-        name = "Slime";
-        defaultSpeed = 1;
+        defaultSpeed = 2;
         speed = defaultSpeed;
-        maxLife = 4;
+        direction = "down";
+        solidArea = new java.awt.Rectangle(6, 16, 36, 30);
+        solidAreaDefaultX = solidArea.x;
+        solidAreaDefaultY = solidArea.y;
+
+        maxLife = 8;
         life = maxLife;
-        attack = 2;
-        defense = 1;
-        exp = 2;
+        attack = 4;
+        defense = 2;
+        exp = 4;
         projectile = new object.OBJ_Rock(gp);
-
-        solidArea = new java.awt.Rectangle(3, 18, 42, 30);
-        solidAreaDefaultX = 3;
-        solidAreaDefaultY = 18;
-
-        getSlimeImage();
+        projectile.speed *= 2;
     }
 
-    public void getSlimeImage() {
-        up1 = setup("/res/monster/slime/slimeup1", gp.tileSize, gp.tileSize);
-        up2 = setup("/res/monster/slime/slimeup2", gp.tileSize, gp.tileSize);
-        down1 = setup("/res/monster/slime/slimedown1", gp.tileSize, gp.tileSize);
-        down2 = setup("/res/monster/slime/slimedown2", gp.tileSize, gp.tileSize);
-        left1 = setup("/res/monster/slime/slimeleft1", gp.tileSize, gp.tileSize);
-        left2 = setup("/res/monster/slime/slimeleft2", gp.tileSize, gp.tileSize);
-        right1 = setup("/res/monster/slime/slimeright1", gp.tileSize, gp.tileSize);
-        right2 = setup("/res/monster/slime/slimeright2", gp.tileSize, gp.tileSize);
+    public void getImage() {
+        up1 = setup("/res/monster/spider/spideru1", gp.tileSize, gp.tileSize);
+        down1 = setup("/res/monster/spider/spiderd1", gp.tileSize, gp.tileSize);
+        left1 = setup("/res/monster/spider/spiderl1", gp.tileSize, gp.tileSize);
+        right1 = setup("/res/monster/spider/spiderr1", gp.tileSize, gp.tileSize);
+        up2 = setup("/res/monster/spider/spideru2", gp.tileSize, gp.tileSize);
+        down2 = setup("/res/monster/spider/spiderd2", gp.tileSize, gp.tileSize);
+        left2 = setup("/res/monster/spider/spiderl2", gp.tileSize, gp.tileSize);
+        right2 = setup("/res/monster/spider/spiderr2", gp.tileSize, gp.tileSize);
     }
-
     public void setAction() {
         if (onPath == true) {
             int goalCol = (gp.player.worldX + gp.player.solidArea.x)/gp.tileSize;
@@ -84,7 +86,7 @@ public class MON_Slime extends entity.Entity {
     }
 
     public void damageReaction() {
-        actionLockCounter = 0;
+        actionLockCounter = 0; 
         onPath = true;
     }
 
@@ -93,10 +95,14 @@ public class MON_Slime extends entity.Entity {
         int i = new java.util.Random().nextInt(100) + 1;
 
         // SET THE MONSTER DROP
-        if (i < 50) {
+        if (i < 25) {
+            dropItem(new object.OBJ_Coin_Bronze(gp));
+            dropItem(new object.OBJ_Coin_Bronze(gp));
+            dropItem(new object.OBJ_Coin_Bronze(gp));
+            dropItem(new object.OBJ_Coin_Bronze(gp));
             dropItem(new object.OBJ_Coin_Bronze(gp));
         }
-        if (i >= 50 && i < 75) {
+        if (i >= 25 && i < 75) {
             dropItem(new object.OBJ_Heart(gp));
         }
         if (i >= 75 && i <= 100) {

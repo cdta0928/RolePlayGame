@@ -341,7 +341,7 @@ public class Entity {
                 invincibleCounter = 0;
             }
         }
-        if (shotAvailableCounter < 60) {
+        if (shotAvailableCounter < 180) {
             shotAvailableCounter++;
         }
     }
@@ -476,5 +476,13 @@ public class Entity {
         gp.particleList.add(p2);
         gp.particleList.add(p3);
         gp.particleList.add(p4);
+    }
+
+    public void updateMonster(Entity e, int speed, int attack, int defense, int pSpeed, int exp) {
+        this.exp = exp;
+        this.speed = speed;
+        this.attack = attack;
+        this.defense = defense;
+        this.projectile.speed = speed;
     }
 }

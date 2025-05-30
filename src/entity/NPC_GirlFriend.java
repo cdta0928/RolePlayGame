@@ -31,9 +31,6 @@ public class NPC_GirlFriend extends Entity {
 
     public void setAction() {
         if (onPath == true) {
-            // NPC findPath to move
-            // int goalCol = 10;
-            // int goalRow = 8;
             int goalCol = (gp.player.worldX + gp.player.solidArea.x)/gp.tileSize;
             int goalRow = (gp.player.worldY + gp.player.solidArea.y)/gp.tileSize;
             searchPath(goalCol, goalRow);
@@ -66,7 +63,7 @@ public class NPC_GirlFriend extends Entity {
 
     public void speak() {
         super.speak();
-        onPath = true;
+        // onPath = true;
     }
 
 }
