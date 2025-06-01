@@ -5,7 +5,7 @@ public class OBJ_Axe extends entity.Entity {
         super(gp);
 
         type = type_axe;
-        name = "WoodCutter's Axe";
+        name = "Axe";
         down1 = setup("/res/object/inventory/axe", gp.tileSize, gp.tileSize);
         attackValue = 2;
         attackArea.width = 30;

@@ -1,5 +1,7 @@
 package entity;
 
+import object.OBJ_Key;
+
 public class Player extends Entity {
 
     main.KeyHandler keyHandler; 
@@ -79,6 +81,8 @@ public class Player extends Entity {
         inventory.clear();
         inventory.add(currentWeapon);
         inventory.add(currentShield);
+        inventory.add(new OBJ_Key(gp));
+        inventory.add(new OBJ_Key(gp));
     }
 
     public void selectItem() {
