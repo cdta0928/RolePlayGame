@@ -17,6 +17,7 @@ public class Entity {
     public int spriteNum = 1; // Current sprite number (1 or 2)
     public boolean onPath = false;
     public boolean knockBack = false;
+    public String knockBackDirection;
 
     // SOLID AREA
     public java.awt.Rectangle solidArea = new java.awt.Rectangle(0, 0, 48, 48); // Rectangle for collision detection
@@ -37,6 +38,7 @@ public class Entity {
     public boolean hpBarOn = false;
 
     public java.awt.Rectangle attackArea = new java.awt.Rectangle(0, 0, 0, 0);
+    public Entity attacker;
 
     // COUNTER
     public int spriteCounter = 0; 
@@ -275,7 +277,7 @@ public class Entity {
         return Math.abs(worldY - target.worldY);
     }
     public int getTileDistance(Entity target) {
-        return getXDistance(target) + getYDistance(target);
+        return (getXDistance(target) + getYDistance(target))/gp.tileSize;
     }
     public int getGoatCol(Entity target) {
         return (target.worldX + target.solidArea.x)/gp.tileSize;
@@ -318,7 +320,7 @@ public class Entity {
                 speed = defaultSpeed;
             }
             else if (collisionOn == false) {
-                switch (gp.player.direction) {
+                switch (knockBackDirection) {
                     case "up": worldY -= speed; break;
                     case "down": worldY += speed; break;
                     case "left": worldX -= speed; break;
@@ -398,6 +400,13 @@ public class Entity {
                 gp.player.life -= damage;
                 gp.player.invincible = true;
             }
+    }
+
+    public void setKnockBack(Entity target, Entity attacker, int knockBackPower) {
+        this.attacker = attacker;
+        target.knockBackDirection = attacker.direction;
+        target.speed += knockBackPower;
+        target.knockBack = true;
     }
 
     public void draw(java.awt.Graphics2D g2) {
