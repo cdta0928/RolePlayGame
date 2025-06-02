@@ -1,5 +1,7 @@
 package entity;
 
+import java.util.Random;
+
 public class Entity {
 
     main.GamePanel gp;
@@ -266,6 +268,21 @@ public class Entity {
     public int getRow() {
         return (worldY + solidArea.y)/gp.tileSize;
     }
+    public int getXDistance(Entity target) {
+        return Math.abs(worldX - target.worldX);
+    }
+    public int getYDistance(Entity target) {
+        return Math.abs(worldY - target.worldY);
+    }
+    public int getTileDistance(Entity target) {
+        return getXDistance(target) + getYDistance(target);
+    }
+    public int getGoatCol(Entity target) {
+        return (target.worldX + target.solidArea.x)/gp.tileSize;
+    }
+    public int getGoatRow(Entity target) {
+        return (target.worldX + target.solidArea.y)/gp.tileSize;
+    }
 
     public void dropItem(entity.Entity droppedItem) {
         for (int i = 0; i < gp.obj[1].length; i++) {
@@ -484,5 +501,51 @@ public class Entity {
         this.attack = attack;
         this.defense = defense;
         this.projectile.speed = speed;
+    }
+
+    public void checkStopChasingOrNot(Entity target, int distance, int rate) {
+        if (getTileDistance(target) > distance) {
+            int i = new Random().nextInt(rate);
+            if (i == 0) {
+                onPath = false;
+            }
+        }
+    }
+    public void checkStartChasingOrNot(Entity target, int distance, int rate) {
+        if (getTileDistance(target) < distance) {
+            int i = new Random().nextInt(rate);
+            if (i == 0) {
+                onPath = true;
+            }
+        }
+    }
+
+    public void checkShootOrNot(int rate, int shotInterval) {
+        int i = new java.util.Random().nextInt(rate) + 1;
+        if (i == 0 && projectile.alive == false && shotAvailableCounter == shotInterval) {
+            projectile.set(worldX, worldY, direction, true, this);
+            for (int ii = 0; ii < gp.projectile[gp.currentMap].length; ii++) {
+                if (gp.projectile[gp.currentMap][ii] == null) {
+                    gp.projectile[gp.currentMap][ii] = projectile;
+                    break;
+                }
+            }
+            shotAvailableCounter = 0;
+        }
+    }
+
+    public void getRandomDirection() {
+        actionLockCounter++;
+        if (actionLockCounter == 120) {
+            java.util.Random random = new java.util.Random();
+            int i = random.nextInt(100) + 1;
+
+            if (i <= 25) { direction = "up"; }
+            if (i > 25 && i <= 50) { direction = "down"; }
+            if (i > 50 && i <= 75) { direction = "left"; }
+            if (i > 75 && i <= 100) { direction = "right"; }
+
+            actionLockCounter = 0;
+        }
     }
 }

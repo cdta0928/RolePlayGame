@@ -39,48 +39,14 @@ public class MON_Slime extends entity.Entity {
 
     public void setAction() {
         if (onPath == true) {
-            int goalCol = (gp.player.worldX + gp.player.solidArea.x)/gp.tileSize;
-            int goalRow = (gp.player.worldY + gp.player.solidArea.y)/gp.tileSize;
-            searchPath(goalCol, goalRow);
+            checkStopChasingOrNot(gp.player, 15, 100);
+            searchPath(getGoatCol(gp.player), getGoatRow(gp.player));
+            checkShootOrNot(200, 30);
         }
         else {
-            actionLockCounter++;
-            if (actionLockCounter == 120) {
-                java.util.Random random = new java.util.Random();
-                int i = random.nextInt(100) + 1;
-
-                if (i <= 25) { direction = "up"; }
-                if (i > 25 && i <= 50) { direction = "down"; }
-                if (i > 50 && i <= 75) { direction = "left"; }
-                if (i > 75 && i <= 100) { direction = "right"; }
-
-                actionLockCounter = 0;
-            }
+            checkStartChasingOrNot(gp.player, 5, 100);
+            getRandomDirection();
         }
-        int i = new java.util.Random().nextInt(100) + 1;
-        if (i > 99 && projectile.alive == false && shotAvailableCounter == 180) {
-            projectile.set(worldX, worldY, direction, true, this);
-            for (int ii = 0; ii < gp.projectile[gp.currentMap].length; ii++) {
-                if (gp.projectile[gp.currentMap][ii] == null) {
-                    gp.projectile[gp.currentMap][ii] = projectile;
-                    break;
-                }
-            }
-            shotAvailableCounter = 0;
-        }
-    }
-
-    @Override
-    public void update() {
-        super.update();
-        int xDistance = Math.abs(worldX - gp.player.worldX);
-        int yDistance = Math.abs(worldY - gp.player.worldY);
-        int tileDistance = (xDistance + yDistance)/gp.tileSize;
-        if (onPath == false && tileDistance < 10) {
-            int i = new java.util.Random().nextInt(100) + 1;
-            if (i > 50) { onPath = true; }
-        }
-        if (onPath == true && tileDistance > 30) { onPath = false; }
     }
 
     public void damageReaction() {
