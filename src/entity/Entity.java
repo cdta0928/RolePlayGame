@@ -19,6 +19,7 @@ public class Entity {
     public boolean knockBack = false;
     public String knockBackDirection;
     public boolean guarding = false;
+    public boolean transparent = false;
 
     // SOLID AREA
     public java.awt.Rectangle solidArea = new java.awt.Rectangle(0, 0, 48, 48); // Rectangle for collision detection
@@ -524,6 +525,9 @@ public class Entity {
                 }
 
                 gp.player.life -= damage;
+                if (damage != 0) {
+                    gp.player.transparent = true;
+                }
                 gp.player.invincible = true;
             }
     }
