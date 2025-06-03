@@ -420,56 +420,6 @@ public class Player extends Entity {
         }
     }
 
-    public void attacking() {
-        spriteCounter++;
-        if (spriteCounter <= 5) {
-            spriteNum = 1;
-        }
-        if (spriteCounter > 5 && spriteCounter <= 25) {
-            spriteNum = 2;
-            
-            // SAVE CURRENT STATUS
-            int currentWorldX = worldX;
-            int currentWorldY = worldY;
-            int solidAreaWidth = solidArea.width;
-            int solidAreaHeight = solidArea.height;
-
-            // ATTACK AREA
-            switch (direction) {
-                case "up": worldY -= attackArea.height; break;
-                case "down": worldY += attackArea.height; break;
-                case "left": worldX -= attackArea.width; break;
-                case "right": worldX += attackArea.width; break;
-            }
-
-            // ATTACK AREA -> SOLID AREA
-            solidArea.width = attackArea.width;
-            solidArea.height = attackArea.height;
-
-            // CHECK MONSTER AFTER UPDATE SOLID AREA
-            int monsterIndex = gp.cChecker.checkEntity(this, gp.monster);
-            damageMonster(monsterIndex, this, attack, currentWeapon.knockBackPower);
-
-            // CHECK ATTACK INTERACTIVE TILE
-            int iTileIndex = gp.cChecker.checkEntity(this, gp.iTile);
-            damageInteractiveTile(iTileIndex);
-
-            int projectileIndex = gp.cChecker.checkEntity(this, gp.projectile);
-            damageProjectile(projectileIndex);
-            
-            worldX = currentWorldX;
-            worldY = currentWorldY;
-            solidArea.width = solidAreaWidth;
-            solidArea.height  = solidAreaHeight;
-        }
-
-        if (spriteCounter > 25) {
-            spriteNum = 1;
-            spriteCounter = 0;
-            attacking = false;
-        }
-    }
-
     public void damageProjectile(int i) {
         if (i != 999) {
             Entity projectile = gp.projectile[gp.currentMap][i];
