@@ -73,6 +73,8 @@ public class Entity {
     public Entity currentLight;
 
     public Projectile projectile;
+    public int motion1_duration;
+    public int motion2_duration;
 
     // ITEM ATTRIBUTES
     public int value;
@@ -228,10 +230,10 @@ public class Entity {
 
     public void attacking() {
         spriteCounter++;
-        if (spriteCounter <= 5) {
+        if (spriteCounter <= motion1_duration) {
             spriteNum = 1;
         }
-        if (spriteCounter > 5 && spriteCounter <= 25) {
+        if (spriteCounter > motion1_duration && spriteCounter <= motion2_duration) {
             spriteNum = 2;
             
             // SAVE CURRENT STATUS
@@ -276,7 +278,7 @@ public class Entity {
             solidArea.height  = solidAreaHeight;
         }
 
-        if (spriteCounter > 25) {
+        if (spriteCounter > motion2_duration) {
             spriteNum = 1;
             spriteCounter = 0;
             attacking = false;

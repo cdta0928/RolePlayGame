@@ -16,5 +16,7 @@ public class OBJ_Sword_Normal extends entity.Entity {
         description = "[" + name + "]\nAn old sword.";
         price = 10;
         knockBackPower = 3;
+        motion1_duration = 5;
+        motion2_duration = 25;
     }
 }
