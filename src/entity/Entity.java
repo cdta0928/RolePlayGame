@@ -271,19 +271,24 @@ public class Entity {
         return (worldY + solidArea.y)/gp.tileSize;
     }
     public int getXDistance(Entity target) {
-        return Math.abs(worldX - target.worldX);
+        int xDistance = Math.abs(worldX - target.worldX);
+        return xDistance;
     }
     public int getYDistance(Entity target) {
-        return Math.abs(worldY - target.worldY);
+        int yDistance = Math.abs(worldY - target.worldY);
+        return yDistance;
     }
     public int getTileDistance(Entity target) {
-        return (getXDistance(target) + getYDistance(target))/gp.tileSize;
+        int tileDistance = (getXDistance(target) + getYDistance(target))/gp.tileSize;
+        return tileDistance;
     }
     public int getGoatCol(Entity target) {
-        return (target.worldX + target.solidArea.x)/gp.tileSize;
+        int goalCol = (target.worldX + target.solidArea.x) / gp.tileSize;
+        return goalCol;
     }
     public int getGoatRow(Entity target) {
-        return (target.worldX + target.solidArea.y)/gp.tileSize;
+        int goalRow = (target.worldY + target.solidArea.y) / gp.tileSize;
+        return goalRow;
     }
 
     public void dropItem(entity.Entity droppedItem) {
