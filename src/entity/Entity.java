@@ -10,7 +10,7 @@ public class Entity {
     public java.awt.image.BufferedImage image, image2, image3;
     public java.awt.image.BufferedImage up1, up2, down1, down2, left1, left2, right1, right2; 
     public java.awt.image.BufferedImage attackUp1, attackUp2, attackDown1, attackDown2, attackLeft1, attackLeft2, attackRight1, attackRight2;
-
+    public java.awt.image.BufferedImage guardUp, guardDown, guardLeft, guardRight;
     // STATE
     public int worldX, worldY;
     public String direction = "down"; // Direction of the entity (up, down, left, right)
@@ -18,6 +18,7 @@ public class Entity {
     public boolean onPath = false;
     public boolean knockBack = false;
     public String knockBackDirection;
+    public boolean guarding = false;
 
     // SOLID AREA
     public java.awt.Rectangle solidArea = new java.awt.Rectangle(0, 0, 48, 48); // Rectangle for collision detection

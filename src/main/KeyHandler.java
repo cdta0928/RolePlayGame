@@ -3,6 +3,7 @@ package main;
 public class KeyHandler implements java.awt.event.KeyListener {
     GamePanel gp;
     public boolean upPressed, downPressed, leftPressed, rightPressed, enterPressed;
+    public boolean spacePressed;
     public boolean shotKeyPressed;
 
     public KeyHandler(GamePanel gp) { this.gp = gp; }
@@ -50,6 +51,8 @@ public class KeyHandler implements java.awt.event.KeyListener {
         if (code == java.awt.event.KeyEvent.VK_S) { downPressed = false; }
         if (code == java.awt.event.KeyEvent.VK_D) { rightPressed = false; }
         if (code == java.awt.event.KeyEvent.VK_F) { shotKeyPressed = false; }
+        if (code == java.awt.event.KeyEvent.VK_ENTER) { enterPressed = false; }
+        if (code == java.awt.event.KeyEvent.VK_SPACE) { spacePressed = false; }
     }
 
     public void titleState(int code) {
@@ -94,6 +97,9 @@ public class KeyHandler implements java.awt.event.KeyListener {
                     gp.tileManager.loadMap("/res/maps/interior01.txt", 1);
                     break;
             }
+        }
+        if (code == java.awt.event.KeyEvent.VK_SPACE) {
+            spacePressed = true;
         }
     }
 
