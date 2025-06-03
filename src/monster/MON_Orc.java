@@ -20,6 +20,7 @@ public class MON_Orc extends Entity {
         exp = 10;
         motion1_duration = 40;
         motion2_duration = 85;
+        knockBackPower = 5;
 
         solidArea = new java.awt.Rectangle(4, 4, 40, 34);
         solidAreaDefaultX = solidArea.x;

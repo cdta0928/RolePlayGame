@@ -216,7 +216,43 @@ public class Player extends Entity {
     }
 
     public void update() {
-        if (attacking == true) {
+        if (knockBack == true) {
+            // CHECK TILE COLLISION
+            collisionOn = false;
+            gp.cChecker.checkTile(this);
+
+            // CHECK OBJECT COLLISION
+            gp.cChecker.checkObject(this, true);
+
+            // CHECK NPC COLLISION
+            gp.cChecker.checkEntity(this, gp.npc);
+
+            // CHECK MONSTER COLLISION
+            gp.cChecker.checkEntity(this, gp.monster);
+
+            // CHECK INTERACTIVE TILE COLLISION
+            gp.cChecker.checkEntity(this, gp.iTile);
+            if (collisionOn == true) {
+                knockBackCounter = 0;
+                knockBack = false;
+                speed = defaultSpeed;
+            }
+            else if (collisionOn == false) {
+                switch (knockBackDirection) {
+                    case "up": worldY -= speed; break;
+                    case "down": worldY += speed; break;
+                    case "left": worldX -= speed; break;
+                    case "right": worldX += speed; break;
+                }
+            }
+            knockBackCounter++;
+            if (knockBackCounter == 10) {
+                knockBack = false;
+                knockBackCounter = 0;
+                speed = defaultSpeed;
+            }
+        }
+        else if (attacking == true) {
             attacking();
         }
         else if (keyHandler.spacePressed == true) {

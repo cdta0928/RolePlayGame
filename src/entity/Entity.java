@@ -527,6 +527,7 @@ public class Entity {
                 gp.player.life -= damage;
                 if (damage != 0) {
                     gp.player.transparent = true;
+                    setKnockBack(gp.player, this, knockBackPower);
                 }
                 gp.player.invincible = true;
             }
