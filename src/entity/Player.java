@@ -76,6 +76,7 @@ public class Player extends Entity {
         life = maxLife;
         mana = maxMana;
         invincible = false;
+        transparent = false;
     }
 
     public void setItems() {
@@ -257,6 +258,8 @@ public class Player extends Entity {
         }
         else if (keyHandler.spacePressed == true) {
             guarding = true;
+            guardCounter++;
+
         }
         else if (keyHandler.upPressed || keyHandler.downPressed || keyHandler.leftPressed || keyHandler.rightPressed
             || keyHandler.enterPressed) { 
@@ -302,9 +305,9 @@ public class Player extends Entity {
             }
 
             attackCanceled = false;
-
             keyHandler.enterPressed = false;
             guarding = false;
+            guardCounter = 0;
 
             spriteCounter++; 
             if (spriteCounter > 10) { 
@@ -319,6 +322,7 @@ public class Player extends Entity {
                 standCounter = 0;
             }
             guarding = false;
+            guardCounter = 0;
         }
 
         if (gp.keyHandler.shotKeyPressed == true && projectile.alive == false 
@@ -507,6 +511,9 @@ public class Player extends Entity {
         if (i != 999) {
             if (gp.monster[gp.currentMap][i].invincible == false) {
                 if (knockBackPower > 0) setKnockBack(gp.monster[gp.currentMap][i], attacker, knockBackPower);
+                if (gp.monster[gp.currentMap][i].offBalance == true) {
+                    attack *= 5;
+                }
                 int damage = attack - gp.monster[gp.currentMap][i].defense;
                 if (damage < 0) {
                     damage = 0;

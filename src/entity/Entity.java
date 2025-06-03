@@ -20,6 +20,7 @@ public class Entity {
     public String knockBackDirection;
     public boolean guarding = false;
     public boolean transparent = false;
+    public boolean offBalance = false;
 
     // SOLID AREA
     public java.awt.Rectangle solidArea = new java.awt.Rectangle(0, 0, 48, 48); // Rectangle for collision detection
@@ -50,6 +51,8 @@ public class Entity {
     int hpBarCounter = 0;
     public int shotAvailableCounter = 0;
     int knockBackCounter = 0;
+    public int guardCounter = 0;
+    int offBalanceCounter = 0;
 
     // CHAR ATTIBUTES
     public String name;
@@ -486,6 +489,13 @@ public class Entity {
         if (shotAvailableCounter < 180) {
             shotAvailableCounter++;
         }
+        if (offBalance == true) {
+            offBalanceCounter++;
+            if (offBalanceCounter > 60) {
+                offBalance = false;
+                offBalanceCounter = 0;
+            }
+        }
     }
 
     public void dyingAnimation(java.awt.Graphics2D g2) {
@@ -518,6 +528,14 @@ public class Entity {
                 int damage = attack - gp.player.defense;
                 String canGuardDirection = getOppositeDirection(direction);
                 if (gp.player.guarding == true && gp.player.direction.equals(canGuardDirection)) {
+                    // Parry
+                    if (gp.player.guardCounter < 10) {
+                        damage = 0;
+                        setKnockBack(this, gp.player, gp.player.knockBackPower);
+                        offBalance = true;
+                        spriteCounter -= 60;
+                    }
+                    // Normal guard
                     damage /= 3;
                 }
                 else if (damage < 1) {
