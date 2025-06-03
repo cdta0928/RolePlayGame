@@ -132,6 +132,21 @@ public class Entity {
 
     }
 
+    public String getOppositeDirection(String direction) {
+        String opposite = "";
+        switch (direction) {
+            case "up":
+                opposite = "down";
+            case "down":
+                opposite = "up";
+            case "right":
+                opposite = "left";
+            case "left":
+                opposite = "right";
+        }
+        return opposite;
+    }
+
     public void speak() {
         if (dialogues[dialogueIndex] == null) {
             dialogueIndex = 0;
@@ -500,8 +515,12 @@ public class Entity {
     public void damagePlayer(int attack) {
             if (gp.player.invincible == false) {
                 int damage = attack - gp.player.defense;
-                if (damage < 0) {
-                    damage = 0;
+                String canGuardDirection = getOppositeDirection(direction);
+                if (gp.player.guarding == true && gp.player.direction.equals(canGuardDirection)) {
+                    damage /= 3;
+                }
+                else if (damage < 1) {
+                    damage = 1;
                 }
 
                 gp.player.life -= damage;
