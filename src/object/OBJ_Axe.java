@@ -1,11 +1,12 @@
 package object;
 
 public class OBJ_Axe extends entity.Entity {
+    public static final String objName = "Axe";
     public OBJ_Axe (main.GamePanel gp) {
         super(gp);
 
         type = type_axe;
-        name = "Axe";
+        name = objName;
         down1 = setup("/res/object/inventory/axe", gp.tileSize, gp.tileSize);
         attackValue = 2;
         attackArea.width = 30;

@@ -39,7 +39,7 @@ public class AssetSetter {
         gp.obj[mapNum][i].worldX = 11 * gp.tileSize;
         gp.obj[mapNum][i].worldY = 13 * gp.tileSize;
         i++;
-        gp.obj[mapNum][i] = new object.OBJ_Chest(gp, new object.OBJ_Shiled_Iron(gp));
+        gp.obj[mapNum][i] = new object.OBJ_Chest(gp, new object.OBJ_Shield_Iron(gp));
         gp.obj[mapNum][i].worldX = 3 * gp.tileSize;
         gp.obj[mapNum][i].worldY = 2 * gp.tileSize;
         i++;

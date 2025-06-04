@@ -4,6 +4,7 @@ public class OBJ_Chest extends entity.Entity {
     main.GamePanel gp;
     entity.Entity loot;
     boolean opened = false; 
+    public static final String objName = "Chest";
 
     public OBJ_Chest(main.GamePanel gp, entity.Entity loot) {
         super(gp);
@@ -11,7 +12,7 @@ public class OBJ_Chest extends entity.Entity {
         this.loot = loot;
 
         type = type_obstacle;
-        name = "Chest";
+        name = objName;
         image = setup("/res/object/chest", gp.tileSize, gp.tileSize);
         image2 = setup("/res/object/chest_opened", gp.tileSize, gp.tileSize);
         down1 = image;

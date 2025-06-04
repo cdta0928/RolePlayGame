@@ -5,12 +5,13 @@ import tile_interactive.Interactive;
 
 public class OBJ_Rock extends entity.Projectile {
     main.GamePanel gp;
+    public static final String objName = "Rock";
 
     public OBJ_Rock(main.GamePanel gp) {
         super(gp);
         this.gp = gp;
 
-        name = "Rock";
+        name = objName;
         speed = 2;
         maxLife = 80;
         life = maxLife;

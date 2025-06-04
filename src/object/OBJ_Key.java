@@ -2,11 +2,13 @@ package object;
 
 public class OBJ_Key extends entity.Entity {
     main.GamePanel gp;
+    public static final String objName = "Key";
+
     public OBJ_Key(main.GamePanel gp) {
         super(gp);
         this.gp = gp;
         type = type_consumable;
-        name = "Key";
+        name = objName;
         down1 = setup("/res/object/Key", gp.tileSize, gp.tileSize); 
         description = "[" + name + "]\nUse to open the door.";
         price = 100;

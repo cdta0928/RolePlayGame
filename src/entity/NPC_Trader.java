@@ -39,7 +39,7 @@ public class NPC_Trader extends Entity {
         inventory.add(new object.OBJ_Sword_Normal(gp));
         inventory.add(new object.OBJ_Axe(gp));
         inventory.add(new object.OBJ_Shield_Wood(gp));
-        inventory.add(new object.OBJ_Shiled_Iron(gp));
+        inventory.add(new object.OBJ_Shield_Iron(gp));
     }
 
     public void speak() {

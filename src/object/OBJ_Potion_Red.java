@@ -2,13 +2,14 @@ package object;
 
 public class OBJ_Potion_Red extends entity.Entity {
     main.GamePanel gp;
+    public static final String objName = "Red Potion";
 
     public OBJ_Potion_Red(main.GamePanel gp) {
         super(gp);
         this.gp = gp;
 
         type = type_consumable;
-        name = "Red Potion";
+        name = objName;
         value = 5;
         down1 = setup("/res/object/inventory/potion_red", gp.tileSize, gp.tileSize);
         description = "[" + name + "]\nHeals your life by " + value + ".";

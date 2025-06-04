@@ -42,6 +42,7 @@ public class GamePanel extends javax.swing.JPanel implements Runnable {
     public ai.PathFinder pFinder = new ai.PathFinder(this);
     environmemt.EnvironmentManager eManager = new environmemt.EnvironmentManager(this);
     tile.Map map = new tile.Map(this);
+    public EntityGenerator eGenerator = new EntityGenerator(this);
 
     // PLAYER, ENTITY, OBJECT
     public entity.Player player = new entity.Player(this, keyHandler); 

@@ -40,25 +40,25 @@ public class Player extends Entity {
     }
 
     public void setDefaultValues() {
-        worldX = gp.tileSize * 20; 
-        worldY = gp.tileSize * 31; 
-        gp.currentMap = 0; 
+        worldX = gp.tileSize * 12; 
+        worldY = gp.tileSize * 12; 
+        gp.currentMap = 1; 
         defaultSpeed = 4;
         speed = defaultSpeed;
         direction = "down"; 
 
         // PLAYER STATUS
         level = 1;
-        maxLife = 6;
+        maxLife = 20;
         life = maxLife;
         maxMana = 4;
         mana = maxMana;
         ammo = 1;
-        strength = 1;
+        strength = 100;
         dexterity = 1;
         exp = 0;
         nextLevelExp = 5;
-        coin = 0;
+        coin = 10000;
         currentWeapon = new object.OBJ_Sword_Normal(gp);
         currentShield = new object.OBJ_Shield_Wood(gp);
         projectile = new object.OBJ_Fireball(gp);
@@ -69,6 +69,7 @@ public class Player extends Entity {
     public void setDefaultPositions() {
         worldX = gp.tileSize * 20; 
         worldY = gp.tileSize * 31; 
+        gp.currentMap = 0;
         direction = "down";
     }
 
@@ -144,22 +145,23 @@ public class Player extends Entity {
 
     public boolean canObtainItem(Entity item) {
         boolean canObtain = false;
-        if (item.stackable == true) {
-            int index = searchItemInventory(item.name);
+        Entity newItem = gp.eGenerator.getObject(item.name);
+        if (newItem.stackable == true) {
+            int index = searchItemInventory(newItem.name);
             if (index != 999) {
                 inventory.get(index).amount++;
                 canObtain = true;
             }
             else {
                 if (inventory.size() != maxInventorySize) {
-                    inventory.add(item);
+                    inventory.add(newItem);
                     canObtain = true; 
                 }
             }
         }
         else {
             if (inventory.size() != maxInventorySize) {
-                inventory.add(item);
+                inventory.add(newItem);
                 canObtain = true;
             }
         }

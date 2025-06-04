@@ -2,10 +2,12 @@ package object;
 
 public class OBJ_Coin_Bronze extends entity.Entity {
     main.GamePanel gp;
+    public static final String objName = "Coin";
 
     public OBJ_Coin_Bronze(main.GamePanel gp) {
         super(gp);
         this.gp = gp;
+        name = objName;
 
         type = type_pickupOnly;
         value = 1;
