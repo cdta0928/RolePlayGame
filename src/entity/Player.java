@@ -1,5 +1,6 @@
 package entity;
 
+import object.OBJ_Axe;
 import object.OBJ_Key;
 
 public class Player extends Entity {
@@ -85,7 +86,7 @@ public class Player extends Entity {
         inventory.add(currentWeapon);
         inventory.add(currentShield);
         inventory.add(new OBJ_Key(gp));
-        inventory.add(new OBJ_Key(gp));
+        inventory.add(new OBJ_Axe(gp));
     }
 
     public void selectItem() {

@@ -60,6 +60,12 @@ public class EventHandler {
             else if (hit(1, 12, 9, "up") == true || hit(1, 12, 8, "any")) {
                 speak(gp.npc[1][0]);
             }
+            else if (hit (0, 45, 7, "any") == true) {
+                teleport(2, 4, 4, gp.dialogueState);
+            }
+            else if (hit(2, 4, 4, "any") == true) {
+                teleport(0, 45, 7, gp.dialogueState);
+            }
             // if (hit (26, 15, "any")) {
             //     teleport(26, 15, gp.dialogueState);
             // }

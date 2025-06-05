@@ -25,12 +25,12 @@ public class TileManager {
     }
 
     public void getTileImage() {
-        for (int i = 0; i <= 34; i++) {
+        for (int i = 0; i <= 35; i++) {
             String path = "";
             if (i <= 9) { path = "00" + i; }
             else { path = "0" + i; }
 
-            if ((i >= 0 && i <= 2) || (i >= 18 && i <= 25 || i == 31 || i == 33 || i == 34)) {
+            if ((i >= 0 && i <= 2) || (i >= 18 && i <= 25 || i == 31 || i == 33 || i == 34 || i == 35)) {
                 setup(i, path, false);
             } 
             else {
