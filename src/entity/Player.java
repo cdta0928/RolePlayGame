@@ -2,6 +2,7 @@ package entity;
 
 import object.OBJ_Axe;
 import object.OBJ_Key;
+import object.OBJ_Lantern;
 
 public class Player extends Entity {
 
@@ -87,6 +88,7 @@ public class Player extends Entity {
         inventory.add(currentShield);
         inventory.add(new OBJ_Key(gp));
         inventory.add(new OBJ_Axe(gp));
+        inventory.add(new OBJ_Lantern(gp)); 
     }
 
     public void selectItem() {

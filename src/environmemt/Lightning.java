@@ -20,8 +20,12 @@ public class Lightning {
     }
 
     public void draw(java.awt.Graphics2D g2) {
-        g2.setComposite(java.awt.AlphaComposite.getInstance(java.awt.AlphaComposite.SRC_OVER, filterAlpha));
-        g2.drawImage(darknessFilter, 0, 0, null);
+        if (gp.currArea == gp.outside) {
+            g2.setComposite(java.awt.AlphaComposite.getInstance(java.awt.AlphaComposite.SRC_OVER, filterAlpha));
+        }
+        if (gp.currArea == gp.outside || gp.currArea == gp.dungeon) {
+            g2.drawImage(darknessFilter, 0, 0, null);
+        }
         g2.setComposite(java.awt.AlphaComposite.getInstance(java.awt.AlphaComposite.SRC_OVER, 1F));
     }
 

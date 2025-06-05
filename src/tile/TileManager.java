@@ -25,7 +25,7 @@ public class TileManager {
     }
 
     public void getTileImage() {
-        for (int i = 0; i <= 35; i++) {
+        for (int i = 0; i <= 36; i++) {
             String path = "";
             if (i <= 9) { path = "00" + i; }
             else { path = "0" + i; }
