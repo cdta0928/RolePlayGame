@@ -56,14 +56,15 @@ public class MON_Boss extends entity.Entity {
     }
 
     public void setAction() {
-        if (onPath == true) {
+        if (getTileDistance(gp.player) < 10) {
+            moveTowardPlayer(60);
         }
         else {
             getRandomDirection(120);
         }
 
         if (attacking == false) {
-            checkAttackOrNot(60, gp.tileSize*10, gp.tileSize*5);
+            checkAttackOrNot(60, gp.tileSize*7, gp.tileSize*5);
         }
     }
 

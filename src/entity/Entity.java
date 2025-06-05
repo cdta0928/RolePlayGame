@@ -674,6 +674,27 @@ public class Entity {
         return maxLife;
     }
 
+    public void moveTowardPlayer(int interval) {
+        actionLockCounter++;
+        if (actionLockCounter > interval) {
+            if (getXDistance(gp.player) > getYDistance(gp.player)) {
+                if (gp.player.getCenterX() < getCenterX()) {
+                    direction = "left";
+                }
+                else direction = "right";
+            }
+            else if (getXDistance(gp.player) < getYDistance(gp.player)) {
+                if (gp.player.getCenterY() < getCenterY()) {
+                    direction = "up";
+                }
+                else {
+                    direction = "down";
+                }
+            }
+            actionLockCounter = 0;
+        }
+    }
+
     public void generateParticle(Entity generator, Entity target) {
         java.awt.Color color = generator.getParticleColor();
         int size = generator.getParticleSize();
@@ -731,7 +752,7 @@ public class Entity {
 
     public void getRandomDirection(int inverval) {
         actionLockCounter++;
-        if (actionLockCounter == inverval) {
+        if (actionLockCounter > inverval) {
             java.util.Random random = new java.util.Random();
             int i = random.nextInt(100) + 1;
 
