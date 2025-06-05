@@ -57,22 +57,18 @@ public class MON_Boss extends entity.Entity {
 
     public void setAction() {
         if (onPath == true) {
-            checkStopChasingOrNot(gp.player, 15, 100);
-            searchPath(getGoatCol(gp.player), getGoatRow(gp.player));
         }
         else {
-            checkStartChasingOrNot(gp.player, 5, 100);
             getRandomDirection(120);
         }
 
         if (attacking == false) {
-            checkAttackOrNot(30, gp.tileSize*4, gp.tileSize);
+            checkAttackOrNot(60, gp.tileSize*10, gp.tileSize*5);
         }
     }
 
     public void damageReaction() {
         actionLockCounter = 0;
-        onPath = true;
     }
 
     public void checkDrop() {

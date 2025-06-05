@@ -152,6 +152,10 @@ public class AssetSetter {
         gp.monster[mapNum][i] = new monster.MON_Bat(gp);
         gp.monster[mapNum][i].worldX = gp.tileSize * 8;
         gp.monster[mapNum][i].worldY = gp.tileSize * 5; i++;
+        mapNum = 2;
+        gp.monster[mapNum][i] = new monster.MON_Boss(gp);
+        gp.monster[mapNum][i].worldX = gp.tileSize * 38;
+        gp.monster[mapNum][i].worldY = gp.tileSize * 39; i++;
     }
 
     public void setInteractiveTile() {
