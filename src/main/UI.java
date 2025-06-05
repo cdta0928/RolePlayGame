@@ -403,7 +403,19 @@ public class UI {
                     }
                 }
                 else if (monster.boss == true) {
-                    //
+                    double oneScale = (double)gp.tileSize*8/monster.maxLife;
+                    double hpBarValue = oneScale*monster.life;
+                    int x = gp.screenWidth/2 - gp.tileSize*4;
+                    int y = gp.tileSize*10;
+
+                    g2.setColor(new java.awt.Color(35, 35, 35));
+                    g2.fillRect(x - 1, y - 1, gp.tileSize*8 + 2, 22);
+                    g2.setColor(new java.awt.Color(255, 0, 30));
+                    g2.fillRect(x, y, (int)hpBarValue, 20);
+
+                    g2.setFont(pixelOBold.deriveFont(32F));
+                    g2.setColor(java.awt.Color.WHITE);
+                    g2.drawString(monster.name, x + 4, y - 10);
                 }
             }
         }
