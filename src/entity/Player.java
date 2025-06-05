@@ -42,9 +42,7 @@ public class Player extends Entity {
     }
 
     public void setDefaultValues() {
-        worldX = gp.tileSize * 12; 
-        worldY = gp.tileSize * 12; 
-        gp.currentMap = 1; 
+        setDefaultPositions();
         defaultSpeed = 4;
         speed = defaultSpeed;
         direction = "down"; 
@@ -69,10 +67,11 @@ public class Player extends Entity {
     }
 
     public void setDefaultPositions() {
-        worldX = gp.tileSize * 20; 
-        worldY = gp.tileSize * 31; 
-        gp.currentMap = 0;
+        worldX = gp.tileSize * 4; 
+        worldY = gp.tileSize * 7; 
+        gp.currentMap = 2;
         direction = "down";
+        gp.currArea = gp.outside;
     }
 
     public void restoreLifeAndMana() {

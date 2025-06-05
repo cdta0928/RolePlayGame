@@ -721,9 +721,9 @@ public class Entity {
         }
     }
 
-    public void getRandomDirection() {
+    public void getRandomDirection(int inverval) {
         actionLockCounter++;
-        if (actionLockCounter == 120) {
+        if (actionLockCounter == inverval) {
             java.util.Random random = new java.util.Random();
             int i = random.nextInt(100) + 1;
 

@@ -148,6 +148,10 @@ public class AssetSetter {
         //         i++;
         //     }
         // }
+        mapNum = 2;
+        gp.monster[mapNum][i] = new monster.MON_Bat(gp);
+        gp.monster[mapNum][i].worldX = gp.tileSize * 8;
+        gp.monster[mapNum][i].worldY = gp.tileSize * 5; i++;
     }
 
     public void setInteractiveTile() {

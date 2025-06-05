@@ -45,7 +45,7 @@ public class MON_Slime extends entity.Entity {
         }
         else {
             checkStartChasingOrNot(gp.player, 5, 100);
-            getRandomDirection();
+            getRandomDirection(120);
         }
     }
 
