@@ -49,7 +49,7 @@ public class Player extends Entity {
 
         // PLAYER STATUS
         level = 1;
-        maxLife = 20;
+        maxLife = 6;
         life = maxLife;
         maxMana = 4;
         mana = maxMana;
@@ -58,7 +58,7 @@ public class Player extends Entity {
         dexterity = 1;
         exp = 0;
         nextLevelExp = 5;
-        coin = 10000;
+        coin = 0;
         currentWeapon = new object.OBJ_Sword_Normal(gp);
         currentShield = new object.OBJ_Shield_Wood(gp);
         projectile = new object.OBJ_Fireball(gp);
