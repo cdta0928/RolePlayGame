@@ -124,6 +124,7 @@ public class UI {
         // PLAY STATE
         if (gp.gameState == gp.playState) {
             //...
+            drawMonsterLife();
             drawPlayerLife();
             drawMessage();
         }
@@ -378,6 +379,33 @@ public class UI {
             gp.eHandler.previousEventX = gp.player.worldX;
             gp.eHandler.previousEventY = gp.player.worldY;
             gp.changeArea();
+        }
+    }
+
+    public void drawMonsterLife() {
+        for (int i = 0; i < gp.monster[1].length; i++) {
+            entity.Entity monster = gp.monster[gp.currentMap][i];
+            if (monster != null && monster.inCamera() == true) {
+                // MONSTER HEALTH BAR
+                if (monster.hpBarOn == true && monster.boss == false) {
+                    double oneScale = (double)gp.tileSize/monster.maxLife;
+                    double hpBarValue = oneScale*monster.life;
+
+                    g2.setColor(new java.awt.Color(35, 35, 35));
+                    g2.fillRect(monster.getScreenX() - 1, monster.getScreenY() -16, gp.tileSize + 2, 12);
+                    g2.setColor(new java.awt.Color(255, 0, 30));
+                    g2.fillRect(monster.getScreenX(), monster.getScreenY() - 15, (int)hpBarValue, 10);
+
+                    monster.hpBarCounter++;
+                    if (monster.hpBarCounter > 600) {
+                        monster.hpBarOn = false;
+                        monster.hpBarCounter = 0;
+                    }
+                }
+                else if (monster.boss == true) {
+                    //
+                }
+            }
         }
     }
 

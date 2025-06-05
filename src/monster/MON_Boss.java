@@ -10,6 +10,7 @@ public class MON_Boss extends entity.Entity {
 
         type = type_monster;
         name = monName;
+        boss = true;
         defaultSpeed = 1;
         speed = defaultSpeed;
         maxLife = 50;
