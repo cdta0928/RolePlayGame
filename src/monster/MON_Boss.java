@@ -15,7 +15,7 @@ public class MON_Boss extends entity.Entity {
         maxLife = 50;
         life = maxLife;
         attack = 10;
-        defense = 2;
+        defense = 3;
         exp = 50;
         motion1_duration = 25;
         motion2_duration = 50;
@@ -56,6 +56,14 @@ public class MON_Boss extends entity.Entity {
     }
 
     public void setAction() {
+        if (rageMode == false && life < maxLife/2) {
+            rageMode = true;
+            defaultSpeed += 2;
+            speed = defaultSpeed;
+            attack *= 2;
+            defense *= 3;
+        }
+
         if (getTileDistance(gp.player) < 10) {
             moveTowardPlayer(60);
         }
