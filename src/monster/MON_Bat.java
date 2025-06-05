@@ -14,7 +14,7 @@ public class MON_Bat extends entity.Entity {
         maxLife = 7;
         life = maxLife;
         attack = 7;
-        defense = 0;
+        defense = 1;
         exp = 7;
 
         solidArea = new java.awt.Rectangle(0, 6, 48, 30);

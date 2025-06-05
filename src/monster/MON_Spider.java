@@ -23,7 +23,7 @@ public class MON_Spider extends entity.Entity {
         maxLife = 8;
         life = maxLife;
         attack = 4;
-        defense = 2;
+        defense = 1;
         exp = 4;
         projectile = new object.OBJ_Rock(gp);
         projectile.speed *= 2;

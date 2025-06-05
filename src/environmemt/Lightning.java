@@ -93,7 +93,7 @@ public class Lightning {
         // Check the state of the day
         if (dayState == day) {
             dayCounter++;
-            if (dayCounter > 6000) {
+            if (dayCounter > 120) {
                 dayState = dusk;
                 dayCounter = 0;
             }

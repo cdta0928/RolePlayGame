@@ -15,7 +15,7 @@ public class MON_Slime extends entity.Entity {
         maxLife = 4;
         life = maxLife;
         attack = 2;
-        defense = 1;
+        defense = 0;
         exp = 2;
         projectile = new object.OBJ_Rock(gp);
 

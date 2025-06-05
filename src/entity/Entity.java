@@ -542,8 +542,14 @@ public class Entity {
     }
 
     public void damagePlayer(int attack) {
+        int damage;
+            if (boss == true) {
+                damage = attack;
+            }
+            else {
+                damage = attack - gp.player.defense;
+            }
             if (gp.player.invincible == false) {
-                int damage = attack - gp.player.defense;
                 String canGuardDirection = getOppositeDirection(direction);
                 if (gp.player.guarding == true && gp.player.direction.equals(canGuardDirection)) {
                     // Parry
@@ -556,7 +562,7 @@ public class Entity {
                     // Normal guard
                     damage /= 3;
                 }
-                else if (damage < 1) {
+                else if (damage <= 1) {
                     damage = 1;
                 }
 

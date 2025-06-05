@@ -67,9 +67,9 @@ public class Player extends Entity {
     }
 
     public void setDefaultPositions() {
-        worldX = gp.tileSize * 24; 
-        worldY = gp.tileSize * 41; 
-        gp.currentMap = 2;
+        worldX = gp.tileSize * 20; 
+        worldY = gp.tileSize * 31; 
+        gp.currentMap = 0;
         direction = "down";
         gp.currArea = gp.outside;
     }
@@ -519,8 +519,8 @@ public class Player extends Entity {
                     attack *= 5;
                 }
                 int damage = attack - gp.monster[gp.currentMap][i].defense;
-                if (damage < 0) {
-                    damage = 0;
+                if (damage <= 1) {
+                    damage = 1;
                 }
 
                 gp.monster[gp.currentMap][i].life -= damage;

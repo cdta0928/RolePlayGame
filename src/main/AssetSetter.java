@@ -110,49 +110,164 @@ public class AssetSetter {
         gp.monster[mapNum][i].worldX = gp.tileSize * 44;
         gp.monster[mapNum][i].worldY = gp.tileSize * 34; i++;
 
-        // gp.monster[mapNum][i] = new monster.MON_Slime(gp);
-        // gp.monster[mapNum][i].worldX = gp.tileSize * 37;
-        // gp.monster[mapNum][i].worldY = gp.tileSize * 20; i++;
-
-        // gp.monster[mapNum][i] = new monster.MON_Slime(gp);
-        // gp.monster[mapNum][i].worldX = gp.tileSize * 35;
-        // gp.monster[mapNum][i].worldY = gp.tileSize * 19; i++;
-
-        // gp.monster[mapNum][i] = new monster.MON_Spider(gp);
-        // gp.monster[mapNum][i].worldX = gp.tileSize * 41;
-        // gp.monster[mapNum][i].worldY = gp.tileSize * 17; i++;
-
-        // gp.monster[mapNum][i] = new monster.MON_Spider(gp);
-        // gp.monster[mapNum][i].worldX = gp.tileSize * 32;
-        // gp.monster[mapNum][i].worldY = gp.tileSize * 21; i++;
-
-        // gp.monster[mapNum][i] = new monster.MON_Spider(gp);
-        // gp.monster[mapNum][i].worldX = gp.tileSize * 35;
-        // gp.monster[mapNum][i].worldY = gp.tileSize * 18; i++;
-
         gp.monster[mapNum][i] = new monster.MON_Orc(gp);
         gp.monster[mapNum][i].worldX = gp.tileSize * 37;
         gp.monster[mapNum][i].worldY = gp.tileSize * 19; i++;
 
-        // for (int ii = 32; ii <= 39; ii++) {
-        //     for (int j = 5; j <= 8; j++) {
-        //         int r = new java.util.Random().nextInt(100) + 1;
-        //         if (r >= 50) {
-        //             gp.monster[mapNum][i] = new monster.MON_Spider(gp);
-        //         }
-        //         else {
-        //             gp.monster[mapNum][i] = new monster.MON_Slime(gp);
-        //         }
-        //         gp.monster[mapNum][i].worldX = gp.tileSize*ii;
-        //         gp.monster[mapNum][i].worldY = gp.tileSize*j;
-        //         i++;
-        //     }
-        // }
+        gp.monster[mapNum][i] = new monster.MON_Orc(gp);
+        gp.monster[mapNum][i].worldX = gp.tileSize * 35;
+        gp.monster[mapNum][i].worldY = gp.tileSize * 20; i++;
+
+        gp.monster[mapNum][i] = new monster.MON_Slime(gp);
+        gp.monster[mapNum][i].worldX = gp.tileSize * 25;
+        gp.monster[mapNum][i].worldY = gp.tileSize * 24; i++;
+
+        gp.monster[mapNum][i] = new monster.MON_Spider(gp);
+        gp.monster[mapNum][i].worldX = gp.tileSize * 43;
+        gp.monster[mapNum][i].worldY = gp.tileSize * 4; i++;
+
+        gp.monster[mapNum][i] = new monster.MON_Spider(gp);
+        gp.monster[mapNum][i].worldX = gp.tileSize * 32;
+        gp.monster[mapNum][i].worldY = gp.tileSize * 4; i++;
+
+
+        gp.monster[mapNum][i] = new monster.MON_Orc(gp);
+        gp.monster[mapNum][i].worldX = gp.tileSize * 32;
+        gp.monster[mapNum][i].worldY = gp.tileSize * 5; i++;
+
+        gp.monster[mapNum][i] = new monster.MON_Orc(gp);
+        gp.monster[mapNum][i].worldX = gp.tileSize * 39;
+        gp.monster[mapNum][i].worldY = gp.tileSize * 5; i++;
+
+        gp.monster[mapNum][i] = new monster.MON_Orc(gp);
+        gp.monster[mapNum][i].worldX = gp.tileSize * 39;
+        gp.monster[mapNum][i].worldY = gp.tileSize * 8; i++;
+
+        gp.monster[mapNum][i] = new monster.MON_Orc(gp);
+        gp.monster[mapNum][i].worldX = gp.tileSize * 32;
+        gp.monster[mapNum][i].worldY = gp.tileSize * 8; i++;
+
+        gp.monster[mapNum][i] = new monster.MON_Slime(gp);
+        gp.monster[mapNum][i].worldX = gp.tileSize * 31;
+        gp.monster[mapNum][i].worldY = gp.tileSize * 10; i++;
+
+        gp.monster[mapNum][i] = new monster.MON_Slime(gp);
+        gp.monster[mapNum][i].worldX = gp.tileSize * 41;
+        gp.monster[mapNum][i].worldY = gp.tileSize * 10; i++;
+
+        gp.monster[mapNum][i] = new monster.MON_Slime(gp);
+        gp.monster[mapNum][i].worldX = gp.tileSize * 36;
+        gp.monster[mapNum][i].worldY = gp.tileSize * 11; i++;
+
         mapNum = 2;
         gp.monster[mapNum][i] = new monster.MON_Bat(gp);
         gp.monster[mapNum][i].worldX = gp.tileSize * 8;
         gp.monster[mapNum][i].worldY = gp.tileSize * 5; i++;
-        mapNum = 2;
+
+        gp.monster[mapNum][i] = new monster.MON_Bat(gp);
+        gp.monster[mapNum][i].worldX = gp.tileSize * 13;
+        gp.monster[mapNum][i].worldY = gp.tileSize * 5; i++;
+
+        gp.monster[mapNum][i] = new monster.MON_Spider(gp);
+        gp.monster[mapNum][i].worldX = gp.tileSize * 19;
+        gp.monster[mapNum][i].worldY = gp.tileSize * 4; i++;
+
+        gp.monster[mapNum][i] = new monster.MON_Spider(gp);
+        gp.monster[mapNum][i].worldX = gp.tileSize * 20;
+        gp.monster[mapNum][i].worldY = gp.tileSize * 4; i++;
+
+        gp.monster[mapNum][i] = new monster.MON_Spider(gp);
+        gp.monster[mapNum][i].worldX = gp.tileSize * 23;
+        gp.monster[mapNum][i].worldY = gp.tileSize * 4; i++;
+
+        gp.monster[mapNum][i] = new monster.MON_Spider(gp);
+        gp.monster[mapNum][i].worldX = gp.tileSize * 24;
+        gp.monster[mapNum][i].worldY = gp.tileSize * 4; i++;
+
+        gp.monster[mapNum][i] = new monster.MON_Slime(gp);
+        gp.monster[mapNum][i].worldX = gp.tileSize * 38;
+        gp.monster[mapNum][i].worldY = gp.tileSize * 5; i++;
+
+        gp.monster[mapNum][i] = new monster.MON_Slime(gp);
+        gp.monster[mapNum][i].worldX = gp.tileSize * 39;
+        gp.monster[mapNum][i].worldY = gp.tileSize * 5; i++;
+
+        gp.monster[mapNum][i] = new monster.MON_Slime(gp);
+        gp.monster[mapNum][i].worldX = gp.tileSize * 40;
+        gp.monster[mapNum][i].worldY = gp.tileSize * 5; i++;
+
+        gp.monster[mapNum][i] = new monster.MON_Spider(gp);
+        gp.monster[mapNum][i].worldX = gp.tileSize * 44;
+        gp.monster[mapNum][i].worldY = gp.tileSize * 5; i++;
+
+        gp.monster[mapNum][i] = new monster.MON_Orc(gp);
+        gp.monster[mapNum][i].worldX = gp.tileSize * 44;
+        gp.monster[mapNum][i].worldY = gp.tileSize * 16; i++;
+
+        gp.monster[mapNum][i] = new monster.MON_Bat(gp);
+        gp.monster[mapNum][i].worldX = gp.tileSize * 45;
+        gp.monster[mapNum][i].worldY = gp.tileSize * 5; i++;
+
+        gp.monster[mapNum][i] = new monster.MON_Spider(gp);
+        gp.monster[mapNum][i].worldX = gp.tileSize * 27;
+        gp.monster[mapNum][i].worldY = gp.tileSize * 16; i++;
+
+        gp.monster[mapNum][i] = new monster.MON_Bat(gp);
+        gp.monster[mapNum][i].worldX = gp.tileSize * 28;
+        gp.monster[mapNum][i].worldY = gp.tileSize * 16; i++;
+
+        gp.monster[mapNum][i] = new monster.MON_Bat(gp);
+        gp.monster[mapNum][i].worldX = gp.tileSize * 29;
+        gp.monster[mapNum][i].worldY = gp.tileSize * 16; i++;
+
+        gp.monster[mapNum][i] = new monster.MON_Bat(gp);
+        gp.monster[mapNum][i].worldX = gp.tileSize * 11;
+        gp.monster[mapNum][i].worldY = gp.tileSize * 24; i++;
+
+        gp.monster[mapNum][i] = new monster.MON_Orc(gp);
+        gp.monster[mapNum][i].worldX = gp.tileSize * 4;
+        gp.monster[mapNum][i].worldY = gp.tileSize * 13; i++;
+
+        gp.monster[mapNum][i] = new monster.MON_Orc(gp);
+        gp.monster[mapNum][i].worldX = gp.tileSize * 11;
+        gp.monster[mapNum][i].worldY = gp.tileSize * 13; i++;
+
+        gp.monster[mapNum][i] = new monster.MON_Orc(gp);
+        gp.monster[mapNum][i].worldX = gp.tileSize * 5;
+        gp.monster[mapNum][i].worldY = gp.tileSize * 34; i++;
+
+        gp.monster[mapNum][i] = new monster.MON_Orc(gp);
+        gp.monster[mapNum][i].worldX = gp.tileSize * 9;
+        gp.monster[mapNum][i].worldY = gp.tileSize * 34; i++;
+
+        gp.monster[mapNum][i] = new monster.MON_Slime(gp);
+        gp.monster[mapNum][i].worldX = gp.tileSize * 5;
+        gp.monster[mapNum][i].worldY = gp.tileSize * 41; i++;
+
+        gp.monster[mapNum][i] = new monster.MON_Slime(gp);
+        gp.monster[mapNum][i].worldX = gp.tileSize * 5;
+        gp.monster[mapNum][i].worldY = gp.tileSize * 42; i++;
+
+        gp.monster[mapNum][i] = new monster.MON_Slime(gp);
+        gp.monster[mapNum][i].worldX = gp.tileSize * 5;
+        gp.monster[mapNum][i].worldY = gp.tileSize * 43; i++;
+
+        gp.monster[mapNum][i] = new monster.MON_Slime(gp);
+        gp.monster[mapNum][i].worldX = gp.tileSize * 5;
+        gp.monster[mapNum][i].worldY = gp.tileSize * 44; i++;
+
+        gp.monster[mapNum][i] = new monster.MON_Slime(gp);
+        gp.monster[mapNum][i].worldX = gp.tileSize * 5;
+        gp.monster[mapNum][i].worldY = gp.tileSize * 45; i++;
+
+        gp.monster[mapNum][i] = new monster.MON_Slime(gp);
+        gp.monster[mapNum][i].worldX = gp.tileSize * 6;
+        gp.monster[mapNum][i].worldY = gp.tileSize * 45; i++;
+
+        gp.monster[mapNum][i] = new monster.MON_Slime(gp);
+        gp.monster[mapNum][i].worldX = gp.tileSize * 7;
+        gp.monster[mapNum][i].worldY = gp.tileSize * 45; i++;
+
         gp.monster[mapNum][i] = new monster.MON_Boss(gp);
         gp.monster[mapNum][i].worldX = gp.tileSize * 38;
         gp.monster[mapNum][i].worldY = gp.tileSize * 39; i++;
